@@ -1,0 +1,224 @@
+<div class="grid grid-cols-12 gap-4 xxl:gap-6">
+	<!-- Statistics -->
+	<div
+		*ngFor="let stat of stats"
+		class="box col-span-12 bg-n0 p-4 dark:bg-bg4 sm:col-span-6 xxxl:col-span-3 4xl:px-8 4xl:py-6"
+	>
+		<div
+			class="bb-dashed mb-4 flex items-center justify-between pb-4 lg:mb-6 lg:pb-6"
+		>
+			<span class="font-medium">{{ stat.title }} </span>
+			<app-options-horiz></app-options-horiz>
+		</div>
+		<div class="flex items-center gap-4 xl:gap-6">
+			<div
+				class="flex h-14 w-14 items-center justify-center rounded-xl border border-n30 bg-[#334CAE]/5 text-[#334CAE] dark:border-n500 xl:h-[72px] xl:w-[72px]"
+			>
+				<i [class]="stat.icon"></i>
+			</div>
+			<div>
+				<h4 class="h4 mb-2 xxl:mb-4">{{ stat.amount }}</h4>
+				<span class="flex items-center gap-1 whitespace-nowrap text-[#334CAE]">
+					<i class="las la-arrow-up text-lg"></i>{{ stat.percent }} %
+				</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- Transactions -->
+	<div class="col-span-12 lg:col-span-6 box overflow-x-hidden">
+		<div
+			class="flex flex-wrap justify-between items-center gap-3 pb-4 lg:pb-6 mb-4 lg:mb-6 bb-dashed"
+		>
+			<p class="font-medium">Transaction Overview</p>
+			<div class="flex items-center gap-2">
+				<p class="text-xs sm:text-sm md:text-base">Sort By :</p>
+				<app-dropdown />
+			</div>
+		</div>
+		<apx-chart
+			[chart]="transactionsOverviewChart.chart"
+			[stroke]="transactionsOverviewChart.stroke!"
+			[dataLabels]="transactionsOverviewChart.dataLabels!"
+			[markers]="transactionsOverviewChart.markers!"
+			[colors]="transactionsOverviewChart.colors!"
+			[xaxis]="transactionsOverviewChart.xaxis!"
+			[yaxis]="transactionsOverviewChart.yaxis!"
+			[tooltip]="transactionsOverviewChart.tooltip!"
+			[fill]="transactionsOverviewChart.fill!"
+			[responsive]="transactionsOverviewChart.responsive"
+			[series]="transactionsOverviewChart.series"
+			[plotOptions]="transactionsOverviewChart.plotOptions!"
+			[legend]="transactionsOverviewChart.legend!"
+		/>
+	</div>
+
+	<!-- Income expense chart -->
+	<div class="col-span-12 lg:col-span-6 box overflow-x-hidden">
+		<div
+			class="flex flex-wrap justify-between items-center gap-3 pb-4 lg:pb-6 mb-4 lg:mb-6 bb-dashed"
+		>
+			<p class="font-medium">Income and Expenses</p>
+			<div class="flex items-center gap-2">
+				<p class="text-xs sm:text-sm md:text-base">Sort By :</p>
+				<app-dropdown />
+			</div>
+		</div>
+		<apx-chart
+			[chart]="incomeExpenseChart.chart"
+			[stroke]="incomeExpenseChart.stroke!"
+			[dataLabels]="incomeExpenseChart.dataLabels!"
+			[markers]="incomeExpenseChart.markers!"
+			[colors]="incomeExpenseChart.colors!"
+			[xaxis]="incomeExpenseChart.xaxis!"
+			[yaxis]="incomeExpenseChart.yaxis!"
+			[tooltip]="incomeExpenseChart.tooltip!"
+			[fill]="incomeExpenseChart.fill!"
+			[responsive]="incomeExpenseChart.responsive"
+			[series]="incomeExpenseChart.series"
+			[legend]="incomeExpenseChart.legend!"
+		/>
+	</div>
+
+	<!-- Latest Transactions -->
+	<div class="box col-span-12 lg:col-span-6">
+		<div
+			class="bb-dashed mb-4 flex flex-wrap items-center justify-between gap-4 pb-4 lg:mb-6 lg:pb-6"
+		>
+			<h4 class="h4">Latest Transaction</h4>
+			<app-options-horiz />
+		</div>
+		<div class="overflow-x-auto">
+			<table class="w-full whitespace-nowrap">
+				<thead>
+					<tr class="bg-secondary1/5 dark:bg-bg3">
+						<th
+							(click)="tableService1.sortData('title')"
+							class="flex min-w-[300px] cursor-pointer items-center gap-1 px-6 py-5 text-start"
+						>
+							Title <i class="las la-exchange-alt rotate-90 text-base"></i>
+						</th>
+						<th
+							(click)="tableService1.sortData('medium')"
+							class="min-w-[120px] cursor-pointer px-6 py-5 text-start"
+						>
+							<div class="flex items-center gap-1">
+								Medium <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="tableService1.sortData('amount')"
+							class="min-w-[120px] cursor-pointer px-6 py-5 text-start"
+						>
+							<div class="flex items-center gap-1">
+								Amount <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- Transactions Data -->
+					<tr
+						*ngFor="let item of tableService1.paginatedData"
+						class="even:bg-secondary1/5 dark:even:bg-bg3"
+					>
+						<td class="px-6 py-2">
+							<div class="flex items-center gap-3">
+								<img
+									[src]="item.icon"
+									width="32"
+									height="32"
+									class="rounded-full"
+									alt="payment medium icon"
+								/>
+								<div>
+									<p class="mb-1 font-medium">{{ item.title }}</p>
+									<span class="text-xs">{{ item.time }}</span>
+								</div>
+							</div>
+						</td>
+						<td class="px-6 py-2">{{ item.medium }}</td>
+						<td class="px-6 py-2">${{ getLocale(item.amount) }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<a
+			class="group mt-6 inline-flex items-center gap-1 font-semibold text-[#334CAE]"
+			href="#"
+		>
+			See More
+			<i class="las la-arrow-right duration-300 group-hover:pl-2"></i>
+		</a>
+	</div>
+
+	<!-- Live users -->
+	<div class="box col-span-12 lg:col-span-6">
+		<div
+			class="bb-dashed mb-4 flex flex-wrap items-center justify-between gap-4 pb-4 lg:mb-6 lg:pb-6"
+		>
+			<h4 class="h4">Transaction Account</h4>
+			<app-options-horiz />
+		</div>
+		<div class="overflow-x-auto">
+			<table class="w-full whitespace-nowrap">
+				<thead>
+					<tr class="bg-secondary1/5 dark:bg-bg3">
+						<th class="min-w-[280px] cursor-pointer px-6 py-5 text-start">
+							<div
+								(click)="tableService2.sortData('title')"
+								class="flex items-center gap-1"
+							>
+								Title <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th class="w-[20%] cursor-pointer px-6 py-5 text-start">
+							<div
+								(click)="tableService2.sortData('amount')"
+								class="flex items-center gap-1"
+							>
+								Amount <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- Transactions Data -->
+					<tr
+						*ngFor="let item of tableService2.paginatedData"
+						class="even:bg-secondary1/5 dark:even:bg-bg3"
+					>
+						<td class="px-6 py-2">
+							<div class="flex items-center gap-3">
+								<img
+									[src]="item.icon"
+									width="60"
+									height="40"
+									class="rounded"
+									alt="payment medium icon"
+								/>
+								<div>
+									<p class="mb-1 font-medium">{{ item.title }}</p>
+									<span class="text-xs">{{ item.time }}</span>
+								</div>
+							</div>
+						</td>
+						<td class="px-6 py-2">
+							<div>
+								<p class="font-medium">${{ getLocale(item.amount) }}</p>
+								<span class="text-xs">Account Balance</span>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<a
+			class="group mt-6 inline-flex items-center gap-1 font-semibold text-[#334CAE]"
+			href="#"
+		>
+			See More
+			<i class="las la-arrow-right duration-300 group-hover:pl-2"></i>
+		</a>
+	</div>
+</div>

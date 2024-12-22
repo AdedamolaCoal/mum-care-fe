@@ -1,0 +1,211 @@
+<app-top-banner title="Invoice Style 02" />
+<div class="grid grid-cols-12 gap-4 xxl:gap-6">
+	<div
+		*ngFor="let stat of stats"
+		class="box col-span-12 bg-n0 dark:bg-bg4 min-[650px]:col-span-6 xxxl:col-span-3"
+	>
+		<div
+			class="bb-dashed mb-4 flex items-center justify-between pb-4 lg:mb-6 lg:pb-6"
+		>
+			<span class="font-medium">{{ stat.title }}</span>
+			<app-options-horiz />
+		</div>
+		<div class="flex items-center justify-between">
+			<div>
+				<h4 class="h4 mb-4">{{ stat.amount }}</h4>
+				<span class="flex items-center gap-1 whitespace-nowrap text-[#334CAE]">
+					<i class="las la-arrow-up text-lg"></i> {{ stat.percent }} AVG
+				</span>
+			</div>
+			<div
+				class="-my-3 shrink-0 ltr:translate-x-3 xl:ltr:translate-x-7 xxxl:ltr:translate-x-2 4xl:ltr:translate-x-9 rtl:-translate-x-3 xl:rtl:-translate-x-7 xxxl:rtl:-translate-x-2 4xl:rtl:-translate-x-9"
+			>
+				<!-- <ProgressChart :series="series" /> -->
+				<app-progress-chart [series]="stat.series" />
+			</div>
+		</div>
+	</div>
+
+	<!-- Invoices list -->
+	<div class="box col-span-12">
+		<div
+			class="flex flex-wrap gap-4 justify-between items-center bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6"
+		>
+			<h4 class="h4">Recent Invoice</h4>
+			<div class="flex items-center max-lg:flex-wrap gap-4">
+				<form
+					class="bg-[#334CAE]/5 dark:bg-bg3 border border-n30 dark:border-n500 flex gap-3 rounded-[30px] focus-within:border-[#334CAE] p-1 items-center justify-between min-w-[200px] xxl:max-w-[319px] w-full"
+				>
+					<input
+						type="text"
+						placeholder="Search"
+						class="bg-transparent text-sm ltr:pl-4 border-0 rtl:pr-4 py-1 w-full"
+					/>
+					<button
+						class="bg-[#334CAE] shrink-0 rounded-full w-7 h-7 lg:w-8 lg:h-8 flex justify-center items-center text-n0"
+					>
+						<i class="las la-search text-lg"></i>
+					</button>
+				</form>
+				<div
+					class="rounded-[32px] bg-[#334CAE]/5 border border-n30 dark:border-n500 flex invoice-btns"
+				>
+					@for (item of filters; track $index) {
+					<button
+						(click)="setFilter(item)"
+						class="font-medium text-xs px-4 sm:px-5 xxxl:px-6 py-3 capitalize"
+						[ngClass]="{ 'invoice-active': item == currentFilter }"
+					>
+						{{ item }}
+					</button>
+					}
+				</div>
+				<div class="flex items-center gap-3 whitespace-nowrap">
+					<span>Sort By : </span>
+					<app-dropdown />
+				</div>
+			</div>
+		</div>
+		<div class="overflow-x-auto mb-4 lg:mb-6">
+			<table class="w-full whitespace-nowrap">
+				<thead>
+					<tr class="bg-secondary1/5 dark:bg-bg3">
+						<th
+							(click)="invoices.sortData('title')"
+							class="text-start py-5 px-6 min-w-[230px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Title <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="invoices.sortData('invoice')"
+							class="text-start py-5 min-w-[130px] cursor-pointer"
+						>
+							Invoice <i class="las la-exchange-alt rotate-90 text-base"></i>
+						</th>
+						<th
+							(click)="invoices.sortData('amount')"
+							class="text-start py-5 min-w-[130px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Amount <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="invoices.sortData('rate')"
+							class="text-start py-5 min-w-[80px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Rate <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="invoices.sortData('dueDate')"
+							class="text-start py-5 min-w-[130px]"
+						>
+							Due Date <i class="las la-exchange-alt rotate-90 text-base"></i>
+						</th>
+						<th
+							(click)="invoices.sortData('time')"
+							class="text-start py-5 min-w-[130px]"
+						>
+							Time <i class="las la-exchange-alt rotate-90 text-base"></i>
+						</th>
+						<th
+							(click)="invoices.sortData('status')"
+							class="text-start py-5 cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Status <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th class="text-center p-5">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					@for (item of invoices.paginatedData; track $index) {
+					<tr
+						class="hover:bg-secondary1/5 dark:hover:bg-bg3 duration-500 even:bg-secondary1/5 dark:even:bg-bg2"
+					>
+						<td class="py-5 px-6">
+							<div class="flex items-center gap-3">
+								<i class="las la-file text-[#334CAE]"></i>
+								<span class="font-medium"> {{ item.title }} </span>
+							</div>
+						</td>
+						<td class="py-5">
+							<p class="font-medium">{{ item.invoice }}</p>
+						</td>
+						<td class="py-5">
+							<span>$ {{ item.amount }} </span>
+						</td>
+						<td class="py-5">{{ item.rate }} %</td>
+						<td class="py-5">{{ item.dueDate }}</td>
+						<td>{{ item.time }}</td>
+						<td class="py-5">
+							<span
+								[ngClass]="{
+									'text-[#334CAE] bg-[#334CAE]/10': item.status == 'paid',
+									'text-secondary2 bg-secondary2/20': item.status == 'rejected',
+									'text-secondary3 bg-secondary3/10': item.status == 'unpaid'
+								}"
+								class="block capitalize w-28 rounded-[30px] border border-n30 bg-[#334CAE]/10 py-2 text-center text-xs text-[#334CAE] dark:border-n500 dark:bg-bg3 xxl:w-36"
+							>
+								{{ item.status }}
+							</span>
+						</td>
+						<td class="py-5">
+							<div class="flex justify-center">
+								<button>
+									<i class="las la-download"></i>
+								</button>
+							</div>
+						</td>
+					</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+
+		<div
+			class="flex col-span-12 gap-4 sm:justify-between justify-center items-center flex-wrap"
+		>
+			<p>
+				Showing {{ invoices.startIndex + 1 }} to {{ invoices.endIndex + 1 }} of
+				{{ invoices.totalData }} entries
+			</p>
+			<ul class="flex gap-2 md:gap-3 flex-wrap md:font-semibold items-center">
+				<li>
+					<button
+						[disabled]="invoices.currentPage == 1"
+						(click)="invoices.prevPage()"
+						class="hover:bg-[#334CAE] text-[#334CAE] rtl:rotate-180 hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+					>
+						<i class="las la-angle-left text-lg"></i>
+					</button>
+				</li>
+				<li *ngFor="let page of pages">
+					<button
+						(click)="invoices.paginate(page)"
+						[ngClass]="{
+							'bg-[#334CAE] !text-n0': invoices.currentPage == page
+						}"
+						class="hover:bg-[#334CAE] bg-[#334CAE] hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex text-[#334CAE] items-center rounded-full justify-center border-[#334CAE]"
+					>
+						{{ page }}
+					</button>
+				</li>
+				<li>
+					<button
+						[disabled]="invoices.currentPage == invoices.totalPages"
+						(click)="invoices.nextPage()"
+						class="hover:bg-[#334CAE] text-[#334CAE] hover:text-n0 rtl:rotate-180 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+					>
+						<i class="las la-angle-right text-lg"></i>
+					</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,269 @@
+<app-top-banner title="Card Overview" />
+<div class="flex flex-col gap-4 xxl:gap-6">
+	<!-- popular cards -->
+	<div class="box">
+		<div
+			class="bb-dashed border-secondary1/20 flex justify-between items-center mb-6 pb-6"
+		>
+			<h4 class="h4">Popular Cards</h4>
+			<app-options-horiz />
+		</div>
+		<div class="grid grid-cols-12 gap-4 xxl:gap-6">
+			@for (item of cards; track $index) {
+			<a
+				routerLink="/cards/card-details"
+				class="col-span-12 text-n0 sm:col-span-6 lg:col-span-4 4xl:col-span-3 rounded-xl p-5 relative overflow-hidden after:absolute after:rounded-full after:w-[300px] after:h-[300px] after:bg-[#FFC861] after:top-[45%] after:ltr:left-[60%] after:rtl:right-[60%] {{
+					item.background
+				}}"
+			>
+				<div class="mb-3 sm:mb-6 flex justify-between items-center">
+					<div>
+						<p class="text-xs mb-1">Deposits Balance</p>
+						<h4 class="h4">{{ item.balance.toLocaleString() }}</h4>
+					</div>
+					<img
+						src="assets/images/visa-sm.png"
+						width="36"
+						height="13"
+						class="mb-1"
+						alt="visa"
+					/>
+				</div>
+				<div>
+					<img
+						src="assets/images/mastercard.png"
+						width="45"
+						height="45"
+						class="mb-1"
+						alt="visa"
+					/>
+					<div class="flex justify-between items-center">
+						<div>
+							<p class="text-sm font-semibold mb-1">Felicia Brown</p>
+							<p class="text-xs">•••• •••• •••• 8854</p>
+						</div>
+						<span class="text-n700 relative z-[1]">{{ item.expire }}</span>
+					</div>
+				</div>
+			</a>
+			}
+
+			<div
+				class="col-span-12 sm:col-span-6 lg:col-span-4 4xl:col-span-3 border border-dashed self-stretch max-xxxl:py-14 w-full rounded-2xl border-[#334CAE] bg-[#334CAE]/10 flex flex-col justify-center items-center text-center h-full"
+			>
+				<button
+					(click)="openModal()"
+					class="bg-[#334CAE] text-n0 px-2 py-1.5 rounded-full mb-3"
+				>
+					<i class="las la-plus"></i>
+				</button>
+				<p class="font-medium mb-2">Add New Credit Card</p>
+				<button
+					(click)="openModal()"
+					class="text-sm text-[#334CAE] add-card-btn"
+				>
+					Add Now
+				</button>
+			</div>
+		</div>
+	</div>
+	<!-- Your Credits -->
+	<div class="box col-span-12 lg:col-span-6">
+		<div
+			class="flex flex-wrap gap-4 justify-between items-center bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6"
+		>
+			<h4 class="h4">Your Credits</h4>
+			<div class="flex flex-wrap items-center gap-4 grow sm:justify-end">
+				<form
+					class="bg-[#334CAE]/5 datatable-search dark:bg-bg3 border border-n30 dark:border-n500 flex gap-3 rounded-[30px] focus-within:border-[#334CAE] p-1 items-center justify-between min-w-[200px] xxl:max-w-[319px] w-full"
+				>
+					<input
+						type="text"
+						placeholder="Search"
+						class="bg-transparent text-sm ltr:pl-4 rtl:pr-4 py-1 w-full border-none"
+						id="credit-search"
+					/>
+					<button
+						class="bg-[#334CAE] shrink-0 rounded-full w-7 h-7 lg:w-8 lg:h-8 flex justify-center items-center text-n0"
+					>
+						<i class="las la-search text-lg"></i>
+					</button>
+				</form>
+				<div class="flex items-center gap-3 whitespace-nowrap">
+					<span>Sort By : </span>
+					<app-dropdown />
+				</div>
+			</div>
+		</div>
+		<div class="overflow-x-auto pb-4 lg:pb-6">
+			<table
+				class="w-full whitespace-nowrap select-all-table"
+				id="transactionTable"
+			>
+				<thead>
+					<tr class="bg-secondary1/5 dark:bg-bg3">
+						<th class="text-start w-16 px-6 !py-5">
+							<input
+								(click)="yourCredits.handleSelect($event)"
+								[checked]="areAllItemsChecked()"
+								name="select-all"
+								type="checkbox"
+								id="selectAllCheckbox"
+								class="accent-secondary1 scale-125 focus:border-none focus:shadow-none focus:outline-none"
+							/>
+						</th>
+						<th
+							(click)="yourCredits.sortData('title')"
+							class="text-start !py-5 px-6 cursor-pointer min-w-[330px]"
+						>
+							<div class="flex items-center gap-1">
+								Title <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="yourCredits.sortData('rate')"
+							class="text-start !py-5 min-w-[80px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Rate <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="yourCredits.sortData('balance')"
+							class="text-start !py-5 min-w-[200px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Account Balance
+								<i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="yourCredits.sortData('interest')"
+							class="text-start !py-5 min-w-[200px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Account Interest
+								<i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="yourCredits.sortData('status')"
+							class="text-start !py-5 min-w-[100px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Status <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th class="text-center !py-5">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					@for (item of yourCredits.paginatedData; track item.id; let i =
+					$index) {
+					<tr class="border-b border-t border-n30 dark:border-n500">
+						<td class="text-start px-6">
+							<input
+								(change)="yourCredits.handleSelect($event)"
+								type="checkbox"
+								[checked]="item.isChecked"
+								class="accent-secondary1 scale-125"
+								[name]="item.title"
+							/>
+						</td>
+						<td class="py-2 px-6">
+							<div class="flex items-center gap-3">
+								<img
+									[src]="item.cardImg"
+									width="60"
+									height="40"
+									class="rounded-sm"
+									alt="payment medium icon"
+								/>
+								<div>
+									<p class="font-medium mb-1">{{ item.title }}</p>
+									<span class="text-xs">**4291 - Exp: 12/26</span>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div>
+								<p class="font-medium mb-1">{{ item.rate }} %</p>
+								<span class="text-xs">Rate</span>
+							</div>
+						</td>
+						<td>
+							<div>
+								<p class="font-medium mb-1">{{ getLocale(item.balance) }}</p>
+								<span class="text-xs">Account Balance</span>
+							</div>
+						</td>
+						<td>
+							<div>
+								<p class="font-medium mb-1">{{ getLocale(item.interest) }}</p>
+								<span class="text-xs">Account Interest</span>
+							</div>
+						</td>
+						<td class="py-2">
+							<span
+								[ngClass]="{
+									'text-[#334CAE] bg-[#334CAE]/10': item.status == 'active',
+									'text-secondary2 bg-secondary2/20':
+										item.status == 'cancelled',
+									'text-secondary3 bg-secondary3/10': item.status == 'paused'
+								}"
+								class="block w-28 rounded-[30px] border border-n30 bg-[#334CAE]/10 py-2 text-center text-xs text-[#334CAE] dark:border-n500 dark:bg-bg3 xxl:w-36"
+							>
+								{{ item.status }}
+							</span>
+						</td>
+						<td class="py-2">
+							<div class="flex justify-center">
+								<app-options-vertical></app-options-vertical>
+							</div>
+						</td>
+					</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+		<div
+			class="flex col-span-12 gap-4 sm:justify-between justify-center items-center flex-wrap"
+		>
+			<p>
+				Showing {{ yourCredits.startIndex + 1 }} to
+				{{ yourCredits.endIndex + 1 }} of {{ yourCredits.totalData }} entries
+			</p>
+			<ul class="flex gap-2 md:gap-3 flex-wrap md:font-semibold items-center">
+				<li>
+					<button
+						[disabled]="yourCredits.currentPage == 1"
+						(click)="yourCredits.prevPage()"
+						class="hover:bg-[#334CAE] text-[#334CAE] rtl:rotate-180 hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+					>
+						<i class="las la-angle-left text-lg"></i>
+					</button>
+				</li>
+				<li *ngFor="let page of pages">
+					<button
+						(click)="yourCredits.paginate(page)"
+						[ngClass]="{
+							'bg-[#334CAE] !text-n0': yourCredits.currentPage == page
+						}"
+						class="hover:bg-[#334CAE] bg-[#334CAE] hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex text-[#334CAE] items-center rounded-full justify-center border-[#334CAE]"
+					>
+						{{ page }}
+					</button>
+				</li>
+				<li>
+					<button
+						[disabled]="yourCredits.currentPage == yourCredits.totalPages"
+						(click)="yourCredits.nextPage()"
+						class="hover:bg-[#334CAE] text-[#334CAE] hover:text-n0 rtl:rotate-180 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+					>
+						<i class="las la-angle-right text-lg"></i>
+					</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

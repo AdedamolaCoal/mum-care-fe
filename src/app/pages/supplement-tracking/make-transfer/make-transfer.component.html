@@ -1,0 +1,285 @@
+<app-top-banner title="Make Transfer" />
+
+<div class="grid grid-cols-12 gap-4 xxl:gap-6">
+	<!-- recent trasfer chart -->
+	<div class="col-span-12 md:col-span-7 xxl:col-span-8">
+		<div class="col-span-12 box overflow-x-hidden">
+			<div
+				class="flex justify-between flex-wrap gap-5 items-center bb-dashed mb-4 pb-4"
+			>
+				<h4 class="h4">Recent transfer</h4>
+				<div class="flex items-center gap-3 whitespace-nowrap">
+					<span>Sort By : </span>
+					<app-dropdown />
+				</div>
+			</div>
+			<apx-chart
+				[chart]="recentTransferChart.chart"
+				[stroke]="recentTransferChart.stroke!"
+				[dataLabels]="recentTransferChart.dataLabels!"
+				[markers]="recentTransferChart.markers!"
+				[colors]="recentTransferChart.colors!"
+				[xaxis]="recentTransferChart.xaxis!"
+				[yaxis]="recentTransferChart.yaxis!"
+				[tooltip]="recentTransferChart.tooltip!"
+				[fill]="recentTransferChart.fill!"
+				[responsive]="recentTransferChart.responsive"
+				[series]="recentTransferChart.series"
+				[grid]="recentTransferChart.grid!"
+				[legend]="recentTransferChart.legend!"
+			/>
+		</div>
+	</div>
+	<!-- My wallets -->
+	<div
+		class="col-span-12 md:col-span-5 lg:col-span-4 relative overflow-x-hidden"
+	>
+		<div class="box">
+			<h4 class="h4 bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6">My Wallet</h4>
+			<div
+				class="mb-6 flex items-center justify-center gap-3 lg:mb-8 xxl:gap-4"
+			>
+				<button
+					(click)="prevSlide()"
+					class="prev-wallet h-8 w-8 shrink-0 rounded-full border border-[#334CAE] bg-n0 text-[#334CAE] duration-300 hover:bg-[#334CAE] hover:text-n0 dark:bg-bg4 dark:hover:bg-[#334CAE] xxl:h-10 xxl:w-10"
+				>
+					<i class="las la-angle-left text-lg rtl:rotate-180"></i>
+				</button>
+				<div class="flex justify-center">
+					<img
+						src="assets/images/my-wallet-{{ activeIndex }}.png"
+						width="296"
+						class="rounded-xl duration-300"
+						height="200"
+						alt="card img"
+					/>
+				</div>
+				<button
+					(click)="nextSlide()"
+					class="next-wallet h-8 w-8 shrink-0 rounded-full border border-[#334CAE] bg-n0 text-[#334CAE] duration-300 hover:bg-[#334CAE] hover:text-n0 dark:bg-bg4 dark:hover:bg-[#334CAE] xxl:h-10 xxl:w-10"
+				>
+					<i class="las la-angle-right text-lg rtl:rotate-180"></i>
+				</button>
+			</div>
+			<h5 class="mb-6 text-lg font-medium md:text-xl">Quick Transfer</h5>
+			<form>
+				<div
+					class="mb-5 flex items-center rounded-[32px] border border-n30 bg-[#334CAE]/5 p-1 dark:border-n500 dark:bg-bg3"
+				>
+					<app-dropdown
+						[options]="cards"
+						btnClassProps="bg-white !rounded-3xl"
+					/>
+					<input
+						type="text"
+						class="w-full border-none bg-transparent px-5 focus:border-none focus:outline-none"
+						placeholder="Account Number..."
+						name="card"
+					/>
+				</div>
+				<div
+					class="mb-6 flex items-center rounded-[32px] border border-n30 bg-[#334CAE]/5 p-1 dark:border-n500 dark:bg-bg3 lg:mb-8"
+				>
+					<app-dropdown
+						[options]="currencies"
+						btnClassProps="bg-white !rounded-3xl"
+					/>
+					<input
+						type="number"
+						class="w-full border-none bg-transparent px-5"
+						placeholder="Enter Amount..."
+						name="amount"
+					/>
+				</div>
+				<button type="submit" class="btn flex w-full justify-center">
+					Send Money
+				</button>
+			</form>
+		</div>
+	</div>
+	<!-- Recent Payment -->
+	<div class="col-span-12">
+		<div class="box col-span-12 lg:col-span-6">
+			<div
+				class="flex justify-between items-center gap-4 flex-wrap bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6"
+			>
+				<h4 class="h4">Recent Payments</h4>
+				<div class="flex items-center gap-4 flex-wrap grow sm:justify-end">
+					<form
+						class="bg-[#334CAE]/5 dark:bg-bg3 border border-n30 dark:border-n500 flex gap-3 rounded-[30px] focus-within:border-[#334CAE] p-1 items-center justify-between min-w-[200px] xxl:max-w-[319px] w-full"
+					>
+						<input
+							type="text"
+							placeholder="Search"
+							class="bg-transparent text-sm border-none ltr:pl-4 rtl:pr-4 py-1 w-full"
+						/>
+						<button
+							class="bg-[#334CAE] shrink-0 rounded-full w-7 h-7 lg:w-8 lg:h-8 flex justify-center items-center text-n0"
+						>
+							<i class="las la-search text-lg"></i>
+						</button>
+					</form>
+					<div class="flex items-center gap-3 whitespace-nowrap">
+						<span>Sort By : </span>
+						<app-dropdown />
+					</div>
+				</div>
+			</div>
+			<div class="overflow-x-auto mb-4 lg:mb-6">
+				<table class="w-full whitespace-nowrap">
+					<thead>
+						<tr class="bg-secondary1/5 dark:bg-bg3">
+							<th
+								(click)="recentPayments.sortData('account')"
+								class="text-start py-5 px-6 cursor-pointer min-w-[230px]"
+							>
+								<div class="flex items-center gap-1">
+									Account Number
+									<i class="las la-exchange-alt rotate-90 text-base"></i>
+								</div>
+							</th>
+							<th
+								(click)="recentPayments.sortData('account')"
+								class="text-start py-5 min-w-[170px] cursor-pointer"
+							>
+								<div class="flex items-center gap-1">
+									Transfer Account
+									<i class="las la-exchange-alt rotate-90 text-base"></i>
+								</div>
+							</th>
+							<th
+								(click)="recentPayments.sortData('money')"
+								class="text-start py-5 min-w-[120px] cursor-pointer"
+							>
+								<div class="flex items-center gap-1">
+									Money <i class="las la-exchange-alt rotate-90 text-base"></i>
+								</div>
+							</th>
+							<th
+								(click)="recentPayments.sortData('medium')"
+								class="text-start py-5 min-w-[130px] cursor-pointer"
+							>
+								<div class="flex items-center gap-1">
+									Medium <i class="las la-exchange-alt rotate-90 text-base"></i>
+								</div>
+							</th>
+							<th
+								(click)="recentPayments.sortData('date')"
+								class="text-start py-5 min-w-[130px]"
+							>
+								Date <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</th>
+							<th
+								(click)="recentPayments.sortData('time')"
+								class="text-start py-5 min-w-[100px]"
+							>
+								Time <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</th>
+							<th
+								(click)="recentPayments.sortData('status')"
+								class="text-start py-5 min-w-[130px] cursor-pointer"
+							>
+								<div class="flex items-center gap-1">
+									Status <i class="las la-exchange-alt rotate-90 text-base"></i>
+								</div>
+							</th>
+							<th class="text-center p-5">PDF</th>
+						</tr>
+					</thead>
+					<tbody>
+						@for (item of recentPayments.paginatedData; track $index;) {
+						<tr
+							class="hover:bg-[#334CAE]/5 dark:hover:bg-bg3 duration-300 border-b border-n30 dark:border-n500 first:border-t"
+						>
+							<td class="py-2 px-6">
+								<div class="flex items-center gap-3">
+									<img
+										[src]="item.icon"
+										width="32"
+										height="32"
+										class="rounded-full"
+										alt="payment medium icon"
+									/>
+									<div>
+										<p class="font-medium mb-1">{{ item.account }}</p>
+										<span class="text-xs">Account Number</span>
+									</div>
+								</div>
+							</td>
+							<td class="py-3">{{ item.account }}</td>
+							<td class="py-3">$ {{ item.money.toLocaleString() }}</td>
+							<td class="py-3">{{ item.medium }}</td>
+							<td class="py-3">{{ item.date }}</td>
+							<td class="py-3">{{ item.time }}</td>
+							<td class="py-3">
+								<span
+									[ngClass]="{
+										'text-[#334CAE] bg-[#334CAE]/10':
+											item.status == 'successful',
+										'text-secondary2 bg-secondary2/20':
+											item.status == 'cancelled',
+										'text-secondary3 bg-secondary3/10': item.status == 'pending'
+									}"
+									class="block w-28 rounded-[30px] border border-n30 bg-[#334CAE]/10 py-2 text-center text-xs text-[#334CAE] dark:border-n500 dark:bg-bg3 xxl:w-36"
+								>
+									{{ item.status }}
+								</span>
+							</td>
+							<td class="py-3">
+								<div class="flex justify-center">
+									<button>
+										<i class="las la-download"></i>
+									</button>
+								</div>
+							</td>
+						</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+
+			<div
+				class="flex col-span-12 gap-4 sm:justify-between justify-center items-center flex-wrap"
+			>
+				<p>
+					Showing {{ recentPayments.startIndex + 1 }} to
+					{{ recentPayments.endIndex + 1 }} of
+					{{ recentPayments.totalData }} entries
+				</p>
+				<ul class="flex gap-2 md:gap-3 flex-wrap md:font-semibold items-center">
+					<li>
+						<button
+							[disabled]="recentPayments.currentPage == 1"
+							(click)="recentPayments.prevPage()"
+							class="hover:bg-[#334CAE] text-[#334CAE] rtl:rotate-180 hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+						>
+							<i class="las la-angle-left text-lg"></i>
+						</button>
+					</li>
+					<li *ngFor="let page of pages">
+						<button
+							(click)="recentPayments.paginate(page)"
+							[ngClass]="{
+								'bg-[#334CAE] !text-n0': recentPayments.currentPage == page
+							}"
+							class="hover:bg-[#334CAE] bg-[#334CAE] hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex text-[#334CAE] items-center rounded-full justify-center border-[#334CAE]"
+						>
+							{{ page }}
+						</button>
+					</li>
+					<li>
+						<button
+							[disabled]="
+								recentPayments.currentPage == recentPayments.totalPages
+							"
+							(click)="recentPayments.nextPage()"
+							class="hover:bg-[#334CAE] text-[#334CAE] hover:text-n0 rtl:rotate-180 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+						>
+							<i class="las la-angle-right text-lg"></i>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

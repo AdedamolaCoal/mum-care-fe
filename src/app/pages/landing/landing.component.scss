@@ -1,0 +1,1164 @@
+*,
+::after,
+::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	outline: none;
+	line-height: normal;
+}
+body {
+	width: 100%;
+	font-family: "Poppins", Verdana, Geneva, Tahoma, sans-serif;
+	scroll-behavior: smooth;
+}
+a {
+	text-decoration: initial;
+	color: initial;
+	font-family: inherit;
+}
+button {
+	background-color: transparent;
+	font-family: inherit;
+	border: none;
+}
+.thrively-body {
+	width: 100%;
+}
+
+/* HEADER */
+header {
+	width: 100%;
+	background-color: #fff;
+}
+header nav {
+	padding: 17px 97px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.thrively-logo-div a {
+	display: flex;
+	align-items: center;
+}
+.thrively-logo-div a img {
+	width: 50px;
+	aspect-ratio: 1;
+	object-fit: contain;
+}
+.thrively-logo-div a span {
+	font-size: calc(1rem + 2px);
+	color: #000;
+	font-weight: 700;
+	font-family: "Playfair Display";
+}
+.thrively-menu-flex {
+	display: flex;
+	align-items: center;
+	gap: 0 45px;
+}
+.top-menu-div ul {
+	display: flex;
+	align-items: center;
+	gap: 0 16px;
+}
+.top-menu-div ul li {
+	list-style: none;
+}
+.top-menu-div ul li button {
+	font-size: calc(1rem + 4px);
+	color: #9a9ea6;
+	font-family: 500;
+}
+.top-menu-div ul li a {
+	font-size: calc(1rem);
+	color: #9a9ea6;
+	font-weight: 500;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 1px 0;
+	width: 100%;
+	transition: color 0.3s ease-in-out;
+}
+.top-menu-div ul li a:hover {
+	color: #334cae;
+}
+.top-menu-div ul li a::after {
+	content: "";
+	position: relative;
+	width: 0%;
+	height: 2px;
+	background-color: #334cae;
+	transition: width 0.3s ease-in-out;
+}
+.top-menu-div ul li a:hover::after {
+	width: 100%;
+}
+.sign-log-div {
+	display: flex;
+	align-items: center;
+	gap: 0 26px;
+}
+.sign-log-div a {
+	font-family: "Public Sans";
+}
+.sign-log-div a button {
+	display: flex;
+	cursor: pointer;
+	align-items: center;
+	justify-content: center;
+	font-family: "Public Sans";
+	padding: 15px 70px;
+	border-radius: 26px;
+	font-weight: 500;
+	font-size: calc(1rem);
+	border: 1.4px solid transparent;
+}
+.sign-log-div a:first-child button {
+	color: #334cae;
+	background-color: transparent;
+	border-color: #8922924d;
+}
+.sign-log-div a:last-child button {
+	color: #fff;
+	background-color: #334cae;
+	border-color: #89229230;
+}
+.close-btn,
+.menu-button {
+	display: none;
+}
+
+/* MAIN */
+main {
+	width: 100%;
+}
+.hero-section-body {
+	background: linear-gradient(to bottom, #ffffff, #334cae); //#fde8ff, #fbd1ff
+	width: 100%;
+	padding: 33px 0;
+}
+.hero-section-flex {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 65px 0 105px;
+	gap: 0 30px;
+}
+.hero-section-left {
+	width: calc(50%);
+}
+.hero-section-right {
+	width: calc(50%);
+}
+
+/* LEFT HERO */
+.hero-section-left-flex {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 15px 0;
+	width: 100%;
+}
+.right-top-span {
+	color: #5e6282;
+	font-weight: 400;
+	font-size: calc(1rem - 2px);
+	font-family: "Poppins";
+}
+.right-top-big-text {
+	font-weight: 600;
+	font-size: calc(2rem + 7px);
+	font-family: "Public Sans";
+}
+.right-top-p {
+	color: #5e6282;
+	font-size: calc(1rem - 1px);
+	font-family: "Poppins";
+	font-weight: 400;
+}
+.right-top-download-btn {
+	margin: 18px 0 0;
+	color: #fff;
+}
+.right-top-download-btn button {
+	padding: 20px 40px;
+	border-radius: 25px;
+	background-color: #334cae;
+	border: 1px solid #89229230;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: inherit;
+	font-weight: 500;
+	color: #fff;
+	font-size: calc(1rem);
+}
+.right-big-text {
+	position: relative;
+	z-index: 1;
+}
+.right-big-image {
+	position: absolute;
+	top: 12px;
+	z-index: -1;
+	right: -80px;
+	display: flex;
+	align-items: center;
+}
+.right-big-image img {
+	width: 100%;
+	height: 100%;
+}
+.right-big-image-bg {
+	background-color: #fff0ba;
+	width: 15px;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	position: relative;
+	right: -80px;
+	z-index: -1;
+}
+
+/* RIGHT HERO */
+.hero-section-right-flex {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.hero-img-div {
+	width: 100%;
+	aspect-ratio: 1;
+}
+.hero-img-div {
+	// background: url(/assets/mother-child-images/mum-child.jpg);
+	// border-radius: 10px;
+	background-position: center;
+	background-size: cover; //contain;
+	background-repeat: no-repeat;
+	// box-shadow: 100px 35px 118px 45px rgba(0, 0, 0, 0.5);
+	// box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.hero-img-div img {
+	width: 100%;
+	height: 100%;
+}
+.div-right-bg {
+	width: 20px;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background-color: #b1e1fd;
+}
+.divv-right-bg {
+	width: 20px;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background-color: #d524e5;
+}
+
+/* THRIVELY OFFER */
+.thrively-offer-div {
+	margin: 55px auto 0;
+	width: 100%;
+	position: relative;
+}
+.thrively-offer-div::after {
+	content: "";
+	width: 20%;
+	margin-left: auto;
+	height: 80%;
+	background-color: rgba(250, 205, 73, 0.2);
+	border-radius: 50%;
+	position: absolute;
+	left: calc(100%);
+	top: 0;
+	box-shadow: 0 0 406.0000305175781px 0 rgba(250, 205, 73, 0.4);
+	filter: blur(80px);
+	right: 0;
+}
+.thrively-offer-body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 28px 0;
+	padding: 0 290px;
+}
+.thrively-offer-body h2 {
+	color: #334cae;
+	text-align: center;
+	font-family: "Public Sans";
+	font-weight: 600;
+	font-size: calc(2rem + 3px);
+}
+.thrively-offer-body p {
+	color: #5e6282;
+	text-align: center;
+	font-weight: 400;
+	font-size: calc(1rem + 6px);
+}
+
+/* THRIVELY OFFER CARDS */
+.thrively-card-div {
+	width: 100%;
+	margin: 105px 0 0;
+	position: relative;
+}
+.thrively-offer-cards-div {
+	margin: 0 auto;
+	width: 80%;
+}
+.thrively-offer-card-flex {
+	width: 100%;
+	display: flex;
+	gap: 0 33px;
+	justify-content: center;
+	align-items: center;
+}
+.thrively-offer-card-flex .thrively-offer-card:nth-child(2) {
+	box-shadow: 0 41px 89px 0 rgba(0, 0, 0, 0.1);
+}
+.thrively-offer-card {
+	width: calc(100% / 3);
+	aspect-ratio: 1;
+	border: 1px solid rgba(137, 54, 144, 0.5);
+	border-radius: 32px;
+	background-color: #fffaff;
+}
+.thrively-offer-card-body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+}
+.thrively-offer-card-body img {
+	width: 30px;
+	aspect-ratio: 1;
+}
+.thrively-offer-card-body i {
+	font-size: calc(2rem - 2px);
+	color: #fff;
+}
+.thrively-offer-card-body p {
+	font-family: "Public Sans";
+	font-weight: 600;
+	font-size: calc(1rem + 5px);
+	color: #000;
+	margin: 64px 0 32px;
+	text-align: center;
+}
+.thrively-offer-card-body span {
+	font-weight: 400;
+	font-size: calc(1rem + 2px);
+	color: rgba(25, 24, 37, 0.5);
+	padding: 0 60px;
+	text-align: center;
+}
+.offer-card-img {
+	width: 55px;
+	aspect-ratio: 1;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.offer-card-img.create {
+	background-color: #e77003;
+}
+.offer-card-img.manage {
+	background-color: #334cae;
+}
+.offer-card-img.achieve {
+	background-color: #099248;
+}
+
+/* 80 WIDTH */
+.div-body {
+	margin: 126px auto 0;
+	width: 100%;
+	position: relative;
+}
+.div-body::before {
+	content: url(/assets/left-cone.png);
+	position: absolute;
+	left: 0;
+	top: calc((100% / 1.5));
+}
+.div-body::after {
+	content: url(/assets/right-cone.png);
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+.div-body-80 {
+	width: 80%;
+	margin: 0 auto;
+	position: relative;
+}
+.div-body-80::before {
+	content: url(/assets/body-arrow.png);
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	z-index: -1;
+	height: 100%;
+}
+
+/* TESTIMONIALS */
+.testimonial-div {
+	width: 100%;
+	margin: 0 auto;
+	background-color: #334cae;
+	padding: 19px 30px 50px;
+}
+.test-top-text {
+	color: #fff;
+	font-weight: 500;
+	font-size: calc(1rem + 9px);
+	text-align: center;
+}
+.testimonial-card-flex {
+	margin: 20px 0 0;
+	display: flex;
+	align-items: center;
+	gap: 0 60px;
+}
+.testimonial-card {
+	width: calc(100% / 3);
+}
+.test-card-flex {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	gap: 14px 0;
+}
+.test-card-flex :is(p, span) {
+	text-align: center;
+}
+.test-card-img {
+	width: 110px;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background-color: #fff;
+}
+.test-card-img img {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+.test-card-flex p {
+	font-size: calc(1rem + 8px);
+	color: #fff;
+	font-weight: 400;
+}
+.test-card-flex span {
+	font-size: calc(1rem - 1px);
+	color: #fff;
+	font-weight: 400;
+}
+.test-card-rating {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0 10px;
+}
+.test-card-rating i {
+	font-size: calc(1rem + 10px);
+	color: #e7b53f;
+}
+
+/* ABOUT THRIVELY */
+.about-thrively-body {
+	margin: 150px auto 0;
+	width: 100%;
+}
+.about-thrively-flex {
+	display: flex;
+	align-items: center;
+	gap: 0 65px;
+}
+.about-thrively-details {
+	width: 55%;
+}
+.about-thrively-img {
+	width: 45%;
+	border-radius: 10px;
+	height: 100%;
+}
+.about-thrively-img img {
+	width: 90%;
+	height: 90%;
+	border-radius: 10px;
+	object-fit: contain;
+}
+.about-thrively-details {
+	display: flex;
+	flex-direction: column;
+	gap: 36px 0;
+	align-items: flex-start;
+}
+.about-thrively-details p {
+	color: #334cae;
+	font-weight: 600;
+	font-size: calc(2rem - 1px);
+	font-family: "Public Sans";
+}
+.about-thrively-details span {
+	color: #000;
+	font-weight: 300;
+	font-size: calc(1rem + 4px);
+}
+.about-thrively-details a {
+	color: #fff;
+	font-size: calc(1rem);
+}
+.about-thrively-details a button {
+	border-radius: 26px;
+	font-size: calc(1rem);
+	font-family: inherit;
+	font-weight: 500;
+	padding: 21px 55px;
+	border: 1px solid #89229230;
+	color: #fff;
+	background-color: #334cae;
+}
+
+/* THRIFT PLAN */
+.thrift-plan-body {
+	margin: 200px auto 0;
+	width: 100%;
+}
+.thrift-plan-text {
+	color: #334cae;
+	font-weight: 600;
+	font-size: calc(2rem + 8px);
+	text-align: center;
+}
+.thrift-plan-card-body {
+	margin: 89px auto 0;
+}
+.thrift-plan-card-flex {
+	display: flex;
+	gap: 0 50px;
+	padding: 0 8px;
+}
+.thrift-plan-card {
+	width: calc(100% / 3);
+	display: flex;
+	align-items: flex-start;
+	gap: 40px 0;
+	flex-direction: column;
+}
+.thrift-plan-card p {
+	font-weight: 400;
+	font-size: calc(2rem - 4px);
+	color: #000;
+}
+.thrift-plan-card ul {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+.thrift-plan-card ul li {
+	font-family: "Poppins";
+	font-size: calc(1rem + 4px);
+	color: #000;
+	font-weight: 300;
+}
+
+/* DOWNLOAD THRIVELY */
+.download-thrively-body {
+	margin: 180px auto 0;
+	width: 100%;
+}
+.downlaod-thrively-div {
+	width: 80%;
+	margin: 0 auto;
+}
+.download-thrively-flex {
+	display: flex;
+	align-items: center;
+	gap: 0 75px;
+}
+.download-thrively-details {
+	width: 60%;
+}
+.download-thrively-img {
+	width: 40%;
+	border-radius: 10px;
+	height: 100%;
+}
+.download-thrively-img img {
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	object-fit: contain;
+}
+.download-thrively-details {
+	display: flex;
+	flex-direction: column;
+	gap: 36px 0;
+	align-items: flex-start;
+}
+.download-thrively-details p {
+	color: #334cae;
+	font-weight: 600;
+	font-size: calc(2rem - 1px);
+	font-family: "Public Sans";
+}
+.download-thrively-details span {
+	color: #000;
+	font-weight: 300;
+	font-size: calc(1rem + 4px);
+}
+.download-thrively-details a {
+	color: #fff;
+	font-size: calc(1rem);
+}
+.download-thrively-details a button {
+	border-radius: 26px;
+	font-size: calc(1rem);
+	font-family: inherit;
+	font-weight: 500;
+	padding: 16px 32px;
+	border: 1px solid #89229230;
+	color: #fff;
+	background-color: #334cae;
+}
+
+/* SUBSCRIBE EMAIL */
+.subscribe-email-body {
+	margin: 185px auto 0;
+	width: 100%;
+}
+.subscribe-email-div {
+	width: 80%;
+	margin: 0 auto;
+	background-color: #000;
+	padding: 33px 40px;
+}
+.subscribe-email-flex {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0 34px;
+}
+.subscribe-email-flex span {
+	font-size: calc(1rem + 4px);
+	font-weight: 400;
+	color: #fff;
+	font-family: "Poppins";
+}
+.email-form form {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 0 40px;
+}
+.sub-email input {
+	background-color: #fff;
+	border-radius: 3px;
+	padding: 11px 5px 11px 24px;
+	font-family: "Poppins";
+	font-style: italic;
+	font-weight: 300;
+	font-size: calc(1rem + 4px);
+	color: #000;
+	border: none;
+}
+.sub-email button {
+	background-color: #334cae;
+	border: none;
+	color: #fff;
+	font-family: "Roboto";
+	font-weight: 500;
+	font-size: calc(1rem + 4px);
+	padding: 14px 26px;
+	border-radius: 10px;
+}
+
+/* FOOTER */
+footer {
+	margin: 140px auto 0;
+	width: 100%;
+}
+.thrively-footer-div {
+	width: 80%;
+	margin: 0 auto;
+}
+.thrively-footer-flex {
+	display: flex;
+	justify-content: space-between;
+}
+.thrively-footer-logo {
+	display: flex;
+	flex-direction: column;
+	gap: 18px 0;
+}
+.footer-logo {
+	display: flex;
+	align-items: center;
+}
+.footer-logo img {
+	width: 50px;
+	aspect-ratio: 1;
+}
+.footer-logo span {
+	font-family: "Playfair Display";
+	font-weight: 700;
+	font-size: calc(1rem + 2px);
+	color: #000;
+}
+.footer-span {
+	font-size: calc(1rem + 4px);
+	font-weight: 300;
+	font-family: "Poppins";
+	color: #000;
+	text-align: start;
+}
+.thrively-footer-links {
+	display: flex;
+	flex-direction: column;
+	gap: 32px 0;
+}
+.thrively-footer-links span {
+	font-weight: 500;
+	font-size: calc(1rem + 4px);
+	color: #000;
+}
+.thrively-footer-links ul {
+	display: flex;
+	flex-direction: column;
+	gap: 15px 0;
+}
+.thrively-footer-flex ul li {
+	list-style: none;
+	font-family: "Poppins";
+	font-weight: 400;
+	color: #000;
+	font-size: calc(1rem);
+}
+.media-flex {
+	display: flex;
+	align-items: center;
+	gap: 0 23px !important;
+	flex-direction: row !important;
+}
+.media-flex li {
+	list-style: none;
+}
+.media-flex li i {
+	font-size: calc(1rem + 8px);
+	color: #334cae;
+}
+.copyright-body {
+	margin: 63px auto 50px;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+.copyright-body p {
+	display: flex;
+	align-items: center;
+	gap: 0 2px;
+	font-family: "Poppins";
+	font-size: calc(1rem - 2px);
+	font-weight: 300;
+	color: #000;
+}
+
+/* MOBILE */
+.mobile-footer-div {
+	display: none;
+}
+details > summary {
+	list-style: none;
+}
+details > summary::-webkit-details-marker {
+	display: none;
+}
+/* .mobile-footer-div{} */
+
+@media screen and (max-width: 768px) {
+	header nav {
+		padding: 17px 25px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.close-btn,
+	.menu-button {
+		display: block;
+	}
+	.thrively-logo {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+	}
+	.menu-button button {
+		width: 35px;
+		aspect-ratio: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #953182;
+		border-radius: 10px;
+	}
+	.menu-button button i {
+		color: #fff;
+		font-size: calc(1rem + 4px);
+	}
+
+	/* MENU DIV */
+	.thrively-menu-div {
+		position: fixed;
+		background-color: rgba(0, 0, 0, 0.1);
+		width: 100%;
+		z-index: 999;
+		height: 100vh;
+		top: 0;
+		left: 999px;
+		right: 0;
+		transition: left 0.5s ease-in-out;
+	}
+	.thrively-menu-div.show {
+		left: 0;
+	}
+	.thrively-menu-flex {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		width: 100%;
+		height: 100%;
+		padding: 20px 15px;
+	}
+	.thrively-menu-card {
+		width: 60%;
+		margin-left: auto;
+		height: 100vh;
+		overflow-y: auto;
+		background-color: #334cae;
+	}
+
+	/* MENU UL */
+	.top-menu-div ul {
+		display: flex;
+		flex-direction: column;
+		gap: 15px 0;
+		align-items: flex-start;
+	}
+	.top-menu-div ul li a {
+		color: #fff;
+	}
+	.top-menu-div ul li button {
+		color: #fff;
+	}
+	.close-btn {
+		display: flex;
+		justify-content: flex-end;
+		width: 100%;
+		margin: 0 0 20px;
+	}
+	.sign-log-div {
+		display: flex;
+		flex-direction: column;
+		gap: 15px 0;
+		margin: 15px 0 0;
+		align-items: flex-start;
+	}
+	.top-menu-div,
+	.sign-log-div {
+		width: 100%;
+	}
+	.top-menu-div ul li a:hover {
+		color: #fff;
+	}
+	.top-menu-div ul li a::after {
+		background-color: #fff;
+	}
+
+	/* MENU BUTTON */
+	.sign-log-div a button {
+		width: 100%;
+	}
+	.sign-log-div a:first-child button {
+		background-color: #fff;
+	}
+	.sign-log-div a:last-child button {
+		background-color: #fff;
+		color: #334cae;
+	}
+	.sign-log-div a {
+		width: 80%;
+	}
+
+	/* HERO SECTION */
+	.hero-section-flex {
+		flex-direction: column;
+		padding: 0 20px;
+		gap: 50px 0;
+	}
+	.hero-section-left,
+	.hero-section-right {
+		width: 100%;
+	}
+	.right-top-big-text br,
+	.right-top-p br {
+		display: none;
+	}
+	.right-big-image {
+		right: 0;
+		flex-direction: column-reverse;
+		gap: 50px 0;
+	}
+	.right-big-image-bg {
+		right: 0;
+		top: -20px;
+	}
+
+	/* THRIVELY OFFER */
+	.thrively-offer-body {
+		padding: 0 24px;
+	}
+	.thrively-offer-body h2 {
+		font-size: calc(1rem + 10px);
+	}
+	.thrively-offer-body p {
+		font-size: calc(1rem + 2px);
+	}
+	.thrively-offer-body p br {
+		display: none;
+	}
+
+	/* THRIVELY OFFER CARD */
+	.thrively-offer-cards-div {
+		margin: 26px auto 0;
+		width: 90%;
+	}
+	.thrively-offer-card-flex {
+		flex-direction: column;
+		gap: 26px 0;
+	}
+	.thrively-offer-card {
+		width: 100%;
+	}
+	.thrively-offer-card-body p {
+		margin: 38px auto 18px;
+	}
+	.thrively-offer-card-body :is(p, span) {
+		font-size: calc(1rem + 2px);
+	}
+
+	/* WIDTH-80 */
+	.div-body-80 {
+		width: 90%;
+	}
+	.div-body-80::before {
+		content: url(/assets/body-arrow-mobile.png);
+		margin: 1000px 0 0;
+		right: 0;
+		width: auto;
+		left: auto;
+		height: auto;
+	}
+
+	/* TESTMONIALS */
+	.testimonial-card-flex {
+		flex-direction: column;
+		gap: 40px 0;
+	}
+	.testimonial-div {
+		padding: 19px 15px 50px;
+	}
+	.testimonial-card {
+		width: 100%;
+	}
+
+	/* ABOUT THRIVELY */
+	.about-thrively-body {
+		margin: 98px auto 0;
+		width: 100%;
+	}
+	.about-thrively-flex {
+		flex-direction: column;
+	}
+	.about-thrively-details {
+		justify-content: center;
+		align-items: center;
+	}
+	.about-thrively-details,
+	.about-thrively-img {
+		width: 100%;
+	}
+	.about-thrively-details p {
+		font-size: calc(1rem + 8px);
+	}
+	.about-thrively-details span {
+		font-size: calc(1rem + 2px);
+	}
+	.about-thrively-details :is(p, span) {
+		text-align: center;
+	}
+	.about-thrively-img {
+		margin: 39px auto 0;
+		width: 100%;
+	}
+	.about-thrively-img img {
+		width: 100%;
+		height: 100%;
+	}
+	.about-thrively-details a button {
+		padding: 16px 32px;
+	}
+
+	/* THRIFT PLAN */
+	.thrift-plan-body {
+		margin: 97px auto 0;
+	}
+	.thrift-plan-card-body {
+		margin: 40px auto 0;
+	}
+	.thrift-plan-card-flex {
+		flex-direction: column;
+		gap: 40px 0;
+	}
+	.thrift-plan-card {
+		width: 100%;
+		align-items: center;
+	}
+	.thrift-plan-text {
+		font-size: calc(2rem - 6px);
+	}
+	.thrift-plan-card ul li {
+		font-size: calc(1rem + 2px);
+	}
+
+	/* DOWNLOAD APP */
+	.download-thrively-body {
+		margin: 98px auto 0;
+		width: 100%;
+	}
+	.download-thrively-flex {
+		flex-direction: column;
+	}
+	.download-thrively-details {
+		justify-content: center;
+		align-items: center;
+	}
+	.download-thrively-details,
+	.download-thrively-img {
+		width: 100%;
+	}
+	.download-thrively-details p {
+		font-size: calc(1rem + 8px);
+	}
+	.download-thrively-details span {
+		font-size: calc(1rem + 2px);
+	}
+	.download-thrively-details :is(p, span) {
+		text-align: center;
+	}
+	.download-thrively-img {
+		margin: 39px auto 0;
+		width: 100%;
+	}
+	.download-thrively-img img {
+		width: 100%;
+		height: 100%;
+	}
+	.download-thrively-details a button {
+		padding: 16px 32px;
+	}
+
+	/* SUBSCRIBE EMAIL */
+	.subscribe-email-flex {
+		flex-direction: column;
+		justify-content: center;
+		gap: 22px 0;
+	}
+	.subscribe-email-div {
+		padding: 30px 20px;
+	}
+	.subscribe-email-flex span {
+		text-align: center;
+		font-size: calc(1rem + 2px);
+	}
+	.email-form form {
+		flex-direction: column;
+		gap: 22px 0;
+	}
+	.sub-email input {
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	/* FOOTER */
+	.thrively-footer-flex {
+		flex-direction: column;
+		gap: 20px 0;
+	}
+	.thrively-footer-links {
+		gap: 15px 0;
+	}
+	.footer-span {
+		font-size: calc(1rem);
+	}
+	.footer-span br {
+		display: none;
+	}
+	.thrively-footer-links span {
+		font-weight: 400;
+		font-size: calc(1rem + 2px);
+	}
+
+	.quick-links-web,
+	.legal-web {
+		display: none;
+	}
+	.quick-links-details summary,
+	.legal-details summary {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.mobile-footer-div .thrively-footer-links details {
+		display: flex;
+		flex-direction: column;
+		gap: 15px 0;
+	}
+	.mobile-footer-div {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		gap: 20px 0;
+	}
+
+	.quick-details-arrow-btn,
+	.legal-details-arrow-btn {
+		background-color: transparent;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 25px;
+		aspect-ratio: 1;
+		border: 1px solid #000;
+	}
+	.quick-details-arrow-btn i,
+	.legal-details-arrow-btn i {
+		transition: transform 0.2s ease-in-out;
+		font-size: calc(1rem - 6px);
+	}
+	.quick-details-arrow-btn i.add,
+	.legal-details-arrow-btn i.add {
+		transform: rotate(-180deg);
+	}
+}

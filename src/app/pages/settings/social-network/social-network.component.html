@@ -1,0 +1,71 @@
+<app-top-banner title="Social Network" />
+
+<div class="flex flex-col gap-4 xxl:gap-6">
+	<!-- Extensions -->
+	<div class="box xl:p-8">
+		<div
+			class="flex justify-between items-center bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6"
+		>
+			<h4 class="h4">Extensions</h4>
+			<app-options-horiz />
+		</div>
+		<!-- Extensions -->
+		<div class="flex flex-col gap-4 xxl:gap-6">
+			@for (item of extensionsList1; track item.id) {
+			<div
+				class="p-4 sm:p-5 md:p-6 bg-[#334CAE]/5 dark:bg-bg3 rounded-xl border border-n30 gap-4 dark:border-n500 flex flex-wrap justify-between items-center"
+			>
+				<div class="flex items-center gap-4 md:gap-6">
+					<div
+						class="bg-n0 dark:bg-bg4 rounded-full text-[#334CAE] py-2 px-3 text-3xl"
+					>
+						<i [class]="item.icon"></i>
+					</div>
+					<div>
+						<p class="text-xs mb-2">{{ item.title }}</p>
+						<p class="text-lg lg:text-xl font-medium">{{ item.link }}</p>
+					</div>
+				</div>
+				<button class="btn-outline">Remove</button>
+			</div>
+			}
+		</div>
+		<button class="btn-outline mt-6">
+			<i class="las la-plus-circle"></i> Add More
+		</button>
+	</div>
+	<!-- SOcial Media -->
+	<div class="box xl:p-8">
+		<div
+			class="flex justify-between items-center bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6"
+		>
+			<h4 class="h4">Social Media</h4>
+			<app-options-horiz />
+		</div>
+		<div class="flex flex-col gap-4 xxl:gap-6">
+			@for (item of extensionsList2; track item.id) {
+			<div
+				class="p-4 sm:p-5 md:p-6 bg-[#334CAE]/5 dark:bg-bg3 flex-wrap gap-4 rounded-xl border border-n30 dark:border-n500 flex justify-between items-center"
+			>
+				<div class="flex items-center gap-4 md:gap-6">
+					<div
+						class="bg-n0 dark:bg-bg4 rounded-full text-[#334CAE] py-2 px-3 text-3xl"
+					>
+						<i [class]="item.icon"></i>
+					</div>
+					<div>
+						<p class="text-xs mb-2">{{ item.title }}</p>
+						<p class="text-lg lg:text-xl font-medium">{{ item.link }}</p>
+					</div>
+				</div>
+				<button class="btn-outline">
+					{{ item.connected ? "Disconnect" : "Connect" }}
+				</button>
+			</div>
+			}
+		</div>
+		<button class="btn-outline mt-6">
+			<i class="las la-plus-circle"></i> Add More
+		</button>
+	</div>
+</div>

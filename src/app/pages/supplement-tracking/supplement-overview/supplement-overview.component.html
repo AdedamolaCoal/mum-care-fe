@@ -1,0 +1,356 @@
+<app-top-banner title="Supplements Overview" />
+
+<div class="grid grid-cols-12 gap-4 xxl:gap-6">
+	<div class="col-span-12 md:col-span-7 lg:col-span-8">
+		<div class="col-span-12 box overflow-x-hidden">
+			<div
+				class="flex justify-between gap-4 flex-wrap items-center bb-dashed mb-4 pb-4"
+			>
+				<h4 class="h4">Total Supplements Chart Tracker</h4>
+				<div class="flex items-center gap-3 whitespace-nowrap">
+					<span>Sort By : </span>
+					<app-dropdown />
+				</div>
+			</div>
+			<apx-chart
+				[chart]="totalTransferChart.chart"
+				[stroke]="totalTransferChart.stroke!"
+				[dataLabels]="totalTransferChart.dataLabels!"
+				[markers]="totalTransferChart.markers!"
+				[colors]="totalTransferChart.colors!"
+				[xaxis]="totalTransferChart.xaxis!"
+				[yaxis]="totalTransferChart.yaxis!"
+				[tooltip]="totalTransferChart.tooltip!"
+				[fill]="totalTransferChart.fill!"
+				[responsive]="totalTransferChart.responsive"
+				[series]="totalTransferChart.series"
+				[grid]="totalTransferChart.grid!"
+				[legend]="totalTransferChart.legend!"
+			/>
+		</div>
+	</div>
+	<div class="col-span-12 md:col-span-5 lg:col-span-4">
+		<div class="box">
+			<div
+				class="flex flex-wrap gap-4 justify-between items-center bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6"
+			>
+				<h4 class="h4">Top Supplements</h4>
+				<!-- <app-options-horiz /> -->
+			</div>
+			<div class="overflow-x-auto">
+				<table class="w-full whitespace-nowrap">
+					<thead>
+						<tr class="bg-[#334CAE]/5 dark:bg-bg3">
+							<th class="text-start py-5 px-6 min-w-[230px]">
+								<div class="flex items-center gap-1">Name</div>
+							</th>
+							<th class="text-start py-5 min-w-[130px]">
+								<div class="flex items-center gap-1">Use</div>
+							</th>
+							<!-- <th class="text-start py-5 min-w-[50px]"></th> -->
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="even:bg-[#334CAE]/5 dark:even:bg-bg3">
+							<td class="py-2 px-6">
+								<div class="flex items-center gap-3">
+									<img
+										src="assets/images/paypal.png"
+										width="32"
+										height="32"
+										class="rounded-full"
+										alt="payment medium icon"
+									/>
+									<div>
+										<p class="font-medium mb-1">Bluth Company</p>
+										<span class="text-xs">11 Aug, 24. 10:36 am</span>
+									</div>
+								</div>
+							</td>
+							<td class="py-2">$2,552,254</td>
+							<!-- <td class="py-2">
+								<i class="las la-download"></i>
+							</td> -->
+						</tr>
+						<tr class="even:bg-[#334CAE]/5 dark:even:bg-bg3">
+							<td class="py-2 px-6">
+								<div class="flex items-center gap-3">
+									<img
+										src="assets/images/paypal.png"
+										width="32"
+										height="32"
+										class="rounded-full"
+										alt="payment medium icon"
+									/>
+									<div>
+										<p class="font-medium mb-1">Salaries</p>
+										<span class="text-xs">11 Aug, 24. 10:36 am</span>
+									</div>
+								</div>
+							</td>
+							<td class="py-2">$2,552,254</td>
+							<!-- <td class="py-2">
+                <i class="las la-download"></i>
+              </td> -->
+						</tr>
+						<tr class="even:bg-[#334CAE]/5 dark:even:bg-bg3">
+							<td class="py-2 px-6">
+								<div class="flex items-center gap-3">
+									<img
+										src="assets/images/payoneer.png"
+										width="32"
+										height="32"
+										class="rounded-full"
+										alt="payment medium icon"
+									/>
+									<div>
+										<p class="font-medium mb-1">Massive Dynamic</p>
+										<span class="text-xs">11 Aug, 24. 10:36 am</span>
+									</div>
+								</div>
+							</td>
+							<td class="py-2">$2,552,254</td>
+							<!-- <td class="py-2">
+								<i class="las la-download"></i>
+							</td> -->
+						</tr>
+						<tr class="even:bg-[#334CAE]/5 dark:even:bg-bg3">
+							<td class="py-2 px-6">
+								<div class="flex items-center gap-3">
+									<img
+										src="assets/images/visa.png"
+										width="32"
+										height="32"
+										class="rounded-full"
+										alt="payment medium icon"
+									/>
+									<div>
+										<p class="font-medium mb-1">Collingwood</p>
+										<span class="text-xs">11 Aug, 24. 10:36 am</span>
+									</div>
+								</div>
+							</td>
+							<td class="py-2">$2,552,254</td>
+							<!-- <td class="py-2">
+								<i class="las la-download"></i>
+							</td> -->
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- <a class="text-[#334CAE] font-semibold inline-flex gap-1 items-center mt-6 group" href="#">
+        See More
+        <i class="las la-arrow-right group-hover:pl-2 duration-300"></i>
+      </a> -->
+		</div>
+	</div>
+	<!-- Payment Account -->
+	<div class="box col-span-12">
+		<div
+			class="flex flex-col justify-between items-center gap-4 flex-wrap bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6"
+		>
+			<div
+				class="flex items-center gap-4 flex-wrap grow sm:justify-between w-[100%]"
+			>
+				<h4 class="h4">Supplement Table</h4>
+				<button
+					(click)="addAccountModal()"
+					class="btn shrink-0 add-account-btn"
+				>
+					Add Supplement
+				</button>
+			</div>
+			<div
+				class="flex items-center gap-4 flex-wrap grow sm:justify-end w-[100%]"
+			>
+				<!-- <button
+					(click)="addAccountModal()"
+					class="btn shrink-0 add-account-btn"
+				>
+					Add Supplement
+				</button> -->
+				<form
+					class="bg-[#334CAE]/5 datatable-search dark:bg-bg3 border border-n30 dark:border-n500 flex gap-3 rounded-[30px] focus-within:border-[#334CAE] p-1 items-center justify-between min-w-[200px] xxl:max-w-[319px] w-full"
+				>
+					<input
+						type="text"
+						placeholder="Search"
+						class="bg-transparent text-sm ltr:pl-4 rtl:pr-4 py-1 w-full border-none"
+						id="payment-account-search"
+					/>
+					<button
+						class="bg-[#334CAE] shrink-0 rounded-full w-7 h-7 lg:w-8 lg:h-8 flex justify-center items-center text-n0"
+					>
+						<i class="las la-search text-lg"></i>
+					</button>
+				</form>
+				<!-- <div class="flex items-center gap-3 whitespace-nowrap">
+          <span>Sort By : </span>
+          <app-dropdown />
+        </div> -->
+			</div>
+		</div>
+		<div class="overflow-x-auto pb-4 lg:pb-6">
+			<table class="w-full whitespace-nowrap" id="payment-account">
+				<thead>
+					<tr class="bg-secondary1/5 dark:bg-bg3">
+						<th
+							(click)="paymentAccounts.sortData('account')"
+							class="text-start !py-5 px-6 min-w-[230px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Account Number
+								<i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="paymentAccounts.sortData('account')"
+							class="text-start !py-5 min-w-[130px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Currency <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="paymentAccounts.sortData('account')"
+							class="text-start !py-5 min-w-[200px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Bank Name
+								<i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="paymentAccounts.sortData('account')"
+							class="text-start !py-5 min-w-[160px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Account Balance
+								<i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="paymentAccounts.sortData('account')"
+							class="text-start !py-5 min-w-[140px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Expiry Date
+								<i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="paymentAccounts.sortData('account')"
+							class="text-start !py-5 min-w-[130px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Status <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th class="text-center !py-5">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr
+						*ngFor="let item of paymentAccounts.paginatedData; index as i"
+						class="even:bg-secondary1/5 dark:even:bg-bg3"
+					>
+						<td class="py-2 px-6">
+							<div class="flex items-center gap-3">
+								<img
+									[src]="item.icon"
+									width="32"
+									height="32"
+									class="rounded-full"
+									alt="payment medium icon"
+								/>
+								<div>
+									<p class="font-medium mb-1">{{ item.account }}</p>
+									<span class="text-xs">Account Number</span>
+								</div>
+							</div>
+						</td>
+						<td class="py-2">
+							<div>
+								<p class="font-medium">{{ item.currency.short }}</p>
+								<span class="text-xs"> {{ item.currency.long }} </span>
+							</div>
+						</td>
+						<td class="py-2">
+							<div>
+								<p class="font-medium">{{ item.bank.name }}</p>
+								<span class="text-xs"> {{ item.bank.country }} </span>
+							</div>
+						</td>
+						<td class="py-2">
+							<div>
+								<p class="font-medium">{{ getLocale(item.balance) }}</p>
+								<span class="text-xs">Account Balance</span>
+							</div>
+						</td>
+						<td>11/05/2027</td>
+						<td class="py-2">
+							<span
+								[ngClass]="{
+									'text-[#334CAE] bg-[#334CAE]/10': item.status == 'successful',
+									'text-secondary2 bg-secondary2/20':
+										item.status == 'cancelled',
+									'text-secondary3 bg-secondary3/10': item.status == 'pending'
+								}"
+								class="block w-28 rounded-[30px] border border-n30 bg-[#334CAE]/10 py-2 text-center text-xs text-[#334CAE] dark:border-n500 dark:bg-bg3 xxl:w-36"
+							>
+								{{ item.status }}
+							</span>
+						</td>
+						<td class="py-2">
+							<div class="flex justify-center">
+								<app-options-vertical></app-options-vertical>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div
+			class="flex col-span-12 gap-4 sm:justify-between justify-center items-center flex-wrap"
+		>
+			<p>
+				Showing {{ paymentAccounts.startIndex + 1 }} to
+				{{ paymentAccounts.endIndex + 1 }} of
+				{{ paymentAccounts.totalData }} entries
+			</p>
+			<ul class="flex gap-2 md:gap-3 flex-wrap md:font-semibold items-center">
+				<li>
+					<button
+						[disabled]="paymentAccounts.currentPage == 1"
+						(click)="paymentAccounts.prevPage()"
+						class="hover:bg-[#334CAE] text-[#334CAE] rtl:rotate-180 hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+					>
+						<i class="las la-angle-left text-lg"></i>
+					</button>
+				</li>
+				<li *ngFor="let page of pages">
+					<button
+						(click)="paymentAccounts.paginate(page)"
+						[ngClass]="{
+							'bg-[#334CAE] !text-n0': paymentAccounts.currentPage == page
+						}"
+						class="hover:bg-[#334CAE] bg-[#334CAE] hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex text-[#334CAE] items-center rounded-full justify-center border-[#334CAE]"
+					>
+						{{ page }}
+					</button>
+				</li>
+				<li>
+					<button
+						[disabled]="
+							paymentAccounts.currentPage == paymentAccounts.totalPages
+						"
+						(click)="paymentAccounts.nextPage()"
+						class="hover:bg-[#334CAE] text-[#334CAE] hover:text-n0 rtl:rotate-180 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+					>
+						<i class="las la-angle-right text-lg"></i>
+					</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,165 @@
+<app-top-banner title="Reports Style 01" />
+<div class="grid grid-cols-12 gap-4 xxl:gap-6">
+	<!-- Statistics -->
+	@for (item of statesData; track $index) {
+	<div
+		class="col-span-12 min-[650px]:col-span-6 xxxl:col-span-3 box p-4 4xl:p-8 bg-n0 dark:bg-bg4"
+	>
+		<div
+			class="bb-dashed mb-4 pb-4 lg:pb-6 lg:mb-6 flex justify-between items-center"
+		>
+			<p class="font-medium">{{ item.title }}</p>
+			<app-options-horiz />
+		</div>
+		<div class="flex items-center justify-between gap-4 xxxl:gap-6">
+			<div>
+				<h4 class="h4 mb-3">{{ getLocale(item.amount) }}</h4>
+				<span>
+					<span class="text-[#334CAE]">
+						<i class="las la-arrow-up text-lg"></i> {{ item.percent }} %
+					</span>
+					Since last month
+				</span>
+			</div>
+			<div class="text-[#334CAE]"><i [class]="item.icon"></i></div>
+		</div>
+		<div class="rounded-lg h-1 bg-n30 dark:bg-n500 mt-4">
+			<div
+				[style.width]="item.percent + '%'"
+				class="bar h-1 bg-[#334CAE] rounded-lg"
+			></div>
+		</div>
+	</div>
+	}
+
+	<!-- performance chart -->
+	<div class="col-span-12 lg:col-span-6">
+		<div class="col-span-12 lg:col-span-6 box overflow-x-hidden">
+			<div
+				class="flex flex-wrap justify-between items-center gap-3 pb-4 lg:pb-6 mb-4 lg:mb-6 bb-dashed"
+			>
+				<h4 class="h4">Performance</h4>
+				<div class="flex items-center gap-2">
+					<p class="text-xs sm:text-sm md:text-base">Sort By :</p>
+					<app-dropdown />
+				</div>
+			</div>
+			<apx-chart
+				[series]="performanceChartOptions.series"
+				[chart]="performanceChartOptions.chart"
+				[responsive]="performanceChartOptions.responsive"
+				[plotOptions]="performanceChartOptions.plotOptions!"
+				[xaxis]="performanceChartOptions.xaxis!"
+				[yaxis]="performanceChartOptions.yaxis!"
+				[stroke]="performanceChartOptions.stroke!"
+				[dataLabels]="performanceChartOptions.dataLabels!"
+				[markers]="performanceChartOptions.markers!"
+				[colors]="performanceChartOptions.colors!"
+				[fill]="performanceChartOptions.fill!"
+				[legend]="performanceChartOptions.legend!"
+			/>
+		</div>
+	</div>
+	<!-- Monthly rewards -->
+	<div class="col-span-12 lg:col-span-6">
+		<div class="box xl:p-8">
+			<div
+				class="flex justify-between items-center bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6"
+			>
+				<h4 class="h4">Monthly Rewards</h4>
+				<app-options-horiz />
+			</div>
+			<div
+				class="bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6 flex gap-4 xxl:gap-6 items-center"
+			>
+				<div
+					class="text-[#334CAE] px-3 py-2.5 bg-[#334CAE]/5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-xl"
+				>
+					<i class="las la-dollar-sign text-4xl"></i>
+				</div>
+				<div class="grow">
+					<div class="flex justify-between items-center mb-3">
+						<p class="text-base md:text-lg font-semibold">US Dollar (USD)</p>
+						<span>54</span>
+					</div>
+					<div class="flex gap-2 items-center">
+						<p>45%</p>
+						<div class="rounded-lg grow h-1 bg-[#334CAE]/5 dark:bg-n600">
+							<div style="width: 45%" class="h-1 bg-[#334CAE] rounded-lg"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div
+				class="bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6 flex gap-4 xxl:gap-6 items-center"
+			>
+				<div
+					class="text-[#334CAE] px-3 py-2.5 bg-[#334CAE]/5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-xl"
+				>
+					<i class="las la-euro-sign text-4xl"></i>
+				</div>
+				<div class="grow">
+					<div class="flex justify-between items-center mb-3">
+						<p class="text-base md:text-lg font-semibold">Euro (EUR)</p>
+						<span>54</span>
+					</div>
+					<div class="flex gap-2 items-center">
+						<p>62%</p>
+						<div class="rounded-lg grow h-1 bg-[#334CAE]/5 dark:bg-n600">
+							<div style="width: 62%" class="h-1 bg-[#334CAE] rounded-lg"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="pb-4 flex gap-4 xxl:gap-6 items-center">
+				<div
+					class="text-[#334CAE] px-3 py-2.5 bg-[#334CAE]/5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-xl"
+				>
+					<i class="las la-dollar-sign text-4xl"></i>
+				</div>
+				<div class="grow">
+					<div class="flex justify-between items-center mb-3">
+						<p class="text-base md:text-lg font-semibold">British Pound(GBP)</p>
+						<span>54</span>
+					</div>
+					<div class="flex gap-2 items-center">
+						<p>82%</p>
+						<div class="rounded-lg grow h-1 bg-[#334CAE]/5 dark:bg-n600">
+							<div style="width: 82%" class="h-1 bg-[#334CAE] rounded-lg"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<a
+				class="text-[#334CAE] font-semibold inline-flex gap-1 items-center mt-4 group"
+				href="#"
+			>
+				See More
+				<i class="las la-arrow-right group-hover:pl-2 duration-300"></i>
+			</a>
+		</div>
+	</div>
+	<div class="col-span-12">
+		<div class="box col-span-12 lg:col-span-6 overflow-x-hidden">
+			<div
+				class="mb-4 pb-4 xl:pb-6 xl:mb-6 bb-dashed flex justify-between items-center flex-wrap gap-4"
+			>
+				<h4 class="h4">US Dollar (USD)</h4>
+				<div class="flex items-center gap-2">
+					<p class="text-xs sm:text-sm md:text-base">Sort By :</p>
+					<app-dropdown />
+				</div>
+			</div>
+			<apx-chart
+				[series]="usdChartOptions.series"
+				[chart]="usdChartOptions.chart"
+				[responsive]="usdChartOptions.responsive"
+				[plotOptions]="usdChartOptions.plotOptions!"
+				[xaxis]="usdChartOptions.xaxis!"
+				[yaxis]="usdChartOptions.yaxis!"
+				[grid]="usdChartOptions.grid!"
+				[tooltip]="usdChartOptions.tooltip!"
+			/>
+		</div>
+	</div>
+</div>

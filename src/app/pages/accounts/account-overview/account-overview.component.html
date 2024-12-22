@@ -1,0 +1,345 @@
+<app-top-banner title="Account Overview" />
+<div class="grid grid-cols-12 gap-4 xxl:gap-6 overflow-x-hidden">
+	<!-- Payment Overview chart -->
+	<div class="col-span-12 md:col-span-7 xxl:col-span-8 box overflow-x-hidden">
+		<div
+			class="flex flex-wrap justify-between items-center gap-3 pb-4 lg:pb-6 mb-4 lg:mb-6 bb-dashed"
+		>
+			<h4 class="h4">Payment Overview</h4>
+			<div class="flex items-center gap-2">
+				<p class="text-xs sm:text-sm md:text-base">Sort By :</p>
+				<app-dropdown />
+			</div>
+		</div>
+		<apx-chart
+			[chart]="paymentOverViewChartOptions.chart"
+			[stroke]="paymentOverViewChartOptions.stroke!"
+			[dataLabels]="paymentOverViewChartOptions.dataLabels!"
+			[markers]="paymentOverViewChartOptions.markers!"
+			[colors]="paymentOverViewChartOptions.colors!"
+			[xaxis]="paymentOverViewChartOptions.xaxis!"
+			[yaxis]="paymentOverViewChartOptions.yaxis!"
+			[tooltip]="paymentOverViewChartOptions.tooltip!"
+			[fill]="paymentOverViewChartOptions.fill!"
+			[responsive]="paymentOverViewChartOptions.responsive"
+			[series]="paymentOverViewChartOptions.series"
+			[plotOptions]="paymentOverViewChartOptions.plotOptions!"
+			[legend]="paymentOverViewChartOptions.legend!"
+		/>
+	</div>
+	<!-- account Balance -->
+	<div class="box col-span-12 md:col-span-5 xxl:col-span-4">
+		<div
+			class="flex flex-wrap justify-between items-center gap-3 pb-4 lg:pb-6 mb-4 lg:mb-6 bb-dashed"
+		>
+			<h4 class="h4">Account Balance</h4>
+			<app-options-horiz />
+		</div>
+		<apx-chart
+			[chart]="accountBalanceChartOptions.chart"
+			[stroke]="accountBalanceChartOptions.stroke!"
+			[dataLabels]="accountBalanceChartOptions.dataLabels!"
+			[markers]="accountBalanceChartOptions.markers!"
+			[colors]="accountBalanceChartOptions.colors!"
+			[xaxis]="accountBalanceChartOptions.xaxis!"
+			[yaxis]="accountBalanceChartOptions.yaxis!"
+			[tooltip]="accountBalanceChartOptions.tooltip!"
+			[fill]="accountBalanceChartOptions.fill!"
+			[responsive]="accountBalanceChartOptions.responsive"
+			[series]="accountBalanceChartOptions.series"
+			[plotOptions]="accountBalanceChartOptions.plotOptions!"
+			[legend]="accountBalanceChartOptions.legend!"
+		/>
+	</div>
+	<!-- Deposites account -->
+	<div class="col-span-12 md:col-span-7 xxl:col-span-8 box overflow-x-hidden">
+		<div
+			class="flex flex-wrap justify-between items-center gap-3 pb-4 lg:pb-6 mb-4 lg:mb-6 bb-dashed"
+		>
+			<h4 class="h4">Deposits Account</h4>
+			<div class="flex items-center gap-2">
+				<p class="text-xs sm:text-sm md:text-base">Sort By :</p>
+				<app-dropdown />
+			</div>
+		</div>
+		<apx-chart
+			[chart]="depositsAccountChartOptions.chart"
+			[stroke]="depositsAccountChartOptions.stroke!"
+			[dataLabels]="depositsAccountChartOptions.dataLabels!"
+			[markers]="depositsAccountChartOptions.markers!"
+			[colors]="depositsAccountChartOptions.colors!"
+			[xaxis]="depositsAccountChartOptions.xaxis!"
+			[yaxis]="depositsAccountChartOptions.yaxis!"
+			[tooltip]="depositsAccountChartOptions.tooltip!"
+			[fill]="depositsAccountChartOptions.fill!"
+			[responsive]="depositsAccountChartOptions.responsive"
+			[series]="depositsAccountChartOptions.series"
+			[plotOptions]="depositsAccountChartOptions.plotOptions!"
+			[legend]="depositsAccountChartOptions.legend!"
+		/>
+	</div>
+	<!-- Deposits balance -->
+	<div class="box col-span-12 md:col-span-5 xxl:col-span-4">
+		<div
+			class="flex flex-wrap justify-between items-center gap-3 pb-4 lg:pb-6 mb-4 lg:mb-6 bb-dashed"
+		>
+			<h4 class="h4">Deposits Balance</h4>
+			<app-options-horiz />
+		</div>
+		<div class="max-w-[450px] mx-auto deposit-balance">
+			<apx-chart
+				[chart]="depositBalanceChartOptions.chart"
+				[stroke]="depositBalanceChartOptions.stroke!"
+				[dataLabels]="depositBalanceChartOptions.dataLabels!"
+				[markers]="depositBalanceChartOptions.markers!"
+				[colors]="depositBalanceChartOptions.colors!"
+				[xaxis]="depositBalanceChartOptions.xaxis!"
+				[yaxis]="depositBalanceChartOptions.yaxis!"
+				[tooltip]="depositBalanceChartOptions.tooltip!"
+				[fill]="depositBalanceChartOptions.fill!"
+				[responsive]="depositBalanceChartOptions.responsive"
+				[series]="depositBalanceChartOptions.series"
+				[plotOptions]="depositBalanceChartOptions.plotOptions!"
+				[legend]="depositBalanceChartOptions.legend!"
+			/>
+		</div>
+	</div>
+	<!-- Payment Accounts -->
+	<div class="box col-span-12 md:col-span-7 xxl:col-span-8">
+		<div
+			class="flex justify-between items-center gap-4 flex-wrap bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6"
+		>
+			<h4 class="h4">Payment Account</h4>
+			<div class="flex items-center gap-4 flex-wrap grow sm:justify-end">
+				<form
+					class="bg-[#334CAE]/5 datatable-search dark:bg-bg3 border border-n30 dark:border-n500 flex gap-3 rounded-[30px] focus-within:border-[#334CAE] p-1 items-center justify-between min-w-[200px] xxl:max-w-[319px] w-full"
+				>
+					<input
+						type="text"
+						placeholder="Search"
+						class="bg-transparent text-sm ltr:pl-4 rtl:pr-4 py-1 w-full border-none"
+						id="payment-account-search"
+					/>
+					<button
+						class="bg-[#334CAE] shrink-0 rounded-full w-7 h-7 lg:w-8 lg:h-8 flex justify-center items-center text-n0"
+					>
+						<i class="las la-search text-lg"></i>
+					</button>
+				</form>
+				<div class="flex items-center gap-3 whitespace-nowrap">
+					<span>Sort By : </span>
+					<app-dropdown />
+				</div>
+			</div>
+		</div>
+		<div class="overflow-x-auto pb-4 lg:pb-6">
+			<table class="w-full whitespace-nowrap" id="payment-account">
+				<thead>
+					<tr class="bg-secondary1/5 dark:bg-bg3">
+						<th
+							(click)="paymentAccount.sortData('title')"
+							class="text-start !py-5 px-6 min-w-[230px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Account Number
+								<i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="paymentAccount.sortData('currency.short')"
+							class="text-start !py-5 min-w-[130px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Currency <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="paymentAccount.sortData('balance')"
+							class="text-start !py-5 min-w-[160px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Account Balance
+								<i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="paymentAccount.sortData('status')"
+							class="text-start !py-5 min-w-[130px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Status <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th class="text-center !py-5">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					@for (item of paymentAccount.paginatedData; track item.id; let i =
+					$index) {
+
+					<tr class="even:bg-secondary1/5 dark:even:bg-bg3">
+						<td class="py-2 px-6">
+							<div class="flex items-center gap-3">
+								<img
+									[src]="item.icon"
+									width="32"
+									height="32"
+									class="rounded-full"
+									alt="payment medium icon"
+								/>
+								<div>
+									<p class="font-medium mb-1">{{ item.account }}</p>
+									<span class="text-xs">Account Number</span>
+								</div>
+							</div>
+						</td>
+						<td class="py-2">
+							<div>
+								<p class="font-medium">{{ item.currency.short }}</p>
+								<span class="text-xs"> {{ item.currency.long }} </span>
+							</div>
+						</td>
+
+						<td class="py-2">
+							<div>
+								<p class="font-medium">{{ getLocale(item.balance) }}</p>
+								<span class="text-xs">Account Balance</span>
+							</div>
+						</td>
+
+						<td class="py-2">
+							<span
+								[ngClass]="{
+									'text-[#334CAE] bg-[#334CAE]/10': item.status == 'successful',
+									'text-secondary2 bg-secondary2/20':
+										item.status == 'cancelled',
+									'text-secondary3 bg-secondary3/10': item.status == 'pending'
+								}"
+								class="block w-28 rounded-[30px] border border-n30 bg-[#334CAE]/10 py-2 text-center text-xs text-[#334CAE] dark:border-n500 dark:bg-bg3 xxl:w-36"
+							>
+								{{ item.status }}
+							</span>
+						</td>
+						<td class="py-2">
+							<div class="flex justify-center">
+								<app-options-vertical></app-options-vertical>
+							</div>
+						</td>
+					</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+		<div
+			class="flex col-span-12 gap-4 sm:justify-between justify-center items-center flex-wrap"
+		>
+			<p>
+				Showing {{ paymentAccount.startIndex + 1 }} to
+				{{ paymentAccount.endIndex + 1 }} of
+				{{ paymentAccount.totalData }} entries
+			</p>
+			<ul class="flex gap-2 md:gap-3 flex-wrap md:font-semibold items-center">
+				<li>
+					<button
+						[disabled]="paymentAccount.currentPage == 1"
+						(click)="paymentAccount.prevPage()"
+						class="hover:bg-[#334CAE] text-[#334CAE] rtl:rotate-180 hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+					>
+						<i class="las la-angle-left text-lg"></i>
+					</button>
+				</li>
+				<li *ngFor="let page of pages">
+					<button
+						(click)="paymentAccount.paginate(page)"
+						[ngClass]="{
+							'bg-[#334CAE] !text-n0': paymentAccount.currentPage == page
+						}"
+						class="hover:bg-[#334CAE] bg-[#334CAE] hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex text-[#334CAE] items-center rounded-full justify-center border-[#334CAE]"
+					>
+						{{ page }}
+					</button>
+				</li>
+				<li>
+					<button
+						[disabled]="paymentAccount.currentPage == paymentAccount.totalPages"
+						(click)="paymentAccount.nextPage()"
+						class="hover:bg-[#334CAE] text-[#334CAE] hover:text-n0 rtl:rotate-180 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+					>
+						<i class="las la-angle-right text-lg"></i>
+					</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- Your Accounts -->
+	<div class="box col-span-12 md:col-span-5 xxl:col-span-4">
+		<div
+			class="flex flex-wrap gap-4 justify-between items-center bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6"
+		>
+			<h4 class="h4">Your Accounts</h4>
+			<app-options-horiz />
+		</div>
+		<div class="overflow-x-auto">
+			<table class="w-full whitespace-nowrap">
+				<thead>
+					<tr class="bg-secondary1/5 dark:bg-bg3">
+						<th
+							(click)="yourAccount.sortData('title')"
+							class="text-start py-5 px-6 min-w-[300px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Title <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="yourAccount.sortData('amount')"
+							class="text-start py-5 min-w-[120px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Amount <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					@for (item of yourAccount.paginatedData; track item.id;let i = $index)
+					{
+					<tr
+						class="hover:bg-[#334CAE]/5 dark:hover:bg-bg3 border-b border-n40 first:border-t duration-500 dark:border-n500"
+					>
+						<td class="py-2 px-6">
+							<div class="flex items-center gap-3">
+								<img
+									[src]="item.cardImg"
+									width="60"
+									height="40"
+									class="rounded"
+									alt="payment medium icon"
+								/>
+								<div>
+									<p class="font-medium mb-1">{{ item.title }}</p>
+									<span class="text-xs">**4291 - Exp: 12/26</span>
+								</div>
+							</div>
+						</td>
+						<td class="py-2">
+							<div>
+								<p class="font-medium">{{ getLocale(item.balance) }}</p>
+								<span class="text-xs">Account Balance</span>
+							</div>
+						</td>
+					</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+		<a
+			class="text-[#334CAE] font-semibold inline-flex gap-1 items-center mt-6 group"
+			href="#"
+		>
+			See More
+			<i class="las la-arrow-right group-hover:pl-2 duration-300"></i>
+		</a>
+	</div>
+</div>

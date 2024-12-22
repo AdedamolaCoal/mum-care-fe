@@ -1,0 +1,200 @@
+<app-top-banner></app-top-banner>
+<div class="grid grid-cols-12 gap-4 xxl:gap-6">
+	<!-- Statistics -->
+	<div
+		*ngFor="let stat of stats"
+		class="col-span-12 min-[680px]:col-span-6 xxl:col-span-4 box p-4 xxxl:p-6 4xl:p-8 bg-n0 dark:bg-bg4"
+	>
+		<div
+			class="flex justify-between items-center mb-4 lg:mb-6 pb-4 lg:pb-6 bb-dashed"
+		>
+			<span class="font-medium">{{ stat.title }} </span>
+			<app-options-horiz></app-options-horiz>
+		</div>
+		<div class="flex justify-between items-center">
+			<div>
+				<h4 class="h4 mb-4">{{ stat.amount }}</h4>
+				<span class="flex items-center gap-1 whitespace-nowrap text-[#334CAE]">
+					<i class="las la-arrow-up text-lg"></i> {{ stat.percent }} %
+				</span>
+			</div>
+			<div class="shrink-0">
+				<apx-chart
+					[chart]="statChartOptions.chart"
+					[stroke]="statChartOptions.stroke!"
+					[dataLabels]="statChartOptions.dataLabels!"
+					[markers]="statChartOptions.markers!"
+					[colors]="statChartOptions.colors!"
+					[xaxis]="statChartOptions.xaxis!"
+					[yaxis]="statChartOptions.yaxis!"
+					[tooltip]="statChartOptions.tooltip!"
+					[fill]="statChartOptions.fill!"
+					[responsive]="statChartOptions.responsive"
+					[series]="statChartOptions.series"
+					[grid]="statChartOptions.grid!"
+				/>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-span-12 lg:col-span-8">
+		<!-- Balance overview chart -->
+		<div class="col-span-12 lg:col-span-6 box overflow-x-hidden mb-4 xxl:mb-6">
+			<div
+				class="flex flex-wrap justify-between items-center gap-3 pb-4 lg:pb-6 mb-4 lg:mb-6 bb-dashed"
+			>
+				<h4 class="h4">Balance Overview</h4>
+				<div class="flex items-center gap-2">
+					<p class="text-xs sm:text-sm md:text-base">Sort By :</p>
+					<app-dropdown />
+				</div>
+			</div>
+			<apx-chart
+				[chart]="balanceChartOptions.chart"
+				[stroke]="balanceChartOptions.stroke!"
+				[dataLabels]="balanceChartOptions.dataLabels!"
+				[markers]="balanceChartOptions.markers!"
+				[colors]="balanceChartOptions.colors!"
+				[xaxis]="balanceChartOptions.xaxis!"
+				[yaxis]="balanceChartOptions.yaxis!"
+				[tooltip]="balanceChartOptions.tooltip!"
+				[fill]="balanceChartOptions.fill!"
+				[responsive]="balanceChartOptions.responsive"
+				[series]="balanceChartOptions.series"
+				[plotOptions]="balanceChartOptions.plotOptions!"
+				[grid]="balanceChartOptions.grid!"
+				[legend]="balanceChartOptions.legend!"
+			/>
+		</div>
+		<!-- Browser Sessions -->
+		<div class="box col-span-12 lg:col-span-6">
+			<div
+				class="flex flex-wrap justify-between items-center gap-3 pb-4 lg:pb-6 mb-4 lg:mb-6 bb-dashed"
+			>
+				<h4 class="h4">Sessions by Browser</h4>
+				<div class="flex items-center gap-2">
+					<p class="text-xs sm:text-sm md:text-base">Sort By :</p>
+					<app-dropdown />
+				</div>
+			</div>
+			<div
+				class="overflow-x-hidden flex justify-center flex-col sm:flex-row items-center gap-3"
+			>
+				<div class="grow">
+					<apx-chart
+						[series]="browserChartOptions.series"
+						[xaxis]="browserChartOptions.xaxis!"
+						[chart]="browserChartOptions.chart"
+						[dataLabels]="browserChartOptions.dataLabels!"
+						[colors]="browserChartOptions.colors!"
+						[plotOptions]="browserChartOptions.plotOptions!"
+					></apx-chart>
+				</div>
+				<div
+					class="flex w-[25%] shrink-0 sm:flex-col max-sm:w-full flex-wrap justify-center gap-5"
+				>
+					<div class="flex items-center gap-2">
+						<img
+							width="24"
+							height="24"
+							src="assets/images/chrome.png"
+							alt="browser icon"
+						/>
+						<p>36.87%</p>
+					</div>
+					<div class="flex items-center gap-2">
+						<img
+							width="24"
+							height="24"
+							src="assets/images/firefox.png"
+							alt="browser icon"
+						/>
+						<p>9.87%</p>
+					</div>
+					<div class="flex items-center gap-2">
+						<img
+							width="24"
+							height="24"
+							src="assets/images/edge.png"
+							alt="browser icon"
+						/>
+						<p>3.87%</p>
+					</div>
+					<div class="flex items-center gap-2">
+						<img
+							width="24"
+							height="24"
+							src="assets/images/opera.png"
+							alt="browser icon"
+						/>
+						<p>45.87%</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-span-12 lg:col-span-4">
+		<!-- Latest Transactions -->
+		<div class="box">
+			<div
+				class="flex flex-wrap gap-4 justify-between items-center bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6"
+			>
+				<h4 class="h4">Latest Transactions</h4>
+				<app-options-horiz />
+			</div>
+			<div class="overflow-x-auto">
+				<table class="w-full whitespace-nowrap">
+					<thead>
+						<tr class="bg-secondary1/5 dark:bg-bg3">
+							<th
+								(click)="latestTransactions.sortData('title')"
+								class="text-start py-5 px-6 cursor-pointer min-w-[220px]"
+							>
+								<div class="flex items-center gap-1">
+									Title <i class="las la-exchange-alt rotate-90 text-base"></i>
+								</div>
+							</th>
+							<th
+								(click)="latestTransactions.sortData('amount')"
+								class="text-start py-5 cursor-pointer"
+							>
+								<div class="flex items-center gap-1">
+									Amount <i class="las la-exchange-alt rotate-90 text-base"></i>
+								</div>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						@for (item of latestTransactions.paginatedData; track $index) {
+						<tr class="even:bg-secondary1/5 dark:even:bg-bg3">
+							<td class="py-2 px-6">
+								<div class="flex items-center gap-3">
+									<img
+										[src]="item.icon"
+										width="32"
+										height="32"
+										class="rounded-full"
+										alt="payment medium icon"
+									/>
+									<div>
+										<p class="font-medium mb-1">{{ item.title }}</p>
+										<span class="text-xs"> {{ item.time }} </span>
+									</div>
+								</div>
+							</td>
+							<td class="py-2 pr-6">${{ item.amount.toLocaleString() }}</td>
+						</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+			<a
+				class="text-[#334CAE] font-semibold inline-flex gap-1 items-center mt-6 group"
+				href="#"
+			>
+				See More
+				<i class="las la-arrow-right group-hover:pl-2 duration-300"></i>
+			</a>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,330 @@
+<app-top-banner title="Trading Style 03" />
+
+<!-- markets overview -->
+<div class="grid grid-cols-12 gap-4 xxl:gap-6">
+	<div
+		class="col-span-12 md:col-span-7 xxl:col-span-8 flex flex-col gap-4 xxl:gap-6"
+	>
+		<!-- Statistics -->
+		<div class="grid grid-cols-12 gap-4 xxl:gap-6">
+			@for (item of stats; track $index) {
+			<div
+				class="col-span-12 min-[650px]:col-span-6 md:col-span-12 lg:col-span-6 xxxl:col-span-4 box xl:p-6 xxxl:p-6 bg-n0 dark:bg-bg4"
+			>
+				<div
+					class="flex justify-between items-center bb-dashed mb-4 pb-4 xxl:pb-6 xxl:mb-6"
+				>
+					<p class="font-medium">{{ item.title }}</p>
+					<span [class]="item.color">
+						<i [class]="item.arrow"></i> {{ item.percent }} %
+					</span>
+				</div>
+				<div class="flex items-center justify-between gap-4 xxxl:gap-6">
+					<div>
+						<h4 class="h4 mb-2 xxl:mb-3">{{ getLocale(item.amount) }}</h4>
+						<p>Total Balance</p>
+					</div>
+					<div
+						class="text-[#334CAE] px-3 py-2.5 bg-[#334CAE]/5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-xl"
+					>
+						<i [class]="item.icon"></i>
+					</div>
+				</div>
+			</div>
+			}
+		</div>
+		<!-- Daily highlight chart -->
+		<div class="col-span-12 lg:col-span-6 box overflow-x-hidden">
+			<div
+				class="flex flex-wrap justify-between items-center gap-3 pb-4 lg:pb-6 mb-4 lg:mb-6 bb-dashed"
+			>
+				<p class="font-medium">Transactions Overview</p>
+				<div class="flex items-center gap-2">
+					<p class="text-xs sm:text-sm md:text-base">Sort By :</p>
+					<app-dropdown />
+				</div>
+			</div>
+			<apx-chart
+				[series]="highlightChart.series"
+				[chart]="highlightChart.chart"
+				[legend]="highlightChart.legend!"
+				[stroke]="highlightChart.stroke!"
+				[plotOptions]="highlightChart.plotOptions!"
+				[fill]="highlightChart.fill!"
+				[labels]="highlightChart.labels!"
+				[xaxis]="highlightChart.xaxis!"
+				[yaxis]="highlightChart.yaxis!"
+				[tooltip]="highlightChart.tooltip!"
+				[grid]="highlightChart.grid!"
+			/>
+		</div>
+	</div>
+	<div class="col-span-12 md:col-span-5 xxl:col-span-4">
+		<div class="box mb-4 xxl:mb-6">
+			<div
+				class="bb-dashed pb-4 mb-4 lg:mb-6 lg:pb-6 flex justify-between items-center"
+			>
+				<p class="font-medium">Quick Transfer</p>
+				<app-options-horiz />
+			</div>
+			<div class="bb-dashed pb-4 mb-4 lg:mb-6 lg:pb-6 flex flex-col">
+				<div
+					class="box border border-n30 dark:border-n500 bg-[#334CAE]/5 dark:bg-bg3 xl:p-3 xxl:p-4"
+					[ngClass]="flipped ? 'order-1' : 'order-3'"
+				>
+					<div
+						class="flex justify-between gap-3 bb-dashed items-center text-sm mb-4 pb-4"
+					>
+						<p>Spend</p>
+						<p>Balance : 10,000 USD</p>
+					</div>
+					<div
+						class="flex justify-between items-center text-xl gap-4 font-medium"
+					>
+						<input
+							type="number"
+							class="w-20 bg-transparent p-0 border-none"
+							placeholder="0.00"
+						/>
+						<p class="shrink-0">$ USD</p>
+					</div>
+				</div>
+				<button
+					(click)="flipped = !flipped"
+					class="p-2 border order-2 border-n30 dark:border-n500 self-center -my-4 relative z-[2] rounded-lg bg-n0 dark:bg-bg4 text-[#334CAE] changeOrderBtn"
+				>
+					<i class="las la-exchange-alt rotate-90"></i>
+				</button>
+				<div
+					class="box border border-n30 dark:border-n500 bg-[#334CAE]/5 dark:bg-bg3 xl:p-3 xxl:p-4"
+					[ngClass]="flipped ? 'order-3' : 'order-1'"
+				>
+					<div
+						class="flex justify-between gap-3 bb-dashed items-center text-sm mb-4 pb-4"
+					>
+						<p>Receive</p>
+						<p>Balance : 10,000 USD</p>
+					</div>
+					<div
+						class="flex justify-between items-center text-xl gap-4 font-medium"
+					>
+						<input
+							type="number"
+							class="w-20 bg-transparent p-0 border-none"
+							placeholder="0.00"
+						/>
+						<p class="shrink-0">€ EURO</p>
+					</div>
+				</div>
+			</div>
+			<div>
+				<p class="text-lg font-medium mb-6">Payment Method</p>
+				<div
+					class="border border-[#334CAE] border-dashed bg-[#334CAE]/5 rounded-lg p-3 flex items-center gap-4 mb-6 lg:mb-8"
+				>
+					<img
+						src="assets/images/card-sm-1.png"
+						width="60"
+						height="40"
+						alt="card"
+					/>
+					<div>
+						<p class="font-medium mb-1">John Snow - Metal</p>
+						<span class="text-xs">**4291 - Exp: 12/26</span>
+					</div>
+				</div>
+				<a href="#" class="btn flex justify-center w-full"> Sent Now </a>
+			</div>
+		</div>
+	</div>
+
+	<div class="box col-span-12">
+		<div
+			class="flex justify-between items-center gap-4 flex-wrap bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6"
+		>
+			<h4 class="h4">Markets Overview</h4>
+			<div class="flex items-center gap-4 flex-wrap grow sm:justify-end">
+				<form
+					class="bg-[#334CAE]/5 dark:bg-bg3 border border-n30 dark:border-n500 flex gap-3 rounded-[30px] focus-within:border-[#334CAE] p-1 items-center justify-between min-w-[200px] xxl:max-w-[319px] w-full"
+				>
+					<input
+						type="text"
+						placeholder="Search"
+						class="bg-transparent border-none text-sm ltr:pl-4 rtl:pr-4 py-1 w-full"
+					/>
+					<button
+						class="bg-[#334CAE] shrink-0 rounded-full w-7 h-7 lg:w-8 lg:h-8 flex justify-center items-center text-n0"
+					>
+						<i class="las la-search text-lg"></i>
+					</button>
+				</form>
+				<div class="flex items-center gap-3 whitespace-nowrap">
+					<span>Sort By : </span>
+					<app-dropdown />
+				</div>
+			</div>
+		</div>
+		<div class="overflow-x-auto mb-4 lg:mb-6">
+			<table class="w-full whitespace-nowrap">
+				<thead>
+					<tr class="bg-secondary1/5 dark:bg-bg3">
+						<th
+							(click)="marketOverview.sortData('title')"
+							class="text-start py-5 px-6 min-w-[200px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Titile <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="marketOverview.sortData('amount')"
+							class="text-start py-5 min-w-[100px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Amount <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="marketOverview.sortData('charge')"
+							class="text-start py-5 min-w-[100px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Charge <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th class="text-start py-5 min-w-[150px] cursor-pointer">
+							<div class="flex items-center gap-1">Highlight</div>
+						</th>
+						<th
+							(click)="marketOverview.sortData('change')"
+							class="text-start py-5 min-w-[100px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Change <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="marketOverview.sortData('status')"
+							class="text-start py-5 min-w-[130px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Status <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th class="text-center p-5">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					@for (item of marketOverview.paginatedData; track item.id; let i =
+					$index) {
+					<tr
+						class="hover:bg-[#334CAE]/5 duration-300 border-b border-n30 dark:border-n500"
+					>
+						<td class="py-4 px-6">
+							<div class="flex items-center gap-3">
+								<div class="flex shrink-0">
+									<img
+										[src]="item.icon1"
+										width="32"
+										height="32"
+										class="rounded-full"
+										alt="payment medium icon"
+									/>
+									<img
+										[src]="item.icon2"
+										width="32"
+										height="32"
+										class="rounded-full ltr:-ml-3 rtl:-mr-3"
+										alt="payment medium icon"
+									/>
+								</div>
+								<p class="font-medium mb-1">{{ item.title }}</p>
+							</div>
+						</td>
+						<td class="py-4">{{ item.amount }}</td>
+						<td class="py-4">{{ item.charge }} %</td>
+						<td class="py-4">
+							<apx-chart
+								[chart]="statChart.chart"
+								[stroke]="statChart.stroke!"
+								[dataLabels]="statChart.dataLabels!"
+								[markers]="statChart.markers!"
+								[colors]="statChart.colors!"
+								[xaxis]="statChart.xaxis!"
+								[yaxis]="statChart.yaxis!"
+								[tooltip]="statChart.tooltip!"
+								[fill]="statChart.fill!"
+								[responsive]="statChart.responsive"
+								[series]="statChart.series"
+								[legend]="statChart.legend!"
+							/>
+						</td>
+						<td class="py-4">
+							<span class="text-[#334CAE]">+3</span>
+						</td>
+						<td class="py-4">
+							<span
+								[ngClass]="{
+									'text-[#334CAE] bg-[#334CAE]/10': item.status == 'successful',
+									'text-secondary2 bg-secondary2/20':
+										item.status == 'cancelled',
+									'text-secondary3 bg-secondary3/10': item.status == 'pending'
+								}"
+								class="block w-28 rounded-[30px] border border-n30 bg-[#334CAE]/10 py-2 text-center text-xs text-[#334CAE] dark:border-n500 dark:bg-bg3 xxl:w-36"
+							>
+								{{ item.status }}
+							</span>
+						</td>
+						<td class="py-4">
+							<div class="flex justify-center">
+								<app-options-vertical></app-options-vertical>
+							</div>
+						</td>
+					</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+
+		<div
+			class="flex col-span-12 gap-4 sm:justify-between justify-center items-center flex-wrap"
+		>
+			<p>
+				Showing {{ marketOverview.startIndex + 1 }} to
+				{{ marketOverview.endIndex + 1 }} of
+				{{ marketOverview.totalData }} entries
+			</p>
+			<ul class="flex gap-2 md:gap-3 flex-wrap md:font-semibold items-center">
+				<li>
+					<button
+						[disabled]="marketOverview.currentPage == 1"
+						(click)="marketOverview.prevPage()"
+						class="hover:bg-[#334CAE] text-[#334CAE] rtl:rotate-180 hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+					>
+						<i class="las la-angle-left text-lg"></i>
+					</button>
+				</li>
+				<li *ngFor="let page of pages">
+					<button
+						(click)="marketOverview.paginate(page)"
+						[ngClass]="{
+							'bg-[#334CAE] !text-n0': marketOverview.currentPage == page
+						}"
+						class="hover:bg-[#334CAE] bg-[#334CAE] hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex text-[#334CAE] items-center rounded-full justify-center border-[#334CAE]"
+					>
+						{{ page }}
+					</button>
+				</li>
+				<li>
+					<button
+						[disabled]="marketOverview.currentPage == marketOverview.totalPages"
+						(click)="marketOverview.nextPage()"
+						class="hover:bg-[#334CAE] text-[#334CAE] hover:text-n0 rtl:rotate-180 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+					>
+						<i class="las la-angle-right text-lg"></i>
+					</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

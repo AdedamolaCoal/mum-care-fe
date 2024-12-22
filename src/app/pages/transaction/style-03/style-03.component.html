@@ -1,0 +1,123 @@
+<app-top-banner title="Transaction Style 03" />
+
+<div class="overflow-x-auto">
+	<div class="bg-n0 dark:bg-bg4 rounded-xl px-3 min-w-min mb-4 lg:mb-6">
+		<table
+			cell-padding="0"
+			cell-spacing="0"
+			style="border-spacing: 0px 12px"
+			class="w-full whitespace-nowrap p-0 border-none border-separate"
+		>
+			<tbody>
+				@for (item of transactions.paginatedData; track item.id;let i = $index)
+				{
+				<tr>
+					<td>
+						<div
+							class="py-5 pl-6 px-3 bg-secondary1/5 dark:bg-bg3 rounded-s-lg"
+						>
+							01
+						</div>
+					</td>
+					<td>
+						<div
+							class="flex items-center py-2.5 gap-3 pr-6 min-w-[300px] px-3 bg-secondary1/5 dark:bg-bg3"
+						>
+							<img
+								width="32"
+								height="32"
+								class="rounded-full shrink-0"
+								[src]="item.icon"
+								alt="img"
+							/>
+							<div class="flex flex-col">
+								<span class="font-medium inline-block mb-1">
+									{{ item.title }}
+								</span>
+								<span class="text-xs"> {{ item.time }} </span>
+							</div>
+						</div>
+					</td>
+					<td class="w-[15%]">
+						<div class="bg-secondary1/5 dark:bg-bg3 py-5 px-3">
+							{{ item.invoice }}
+						</div>
+					</td>
+					<td class="w-[15%]">
+						<div class="bg-secondary1/5 dark:bg-bg3 py-5 px-3">
+							{{ item.medium }}
+						</div>
+					</td>
+					<td class="w-[15%]">
+						<div class="bg-secondary1/5 dark:bg-bg3 py-5 px-3">
+							$ {{ item.amount.toLocaleString() }}
+						</div>
+					</td>
+					<td>
+						<div class="bg-secondary1/5 dark:bg-bg3 px-3 py-4">
+							<span
+								[ngClass]="{
+									'text-[#334CAE] bg-[#334CAE]/10': item.status == 'successful',
+									'text-secondary2 bg-secondary2/20':
+										item.status == 'cancelled',
+									'text-secondary3 bg-secondary3/10': item.status == 'pending'
+								}"
+								class="block w-28 rounded-[30px] border border-n30 bg-[#334CAE]/10 py-2 text-center text-xs text-[#334CAE] dark:border-n500 dark:bg-bg3 xxl:w-36"
+							>
+								{{ item.status }}
+							</span>
+						</div>
+					</td>
+					<td>
+						<div
+							class="bg-secondary1/5 dark:bg-bg3 px-3 py-5 rounded-e-xl flex justify-end pr-5"
+						>
+							<app-options-vertical></app-options-vertical>
+						</div>
+					</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+
+	<div
+		class="flex col-span-12 gap-4 sm:justify-between justify-center items-center flex-wrap"
+	>
+		<p>
+			Showing {{ transactions.startIndex + 1 }} to
+			{{ transactions.endIndex + 1 }} of {{ transactions.totalData }} entries
+		</p>
+		<ul class="flex gap-2 md:gap-3 flex-wrap md:font-semibold items-center">
+			<li>
+				<button
+					[disabled]="transactions.currentPage == 1"
+					(click)="transactions.prevPage()"
+					class="hover:bg-[#334CAE] text-[#334CAE] rtl:rotate-180 hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+				>
+					<i class="las la-angle-left text-lg"></i>
+				</button>
+			</li>
+			<li *ngFor="let page of pages">
+				<button
+					(click)="transactions.paginate(page)"
+					[ngClass]="{
+						'bg-[#334CAE] !text-n0': transactions.currentPage == page
+					}"
+					class="hover:bg-[#334CAE] bg-[#334CAE] hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex text-[#334CAE] items-center rounded-full justify-center border-[#334CAE]"
+				>
+					{{ page }}
+				</button>
+			</li>
+			<li>
+				<button
+					[disabled]="transactions.currentPage == transactions.totalPages"
+					(click)="transactions.nextPage()"
+					class="hover:bg-[#334CAE] text-[#334CAE] hover:text-n0 rtl:rotate-180 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+				>
+					<i class="las la-angle-right text-lg"></i>
+				</button>
+			</li>
+		</ul>
+	</div>
+</div>

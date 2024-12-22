@@ -1,0 +1,273 @@
+<app-top-banner title="Card Details" />
+
+<div class="grid grid-cols-12 gap-4 xxl:gap-6">
+	<div class="col-span-12 md:col-span-5 xxl:col-span-4">
+		<!-- Card Details -->
+		<div class="box mb-4 xxl:mb-6">
+			<div
+				class="bb-dashed pb-4 mb-4 lg:mb-6 lg:pb-6 flex justify-between items-center"
+			>
+				<h4 class="h4">Details</h4>
+				<app-dropdown [options]="cards" />
+			</div>
+			<div class="bb-dashed pb-4 mb-4 lg:mb-6 lg:pb-6 flex flex-col">
+				<div
+					class="bg-secondary1 p-4 lg:px-6 lg:py-5 rounded-xl text-n0 relative overflow-hidden after:absolute after:rounded-full after:w-[300px] after:h-[300px] after:bg-[#FFC861] after:top-[45%] after:ltr:left-[65%] after:rtl:right-[65%] mb-6 lg:mb-8"
+				>
+					<div
+						class="flex justify-between items-start mb-3 sm:mb-4 lg:mb-8 xxxl:mb-14"
+					>
+						<div>
+							<p class="text-xs mb-1">Current Balance</p>
+							<h4 class="h4">80,700.00 USD</h4>
+						</div>
+						<img
+							src="assets/images/visa-sm.png"
+							width="45"
+							height="16"
+							alt="visa icon"
+						/>
+					</div>
+					<img
+						src="assets/images/mastercard.png"
+						width="45"
+						height="45"
+						alt="visa icon"
+					/>
+					<div class="flex justify-between items-end lg:mt-2">
+						<div>
+							<p class="mb-1">Felecia Brown</p>
+							<p class="text-xs">•••• •••• •••• 8854</p>
+						</div>
+						<p class="text-n700 relative z-[1]">12/27</p>
+					</div>
+				</div>
+				<ul class="flex flex-col gap-4">
+					<li class="flex justify-between">
+						<span>Card Type:</span> <span class="font-medium">Visa</span>
+					</li>
+					<li class="flex justify-between">
+						<span>Card Holder:</span>
+						<span class="font-medium">Felecia Brown</span>
+					</li>
+					<li class="flex justify-between">
+						<span>Expires:</span> <span class="font-medium">12/27</span>
+					</li>
+					<li class="flex justify-between">
+						<span>Card Number:</span>
+						<span class="font-medium">325 541 565 546</span>
+					</li>
+					<li class="flex justify-between">
+						<span>Total Balance:</span>
+						<span class="font-medium">99,225.54 USD</span>
+					</li>
+					<li class="flex justify-between">
+						<span>Total Debt:</span>
+						<span class="font-medium">9,545.22 USD</span>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<ul class="list-disc accent-primary flex flex-col gap-4">
+					<li class="flex justify-between items-center">
+						<span class="flex gap-2 items-center">
+							<span class="text-[#334CAE]">•</span>
+							<span class="font-semibold">Download Statement</span>
+						</span>
+						<button class="w-9 h-9 rounded-full bg-[#334CAE] text-n0">
+							<i class="text-lg las la-download"></i>
+						</button>
+					</li>
+					<li class="flex justify-between items-center">
+						<span class="flex gap-2 items-center">
+							<span class="text-[#334CAE]">•</span>
+							<span class="font-semibold">Change Password</span>
+						</span>
+						<button
+							class="w-9 h-9 rounded-full bg-[#334CAE]/5 border border-n30 dark:border-n500"
+						>
+							<i class="text-lg las la-edit"></i>
+						</button>
+					</li>
+					<li class="flex justify-between items-center">
+						<span class="flex gap-2 items-center">
+							<span class="text-[#334CAE]">•</span>
+							<span class="font-semibold">Download Statement</span>
+						</span>
+						<button
+							class="w-9 h-9 rounded-full bg-[#334CAE]/5 border border-n30 dark:border-n500"
+						>
+							<i class="text-lg las la-ban"></i>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- Card History -->
+		<div class="box overflow-x-hidden">
+			<div
+				class="flex flex-wrap justify-between items-center gap-3 pb-4 lg:pb-6 mb-4 lg:mb-6 bb-dashed"
+			>
+				<h4 class="h4">History</h4>
+				<div class="flex items-center gap-2">
+					<h4 class="text-xs sm:text-sm md:text-base">Sort By :</h4>
+					<app-dropdown />
+				</div>
+			</div>
+			<apx-chart
+				[chart]="cardHistoryChartOptions.chart"
+				[stroke]="cardHistoryChartOptions.stroke!"
+				[dataLabels]="cardHistoryChartOptions.dataLabels!"
+				[markers]="cardHistoryChartOptions.markers!"
+				[colors]="cardHistoryChartOptions.colors!"
+				[xaxis]="cardHistoryChartOptions.xaxis!"
+				[yaxis]="cardHistoryChartOptions.yaxis!"
+				[tooltip]="cardHistoryChartOptions.tooltip!"
+				[fill]="cardHistoryChartOptions.fill!"
+				[responsive]="cardHistoryChartOptions.responsive"
+				[series]="cardHistoryChartOptions.series"
+				[plotOptions]="cardHistoryChartOptions.plotOptions!"
+				[legend]="cardHistoryChartOptions.legend!"
+			/>
+		</div>
+	</div>
+	<div class="col-span-12 md:col-span-7 xxl:col-span-8">
+		<!-- Card Transactions -->
+		<div class="box overflow-x-hidden mb-4 xxl:mb-6">
+			<div
+				class="flex flex-wrap justify-between items-center gap-3 pb-4 lg:pb-6 mb-4 lg:mb-6 bb-dashed"
+			>
+				<h4 class="h4">Card Transactions</h4>
+				<div class="flex items-center gap-2">
+					<p class="text-xs sm:text-sm md:text-base">Sort By :</p>
+					<app-dropdown />
+				</div>
+			</div>
+			<apx-chart
+				[chart]="transactionChartOptions.chart"
+				[stroke]="transactionChartOptions.stroke!"
+				[dataLabels]="transactionChartOptions.dataLabels!"
+				[markers]="transactionChartOptions.markers!"
+				[colors]="transactionChartOptions.colors!"
+				[xaxis]="transactionChartOptions.xaxis!"
+				[yaxis]="transactionChartOptions.yaxis!"
+				[tooltip]="transactionChartOptions.tooltip!"
+				[fill]="transactionChartOptions.fill!"
+				[responsive]="transactionChartOptions.responsive"
+				[series]="transactionChartOptions.series"
+				[plotOptions]="transactionChartOptions.plotOptions!"
+				[legend]="transactionChartOptions.legend!"
+			/>
+		</div>
+		<!-- Card documentation -->
+		<div class="box">
+			<div
+				class="flex flex-wrap gap-4 justify-between items-center bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6"
+			>
+				<h4 class="h4">Card Documentations</h4>
+				<div class="flex items-center flex-wrap grow sm:justify-end gap-4">
+					<form
+						class="bg-[#334CAE]/5 dark:bg-bg3 border border-n30 dark:border-n500 flex gap-3 rounded-[30px] focus-within:border-[#334CAE] p-1 items-center justify-between min-w-[200px] xxl:max-w-[319px] w-full"
+					>
+						<input
+							type="text"
+							placeholder="Search"
+							id="card-doc-search"
+							class="bg-transparent border-none text-sm ltr:pl-4 rtl:pr-4 py-1 w-full"
+						/>
+						<button
+							class="bg-[#334CAE] shrink-0 rounded-full w-7 h-7 lg:w-8 lg:h-8 flex justify-center items-center text-n0"
+						>
+							<i class="las la-search text-lg"></i>
+						</button>
+					</form>
+					<div class="flex items-center gap-3 whitespace-nowrap">
+						<span>Sort By : </span>
+						<app-dropdown />
+					</div>
+				</div>
+			</div>
+			<div class="overflow-y-auto">
+				<table class="w-full whitespace-nowrap mb-6" id="card-doc-table">
+					<thead>
+						<tr class="bg-secondary1/5">
+							<th
+								(click)="documentations.sortData('type')"
+								class="p-5 text-start w-[45%] cursor-pointer"
+							>
+								Document Type
+								<i class="las la-exchange-alt rotate-90 text-base"></i>
+							</th>
+							<th
+								(click)="documentations.sortData('title')"
+								class="p-5 text-start w-[45%] cursor-pointer"
+							>
+								Additional Titles/Sections
+								<i class="las la-exchange-alt rotate-90 text-base"></i>
+							</th>
+							<th class="p-5 text-start">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						@for (item of documentations.paginatedData; track $index) {
+						<tr
+							class="hover:bg-secondary1/5 dark:hover:bg-bg3 duration-500 border-b border-n30 dark:border-n500"
+						>
+							<td class="p-5">{{ item.type }}</td>
+							<td class="p-5">{{ item.title }}</td>
+							<td class="p-5">
+								<button>
+									<i class="las la-download"></i>
+								</button>
+							</td>
+						</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+
+			<div
+				class="flex col-span-12 gap-4 sm:justify-between justify-center items-center flex-wrap"
+			>
+				<p>
+					Showing {{ documentations.startIndex + 1 }} to
+					{{ documentations.endIndex + 1 }} of
+					{{ documentations.totalData }} entries
+				</p>
+				<ul class="flex gap-2 md:gap-3 flex-wrap md:font-semibold items-center">
+					<li>
+						<button
+							[disabled]="documentations.currentPage == 1"
+							(click)="documentations.prevPage()"
+							class="hover:bg-[#334CAE] text-[#334CAE] rtl:rotate-180 hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+						>
+							<i class="las la-angle-left text-lg"></i>
+						</button>
+					</li>
+					<li *ngFor="let page of pages">
+						<button
+							(click)="documentations.paginate(page)"
+							[ngClass]="{
+								'bg-[#334CAE] !text-n0': documentations.currentPage == page
+							}"
+							class="hover:bg-[#334CAE] bg-[#334CAE] hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex text-[#334CAE] items-center rounded-full justify-center border-[#334CAE]"
+						>
+							{{ page }}
+						</button>
+					</li>
+					<li>
+						<button
+							[disabled]="
+								documentations.currentPage == documentations.totalPages
+							"
+							(click)="documentations.nextPage()"
+							class="hover:bg-[#334CAE] text-[#334CAE] hover:text-n0 rtl:rotate-180 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+						>
+							<i class="las la-angle-right text-lg"></i>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

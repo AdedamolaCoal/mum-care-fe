@@ -1,0 +1,227 @@
+<app-top-banner title="Trading Style 01" />
+
+<div class="grid grid-cols-12 gap-4 xxl:gap-6">
+	<!-- statistics -->
+	@for (item of stats; track $index) {
+	<div
+		class="col-span-12 min-[650px]:col-span-6 xxxl:col-span-3 box bg-n0 dark:bg-bg4"
+	>
+		<div class="flex items-center gap-4 xxxl:gap-6 mb-5 xxl:mb-7">
+			<div
+				class="text-[#334CAE] px-3 py-2.5 bg-[#334CAE]/5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-xl"
+			>
+				<i [class]="item.icon"></i>
+			</div>
+			<div>
+				<p class="font-medium mb-3">{{ item.title }}</p>
+				<h4 class="h4">{{ item.amount }}</h4>
+			</div>
+		</div>
+		<div class="rounded-lg h-1 bg-[#334CAE]/5 mb-4">
+			<div class="w-3/4 h-1 bg-[#334CAE] rounded-lg"></div>
+		</div>
+		<span>
+			<span [class]="item.color">
+				<i class="las la-arrow-up text-lg"></i>
+				{{ item.percent }} %</span
+			>
+			Since last month</span
+		>
+	</div>
+	}
+
+	<!-- markets overview -->
+	<div class="box col-span-12">
+		<div
+			class="flex justify-between items-center gap-4 flex-wrap bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6"
+		>
+			<h4 class="h4">Markets Overview</h4>
+			<div class="flex items-center gap-4 flex-wrap grow sm:justify-end">
+				<form
+					class="bg-[#334CAE]/5 dark:bg-bg3 border border-n30 dark:border-n500 flex gap-3 rounded-[30px] focus-within:border-[#334CAE] p-1 items-center justify-between min-w-[200px] xxl:max-w-[319px] w-full"
+				>
+					<input
+						type="text"
+						placeholder="Search"
+						class="bg-transparent border-none text-sm ltr:pl-4 rtl:pr-4 py-1 w-full"
+					/>
+					<button
+						class="bg-[#334CAE] shrink-0 rounded-full w-7 h-7 lg:w-8 lg:h-8 flex justify-center items-center text-n0"
+					>
+						<i class="las la-search text-lg"></i>
+					</button>
+				</form>
+				<div class="flex items-center gap-3 whitespace-nowrap">
+					<span>Sort By : </span>
+					<app-dropdown />
+				</div>
+			</div>
+		</div>
+		<div class="overflow-x-auto mb-4 lg:mb-6">
+			<table class="w-full whitespace-nowrap">
+				<thead>
+					<tr class="bg-secondary1/5 dark:bg-bg3">
+						<th
+							(click)="marketOverview.sortData('title')"
+							class="text-start py-5 px-6 min-w-[200px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Titile <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="marketOverview.sortData('amount')"
+							class="text-start py-5 min-w-[100px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Amount <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="marketOverview.sortData('charge')"
+							class="text-start py-5 min-w-[100px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Charge <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="marketOverview.sortData('process')"
+							class="text-start py-5 min-w-[150px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Process <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="marketOverview.sortData('change')"
+							class="text-start py-5 min-w-[100px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Change <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="marketOverview.sortData('status')"
+							class="text-start py-5 min-w-[130px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Status <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th class="text-center p-5">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					@for (item of marketOverview.paginatedData; track item.id; let i =
+					$index) {
+					<tr class="even:bg-secondary1/5 dark:even:bg-bg3">
+						<td class="py-4 px-6">
+							<div class="flex items-center gap-3">
+								<div class="flex shrink-0">
+									<img
+										[src]="item.icon1"
+										width="32"
+										height="32"
+										class="rounded-full"
+										alt="payment medium icon"
+									/>
+									<img
+										[src]="item.icon2"
+										width="32"
+										height="32"
+										class="rounded-full ltr:-ml-3 rtl:-mr-3"
+										alt="payment medium icon"
+									/>
+								</div>
+								<p class="font-medium mb-1">{{ item.title }}</p>
+							</div>
+						</td>
+						<td class="py-4">{{ item.amount }}</td>
+						<td class="py-4">{{ item.charge }} %</td>
+						<td class="py-4">
+							<span class="flex items-center gap-2">
+								{{ item.process }} %
+								<span class="block h-1 w-20 rounded-sm bg-[#334CAE]/10">
+									<span
+										[style.width]="item.process + '%'"
+										class="block h-1 rounded-sm bg-[#334CAE]"
+									></span>
+								</span>
+							</span>
+						</td>
+						<td class="py-4">
+							<span
+								[ngClass]="
+									item.change > 0 ? 'text-[#334CAE]' : 'text-secondary2'
+								"
+							>
+								{{ item.change > 0 ? "+" : "" }} {{ item.change }}
+							</span>
+						</td>
+						<td class="py-4">
+							<span
+								[ngClass]="{
+									'text-[#334CAE] bg-[#334CAE]/10': item.status == 'successful',
+									'text-secondary2 bg-secondary2/20':
+										item.status == 'cancelled',
+									'text-secondary3 bg-secondary3/10': item.status == 'pending'
+								}"
+								class="block w-28 rounded-[30px] border border-n30 bg-[#334CAE]/10 py-2 text-center text-xs text-[#334CAE] dark:border-n500 dark:bg-bg3 xxl:w-36"
+							>
+								{{ item.status }}
+							</span>
+						</td>
+						<td class="py-4">
+							<div class="flex justify-center">
+								<app-options-vertical></app-options-vertical>
+							</div>
+						</td>
+					</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+
+		<div
+			class="flex col-span-12 gap-4 sm:justify-between justify-center items-center flex-wrap"
+		>
+			<p>
+				Showing {{ marketOverview.startIndex + 1 }} to
+				{{ marketOverview.endIndex + 1 }} of
+				{{ marketOverview.totalData }} entries
+			</p>
+			<ul class="flex gap-2 md:gap-3 flex-wrap md:font-semibold items-center">
+				<li>
+					<button
+						[disabled]="marketOverview.currentPage == 1"
+						(click)="marketOverview.prevPage()"
+						class="hover:bg-[#334CAE] text-[#334CAE] rtl:rotate-180 hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+					>
+						<i class="las la-angle-left text-lg"></i>
+					</button>
+				</li>
+				<li *ngFor="let page of pages">
+					<button
+						(click)="marketOverview.paginate(page)"
+						[ngClass]="{
+							'bg-[#334CAE] !text-n0': marketOverview.currentPage == page
+						}"
+						class="hover:bg-[#334CAE] bg-[#334CAE] hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex text-[#334CAE] items-center rounded-full justify-center border-[#334CAE]"
+					>
+						{{ page }}
+					</button>
+				</li>
+				<li>
+					<button
+						[disabled]="marketOverview.currentPage == marketOverview.totalPages"
+						(click)="marketOverview.nextPage()"
+						class="hover:bg-[#334CAE] text-[#334CAE] hover:text-n0 rtl:rotate-180 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+					>
+						<i class="las la-angle-right text-lg"></i>
+					</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

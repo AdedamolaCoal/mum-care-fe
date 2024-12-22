@@ -1,0 +1,66 @@
+<app-top-banner title="Reports Style 02" />
+
+<div class="box xl:p-8">
+	<div
+		class="flex justify-between items-center flex-wrap gap-4 mb-4 pb-4 xl:pb-6 xl:mb-6 bb-dashed font-medium"
+	>
+		<h4 class="h4">Accounts Overview</h4>
+		<div class="flex items-center gap-2">
+			<p class="text-xs sm:text-sm md:text-base">Sort By :</p>
+			<app-dropdown />
+		</div>
+	</div>
+	<!-- Statistics -->
+	<div
+		class="box xxxl:p-8 grid grid-cols-12 xxl:divide-x-2 xxl:rtl:divide-x-reverse bg-[#334CAE]/5 dark:bg-bg3 rounded-xl border border-n30 dark:border-n500 divide-n30 dark:divide-n500 divide-dashed max-xxl:gap-5 mb-4 xxxl:mb-6"
+	>
+		@for (item of statisticsData; track $index) {
+		<div
+			class="col-span-12 sm:col-span-6 xxl:col-span-3 flex items-center justify-between overflow-x-hidden xxl:px-6 first:ltr:pl-0 first:rtl:pr-0 last:ltr:pr-0 last:rtl:pl-0 gap-3"
+		>
+			<div>
+				<p class="font-medium mb-4">{{ item.title }}</p>
+				<div class="flex gap-2 items-center">
+					<h4 class="h4">{{ item.amount }}</h4>
+					<span class="text-[#334CAE] text-sm flex items-center gap-1">
+						<i class="las la-arrow-up text-base"></i> {{ item.growth }}
+					</span>
+				</div>
+			</div>
+			<apx-chart
+				[chart]="statChart.chart"
+				[stroke]="statChart.stroke!"
+				[dataLabels]="statChart.dataLabels!"
+				[markers]="statChart.markers!"
+				[colors]="statChart.colors!"
+				[xaxis]="statChart.xaxis!"
+				[yaxis]="statChart.yaxis!"
+				[tooltip]="statChart.tooltip!"
+				[fill]="statChart.fill!"
+				[responsive]="statChart.responsive"
+				[series]="statChart.series"
+				[plotOptions]="statChart.plotOptions!"
+			/>
+		</div>
+		}
+	</div>
+	<!-- Account balance chart -->
+
+	<div class="overflow-x-hidden">
+		<apx-chart
+			[chart]="acBalanceChart.chart"
+			[stroke]="acBalanceChart.stroke!"
+			[dataLabels]="acBalanceChart.dataLabels!"
+			[markers]="acBalanceChart.markers!"
+			[colors]="acBalanceChart.colors!"
+			[xaxis]="acBalanceChart.xaxis!"
+			[yaxis]="acBalanceChart.yaxis!"
+			[tooltip]="acBalanceChart.tooltip!"
+			[fill]="acBalanceChart.fill!"
+			[responsive]="acBalanceChart.responsive"
+			[series]="acBalanceChart.series"
+			[plotOptions]="acBalanceChart.plotOptions!"
+			[legend]="acBalanceChart.legend!"
+		/>
+	</div>
+</div>

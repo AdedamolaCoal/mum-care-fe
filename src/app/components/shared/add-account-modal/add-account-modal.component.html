@@ -1,0 +1,46 @@
+<div class=" bg-n0 dark:bg-bg4 box overflow-y-auto max-h-[800px]">
+  <div class="flex justify-between items-center bb-dashed pb-6 mb-6">
+    <h4>Add Account</h4>
+    <i (click)="closeModal()" class="las cursor-pointer la-times"></i>
+  </div>
+  <div class="">
+    <form>
+      <div class="grid grid-cols-2 gap-4 xxxl:gap-6">
+        <div class="col-span-2">
+          <label for="name" class="mb-4 block font-medium md:text-lg"> Account Holder Name </label>
+          <input type="text" class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3" placeholder="Enter Name" id="name" required />
+        </div>
+        <div class="col-span-2">
+          <label for="number" class="mb-4 block font-medium md:text-lg"> Phone Number </label>
+          <input type="number" class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3" placeholder="Enter Number" id="number" required />
+        </div>
+        <div class="col-span-2">
+          <label for="currency" class="mb-4 block font-medium md:text-lg"> Select Currency </label>
+          <app-dropdown [options]="currencies" btnClassProps="!py-3 rounded-3xl bg-secondary1/5" dropdownClassProps="w-full"></app-dropdown>
+        </div>
+        <div class="col-span-2 md:col-span-1">
+          <label for="rate" class="mb-4 block font-medium md:text-lg"> Interest Rate </label>
+          <input type="number" class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3" placeholder="Interest Rate %" id="rate" required />
+        </div>
+        <div class="col-span-2 md:col-span-1">
+          <label for="expire" class="mb-4 block font-medium md:text-lg"> Expiry Date </label>
+          <div class="relative bg-secondary1/5 py-3 dark:bg-bg3 border border-n30 dark:border-n500 rounded-3xl">
+            <input id="date" class="border-none" placeholder="Select Date" autocomplete="off" />
+            <i class="las la-calendar absolute ltr:right-4 rtl:left-4 top-1/2 -translate-y-1/2 cursor-pointer"></i>
+          </div>
+        </div>
+        <div class="col-span-2">
+          <label for="amount" class="mb-4 block font-medium md:text-lg"> Amount </label>
+          <input type="number" class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3" placeholder="Enter Amount" id="amount" required />
+        </div>
+        <div class="col-span-2">
+          <label for="status" class="mb-4 block font-medium md:text-lg"> Select Status </label>
+          <app-dropdown [options]="statusList" btnClassProps="!py-3 rounded-3xl bg-secondary1/5" dropdownClassProps="w-full"></app-dropdown>
+        </div>
+        <div class="col-span-2 mt-4">
+          <button class="btn flex w-full justify-center" type="submit">Create Account</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

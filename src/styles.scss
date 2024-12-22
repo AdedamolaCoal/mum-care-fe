@@ -1,0 +1,12 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "assets/scss/tailwind";
+@import "assets/scss/misc";
+@import "assets/scss/main";
+@import "ngx-toastr/toastr";
+
+.toast-success {
+	background-color: #334cae !important;
+	color: #ffffff !important;
+	border: 2px solid #334cae !important;
+}

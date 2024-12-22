@@ -1,0 +1,262 @@
+<app-top-banner title="Account Details" />
+
+<div class="grid grid-cols-12 gap-4 xxl:gap-6">
+	<!-- Payment Account -->
+	<div class="box col-span-12 md:col-span-7 xxl:col-span-8">
+		<div
+			class="flex justify-between items-center gap-4 flex-wrap bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6"
+		>
+			<h4 class="h4">Payment Account</h4>
+			<div class="flex items-center gap-4 flex-wrap grow sm:justify-end">
+				<form
+					class="bg-[#334CAE]/5 datatable-search dark:bg-bg3 border border-n30 dark:border-n500 flex gap-3 rounded-[30px] focus-within:border-[#334CAE] p-1 items-center justify-between min-w-[200px] xxl:max-w-[319px] w-full"
+				>
+					<input
+						type="text"
+						placeholder="Search"
+						class="bg-transparent text-sm ltr:pl-4 rtl:pr-4 py-1 w-full border-none"
+						id="payment-account-search"
+					/>
+					<button
+						class="bg-[#334CAE] shrink-0 rounded-full w-7 h-7 lg:w-8 lg:h-8 flex justify-center items-center text-n0"
+					>
+						<i class="las la-search text-lg"></i>
+					</button>
+				</form>
+				<div class="flex items-center gap-3 whitespace-nowrap">
+					<span>Sort By : </span>
+					<app-dropdown />
+				</div>
+			</div>
+		</div>
+		<div class="overflow-x-auto pb-4 lg:pb-6">
+			<table class="w-full whitespace-nowrap" id="payment-account">
+				<thead>
+					<tr class="bg-secondary1/5 dark:bg-bg3">
+						<th
+							(click)="paymentAccount.sortData('account')"
+							class="text-start !py-5 px-6 min-w-[230px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Account Number
+								<i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="paymentAccount.sortData('currency.short')"
+							class="text-start !py-5 min-w-[130px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Currency <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="paymentAccount.sortData('balance')"
+							class="text-start !py-5 min-w-[160px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Account Balance
+								<i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th
+							(click)="paymentAccount.sortData('status')"
+							class="text-start !py-5 min-w-[130px] cursor-pointer"
+						>
+							<div class="flex items-center gap-1">
+								Status <i class="las la-exchange-alt rotate-90 text-base"></i>
+							</div>
+						</th>
+						<th class="text-center !py-5">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					@for (item of paymentAccount.paginatedData; track item.id; let i =
+					$index) {
+
+					<tr class="even:bg-secondary1/5 dark:even:bg-bg3">
+						<td class="py-2 px-6">
+							<div class="flex items-center gap-3">
+								<img
+									[src]="item.icon"
+									width="32"
+									height="32"
+									class="rounded-full"
+									alt="payment medium icon"
+								/>
+								<div>
+									<p class="font-medium mb-1">{{ item.account }}</p>
+									<span class="text-xs">Account Number</span>
+								</div>
+							</div>
+						</td>
+						<td class="py-2">
+							<div>
+								<p class="font-medium">{{ item.currency.short }}</p>
+								<span class="text-xs"> {{ item.currency.long }} </span>
+							</div>
+						</td>
+
+						<td class="py-2">
+							<div>
+								<p class="font-medium">{{ getLocale(item.balance) }}</p>
+								<span class="text-xs">Account Balance</span>
+							</div>
+						</td>
+
+						<td class="py-2">
+							<span
+								[ngClass]="{
+									'text-[#334CAE] bg-[#334CAE]/10': item.status == 'successful',
+									'text-secondary2 bg-secondary2/20':
+										item.status == 'cancelled',
+									'text-secondary3 bg-secondary3/10': item.status == 'pending'
+								}"
+								class="block w-28 rounded-[30px] border border-n30 bg-[#334CAE]/10 py-2 text-center text-xs text-[#334CAE] dark:border-n500 dark:bg-bg3 xxl:w-36"
+							>
+								{{ item.status }}
+							</span>
+						</td>
+						<td class="py-2">
+							<div class="flex justify-center">
+								<app-options-vertical></app-options-vertical>
+							</div>
+						</td>
+					</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+		<div
+			class="flex col-span-12 gap-4 sm:justify-between justify-center items-center flex-wrap"
+		>
+			<p>
+				Showing {{ paymentAccount.startIndex + 1 }} to
+				{{ paymentAccount.endIndex + 1 }} of
+				{{ paymentAccount.totalData }} entries
+			</p>
+			<ul class="flex gap-2 md:gap-3 flex-wrap md:font-semibold items-center">
+				<li>
+					<button
+						[disabled]="paymentAccount.currentPage == 1"
+						(click)="paymentAccount.prevPage()"
+						class="hover:bg-[#334CAE] text-[#334CAE] rtl:rotate-180 hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+					>
+						<i class="las la-angle-left text-lg"></i>
+					</button>
+				</li>
+				<li *ngFor="let page of pages">
+					<button
+						(click)="paymentAccount.paginate(page)"
+						[ngClass]="{
+							'bg-[#334CAE] !text-n0': paymentAccount.currentPage == page
+						}"
+						class="hover:bg-[#334CAE] bg-[#334CAE] hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex text-[#334CAE] items-center rounded-full justify-center border-[#334CAE]"
+					>
+						{{ page }}
+					</button>
+				</li>
+				<li>
+					<button
+						[disabled]="paymentAccount.currentPage == paymentAccount.totalPages"
+						(click)="paymentAccount.nextPage()"
+						class="hover:bg-[#334CAE] text-[#334CAE] hover:text-n0 rtl:rotate-180 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+					>
+						<i class="las la-angle-right text-lg"></i>
+					</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- Account Details -->
+	<div class="box col-span-12 md:col-span-5 xxl:col-span-4">
+		<div
+			class="bb-dashed pb-4 mb-4 lg:mb-6 lg:pb-6 flex justify-between items-center"
+		>
+			<h4 class="h4">Account Details</h4>
+			<app-dropdown />
+		</div>
+		<div class="bb-dashed pb-4 mb-4 lg:mb-6 lg:pb-6 flex flex-col">
+			<div
+				class="bg-[#334CAE] p-4 lg:px-6 lg:py-5 rounded-xl text-n0 relative overflow-hidden after:absolute after:rounded-full after:w-[300px] after:h-[300px] after:bg-[#FFC861] after:top-[40%] after:ltr:left-[65%] after:rtl:right-[65%] mb-6 lg:mb-8"
+			>
+				<div class="flex justify-between items-start mb-14">
+					<div>
+						<p class="text-xs mb-1">Current Balance</p>
+						<h4 class="h4">80,700.00 USD</h4>
+					</div>
+					<img
+						src="assets/images/visa-sm.png"
+						width="45"
+						height="16"
+						alt="visa icon"
+					/>
+				</div>
+				<div class="flex justify-between items-end">
+					<div>
+						<p class="mb-1">Felecia Brown</p>
+						<p class="text-xs">•••• •••• •••• 8854</p>
+					</div>
+					<p class="text-n700 relative z-[1]">12/27</p>
+				</div>
+			</div>
+			<ul class="flex flex-col gap-4">
+				<li class="flex justify-between">
+					<span>Card Type:</span> <span class="font-medium">Visa</span>
+				</li>
+				<li class="flex justify-between">
+					<span>Card Holder:</span>
+					<span class="font-medium">Felecia Brown</span>
+				</li>
+				<li class="flex justify-between">
+					<span>Expires:</span> <span class="font-medium">12/27</span>
+				</li>
+				<li class="flex justify-between">
+					<span>Card Number:</span>
+					<span class="font-medium">325 541 565 546</span>
+				</li>
+				<li class="flex justify-between">
+					<span>Total Balance:</span>
+					<span class="font-medium">99,225.54 USD</span>
+				</li>
+				<li class="flex justify-between">
+					<span>Total Debt:</span> <span class="font-medium">9,545.22 USD</span>
+				</li>
+			</ul>
+		</div>
+		<div>
+			<p class="text-lg font-medium mb-6">Active card</p>
+			<div
+				class="border border-[#334CAE] border-dashed bg-[#334CAE]/5 justify-between dark:bg-bg3 rounded-lg p-3 flex items-center gap-4 mb-6 lg:mb-8"
+			>
+				<div class="grow flex items-center gap-4">
+					<img
+						src="assets/images/card-sm-1.png"
+						width="60"
+						height="40"
+						alt="card"
+					/>
+					<div>
+						<p class="font-medium mb-1">John Snow - Metal</p>
+						<span class="text-xs">**4291 - Exp: 12/26</span>
+					</div>
+				</div>
+				<p>= 10,000 BTC</p>
+			</div>
+			<a
+				href="#"
+				class="text-[#334CAE] font-semibold flex items-center gap-2 mb-6 lg:mb-8 bb-dashed pb-6"
+			>
+				More Card <i class="las la-arrow-right"></i>
+			</a>
+			<div class="flex gap-4 lg:gap-6">
+				<a href="#" class="btn flex justify-center w-full lg:py-2.5">
+					Pay Debt
+				</a>
+				<a href="#" class="btn-outline flex justify-center w-full lg:py-2.5">
+					Cancel
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
