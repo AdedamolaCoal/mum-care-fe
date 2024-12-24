@@ -63,15 +63,15 @@ export const sidebarData: SidebarItem[] = [
 	//     { title: 'Deposit Details', url: '/accounts/deposit-details' }
 	//   ]
 	// },
-	{
-		id: 5,
-		name: "Cards",
-		icon: "las la-credit-card",
-		submenus: [
-			{ title: "Card Overview", url: "/cards/card-overview" },
-			{ title: "Card Details", url: "/cards/card-details" },
-		],
-	},
+	// {
+	// 	id: 5,
+	// 	name: "Cards",
+	// 	icon: "las la-credit-card",
+	// 	submenus: [
+	// 		{ title: "Card Overview", url: "/cards/card-overview" },
+	// 		{ title: "Card Details", url: "/cards/card-details" },
+	// 	],
+	// },
 	// {
 	//   id: 4,
 	//   name: 'Transaction',

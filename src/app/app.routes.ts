@@ -76,13 +76,60 @@ export const routes: Routes = [
 				children: [{ path: "", component: MainDashboardComponent }],
 			},
 			{
-				path: "cards",
+				path: "child",
 				children: [
-					{ path: "card-overview", component: CardOverviewComponent },
-					{ path: "card-details", component: CardDetailsComponent },
+					{ path: "add-child", component: AddChildComponent },
+					{ path: "children-data", component: ChildrenDataComponent },
+					// { path: "style-02", component: InvoicingStyle02Component },
 				],
 			},
-			// Other child routes for authenticated users...
+			// {
+			// 	path: "cards",
+			// 	children: [
+			// 		{ path: "card-overview", component: CardOverviewComponent },
+			// 		{ path: "card-details", component: CardDetailsComponent },
+			// 	],
+			// },
+			{
+				path: "arm",
+				children: [
+					{ path: "add-arm", component: AddArmComponent },
+					{
+						path: "antenatal-records",
+						component: AntenatalRecordsOverviewComponent,
+					},
+				],
+			},
+			{
+				path: "supplement",
+				children: [
+					{ path: "add-supplement", component: AddSupplementComponent },
+					{
+						path: "supplement-overview",
+						component: SupplementOverviewComponent,
+					},
+					// { path: "make-transfer", component: MakeTransferComponent },
+					// { path: "chat", component: ChatComponent },
+				],
+			},
+			{
+				path: "settings",
+				children: [
+					{ path: "profile", component: ProfileComponent },
+					{ path: "security", component: SecurityComponent },
+					{ path: "social-network", component: SocialNetworkComponent },
+					{ path: "notification", component: NotificationComponent },
+					// { path: "payment-limits", component: PaymentLimitsComponent },
+				],
+			},
+			{
+				path: "support",
+				children: [
+					{ path: "help-center", component: HelpCenterComponent },
+					{ path: "privacy-policy", component: PrivacyPolicyComponent },
+					{ path: "contact-us", component: ContactUsComponent },
+				],
+			},
 		],
 	},
 	{
@@ -125,13 +172,6 @@ export const routes: Routes = [
 // 			// 		{ path: "deposit-details", component: DepositDetailsComponent },
 // 			// 	],
 // 			// },
-// 			{
-// 				path: "cards",
-// 				children: [
-// 					{ path: "card-overview", component: CardOverviewComponent },
-// 					{ path: "card-details", component: CardDetailsComponent },
-// 				],
-// 			},
 // 			// {
 // 			// 	path: "transaction",
 // 			// 	children: [
@@ -140,36 +180,6 @@ export const routes: Routes = [
 // 			// 		{ path: "style-03", component: TransactionStyle03Component },
 // 			// 	],
 // 			// },
-// 			{
-// 				path: "arm",
-// 				children: [
-// 					{ path: "add-arm", component: AddArmComponent },
-// 					{
-// 						path: "antenatal-records",
-// 						component: AntenatalRecordsOverviewComponent,
-// 					},
-// 				],
-// 			},
-// 			{
-// 				path: "supplement",
-// 				children: [
-// 					{ path: "add-supplement", component: AddSupplementComponent },
-// 					{
-// 						path: "supplement-overview",
-// 						component: SupplementOverviewComponent,
-// 					},
-// 					// { path: "make-transfer", component: MakeTransferComponent },
-// 					// { path: "chat", component: ChatComponent },
-// 				],
-// 			},
-// 			{
-// 				path: "child",
-// 				children: [
-// 					{ path: "add-child", component: AddChildComponent },
-// 					{ path: "children-data", component: ChildrenDataComponent },
-// 					// { path: "style-02", component: InvoicingStyle02Component },
-// 				],
-// 			},
 // 			// {
 // 			// 	path: "trading",
 // 			// 	children: [
@@ -178,10 +188,6 @@ export const routes: Routes = [
 // 			// 		{ path: "style-03", component: TradingStyle03Component },
 // 			// 	],
 // 			// },
-// 			{
-// 				path: "landing",
-// 				component: LandingComponent,
-// 			},
 // 			// {
 // 			// 	path: "reports",
 // 			// 	children: [
@@ -189,24 +195,6 @@ export const routes: Routes = [
 // 			// 		{ path: "style-02", component: ReportsStyle02Component },
 // 			// 	],
 // 			// },
-// 			{
-// 				path: "settings",
-// 				children: [
-// 					{ path: "profile", component: ProfileComponent },
-// 					{ path: "security", component: SecurityComponent },
-// 					{ path: "social-network", component: SocialNetworkComponent },
-// 					{ path: "notification", component: NotificationComponent },
-// 					// { path: "payment-limits", component: PaymentLimitsComponent },
-// 				],
-// 			},
-// 			{
-// 				path: "support",
-// 				children: [
-// 					{ path: "help-center", component: HelpCenterComponent },
-// 					{ path: "privacy-policy", component: PrivacyPolicyComponent },
-// 					{ path: "contact-us", component: ContactUsComponent },
-// 				],
-// 			},
 // 		],
 // 	},
 // 	{

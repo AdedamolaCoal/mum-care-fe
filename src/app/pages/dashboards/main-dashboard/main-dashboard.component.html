@@ -1,6 +1,6 @@
 <div class="grid grid-cols-12 gap-4 xxl:gap-6">
 	<!-- Statistics -->
-	<div
+	<!-- <div
 		*ngFor="let stat of stats"
 		class="box col-span-12 bg-n0 p-4 dark:bg-bg4 sm:col-span-6 xxxl:col-span-3 4xl:px-8 4xl:py-6"
 	>
@@ -23,14 +23,14 @@
 				</span>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<!-- Transactions -->
 	<div class="col-span-12 lg:col-span-6 box overflow-x-hidden">
 		<div
 			class="flex flex-wrap justify-between items-center gap-3 pb-4 lg:pb-6 mb-4 lg:mb-6 bb-dashed"
 		>
-			<p class="font-medium">Transaction Overview</p>
+			<p class="font-medium">Appointments Overview</p>
 			<div class="flex items-center gap-2">
 				<p class="text-xs sm:text-sm md:text-base">Sort By :</p>
 				<app-dropdown />
@@ -58,7 +58,7 @@
 		<div
 			class="flex flex-wrap justify-between items-center gap-3 pb-4 lg:pb-6 mb-4 lg:mb-6 bb-dashed"
 		>
-			<p class="font-medium">Income and Expenses</p>
+			<p class="font-medium">Expenses</p>
 			<div class="flex items-center gap-2">
 				<p class="text-xs sm:text-sm md:text-base">Sort By :</p>
 				<app-dropdown />
@@ -85,7 +85,7 @@
 		<div
 			class="bb-dashed mb-4 flex flex-wrap items-center justify-between gap-4 pb-4 lg:mb-6 lg:pb-6"
 		>
-			<h4 class="h4">Latest Transaction</h4>
+			<h4 class="h4">Upcoming Appointments</h4>
 			<app-options-horiz />
 		</div>
 		<div class="overflow-x-auto">
@@ -96,14 +96,15 @@
 							(click)="tableService1.sortData('title')"
 							class="flex min-w-[300px] cursor-pointer items-center gap-1 px-6 py-5 text-start"
 						>
-							Title <i class="las la-exchange-alt rotate-90 text-base"></i>
+							Reason <i class="las la-exchange-alt rotate-90 text-base"></i>
 						</th>
 						<th
 							(click)="tableService1.sortData('medium')"
 							class="min-w-[120px] cursor-pointer px-6 py-5 text-start"
 						>
 							<div class="flex items-center gap-1">
-								Medium <i class="las la-exchange-alt rotate-90 text-base"></i>
+								Dr's Name
+								<i class="las la-exchange-alt rotate-90 text-base"></i>
 							</div>
 						</th>
 						<th
@@ -111,7 +112,8 @@
 							class="min-w-[120px] cursor-pointer px-6 py-5 text-start"
 						>
 							<div class="flex items-center gap-1">
-								Amount <i class="las la-exchange-alt rotate-90 text-base"></i>
+								Prescriptions
+								<i class="las la-exchange-alt rotate-90 text-base"></i>
 							</div>
 						</th>
 					</tr>
@@ -143,13 +145,13 @@
 				</tbody>
 			</table>
 		</div>
-		<a
+		<!-- <a
 			class="group mt-6 inline-flex items-center gap-1 font-semibold text-[#334CAE]"
 			href="#"
 		>
 			See More
 			<i class="las la-arrow-right duration-300 group-hover:pl-2"></i>
-		</a>
+		</a> -->
 	</div>
 
 	<!-- Live users -->
@@ -157,7 +159,7 @@
 		<div
 			class="bb-dashed mb-4 flex flex-wrap items-center justify-between gap-4 pb-4 lg:mb-6 lg:pb-6"
 		>
-			<h4 class="h4">Transaction Account</h4>
+			<h4 class="h4">Previous Appointments</h4>
 			<app-options-horiz />
 		</div>
 		<div class="overflow-x-auto">
@@ -169,7 +171,7 @@
 								(click)="tableService2.sortData('title')"
 								class="flex items-center gap-1"
 							>
-								Title <i class="las la-exchange-alt rotate-90 text-base"></i>
+								Reason <i class="las la-exchange-alt rotate-90 text-base"></i>
 							</div>
 						</th>
 						<th class="w-[20%] cursor-pointer px-6 py-5 text-start">
@@ -177,7 +179,8 @@
 								(click)="tableService2.sortData('amount')"
 								class="flex items-center gap-1"
 							>
-								Amount <i class="las la-exchange-alt rotate-90 text-base"></i>
+								Dr's Name
+								<i class="las la-exchange-alt rotate-90 text-base"></i>
 							</div>
 						</th>
 					</tr>
@@ -213,12 +216,12 @@
 				</tbody>
 			</table>
 		</div>
-		<a
+		<!-- <a
 			class="group mt-6 inline-flex items-center gap-1 font-semibold text-[#334CAE]"
 			href="#"
 		>
 			See More
 			<i class="las la-arrow-right duration-300 group-hover:pl-2"></i>
-		</a>
+		</a> -->
 	</div>
 </div>
