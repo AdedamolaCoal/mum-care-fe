@@ -201,38 +201,38 @@
 								class="text-start py-5 px-6 cursor-pointer min-w-[250px]"
 							>
 								<div class="flex items-center gap-1">
-									Title <i class="las la-exchange-alt rotate-90 text-base"></i>
+									Patient's Name <i class="las la-exchange-alt rotate-90 text-base"></i>
 								</div>
 							</th>
 							<th
 								(click)="recentPayments.sortData('invoice')"
 								class="text-start py-5 min-w-[100px]"
 							>
-								Invoice <i class="las la-exchange-alt rotate-90 text-base"></i>
+								Weight <i class="las la-exchange-alt rotate-90 text-base"></i>
 							</th>
 							<th
 								(click)="recentPayments.sortData('medium')"
 								class="text-start py-5 min-w-[120px] cursor-pointer"
 							>
 								<div class="flex items-center gap-1">
-									Medium <i class="las la-exchange-alt rotate-90 text-base"></i>
+									Blood Pressure <i class="las la-exchange-alt rotate-90 text-base"></i>
 								</div>
 							</th>
 							<th
 								(click)="recentPayments.sortData('date')"
 								class="text-start py-5 min-w-[130px]"
 							>
-								Date <i class="las la-exchange-alt rotate-90 text-base"></i>
+								Tests <i class="las la-exchange-alt rotate-90 text-base"></i>
 							</th>
 							<th
 								(click)="recentPayments.sortData('money')"
 								class="text-start py-5 min-w-[130px] cursor-pointer"
 							>
 								<div class="flex items-center gap-1">
-									Money <i class="las la-exchange-alt rotate-90 text-base"></i>
+									Created Date <i class="las la-exchange-alt rotate-90 text-base"></i>
 								</div>
 							</th>
-							<th
+							<!-- <th
 								(click)="recentPayments.sortData('time')"
 								class="text-start py-5 min-w-[130px]"
 							>
@@ -245,7 +245,7 @@
 								<div class="flex items-center gap-1">
 									Status <i class="las la-exchange-alt rotate-90 text-base"></i>
 								</div>
-							</th>
+							</th> -->
 							<th class="text-center p-5">Action</th>
 						</tr>
 					</thead>
@@ -269,7 +269,7 @@
 							</td>
 							<td class="py-5">{{ item.date }}</td>
 							<td class="py-5">$ {{ item.money.toLocaleString() }}</td>
-							<td>{{ item.time }}</td>
+							<!-- <td>{{ item.time }}</td>
 							<td class="py-5">
 								<span
 									[ngClass]="{
@@ -282,7 +282,7 @@
 								>
 									{{ item.status }}
 								</span>
-							</td>
+							</td> -->
 							<td class="py-5">
 								<div class="flex justify-center">
 									<app-options-vertical></app-options-vertical>
