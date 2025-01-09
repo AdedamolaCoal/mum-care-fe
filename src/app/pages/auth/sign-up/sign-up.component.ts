@@ -25,14 +25,18 @@ export class SignUpComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private authSrv: AuthService, private notifySrv: NotifyService) {}
 
   ngOnInit() {
+    this.formInit();
+  }
+
+  formInit() {
     this.registerForm = this.fb.group(
       {
-        firstname: ['', [Validators.required, Validators.minLength(2)]],
-        lastname: ['', [Validators.required, Validators.minLength(2)]],
+        hospital_name: ['', [Validators.required, Validators.minLength(2)]],
+        hospital_address: ['', [Validators.required, Validators.minLength(2)]],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(8), Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}')]],
         conPassword: ['', [Validators.required, Validators.minLength(8)]],
-        phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.pattern('^[0-9]{10,}$')]]
+        phone_number: ['', [Validators.required, Validators.minLength(10), Validators.pattern('^[0-9]{10,}$')]]
       },
       {
         validators: this.authSrv.matchFieldValues('password', 'conPassword')
@@ -44,19 +48,20 @@ export class SignUpComponent implements OnInit {
     this.registerForm.markAllAsTouched()
     if (this.registerForm.valid) {
       const payload = {
-        name: this.registerForm.value.firstname + ' ' + this.registerForm.value.lastname,
+        hospital_name: this.registerForm.value.hospital_name,
+        hospital_address: this.registerForm.value.hospital_address,
         email: this.registerForm.value.email,
         password: this.registerForm.value.password,
-        role: 'user',
-        category: 'org',
-        phoneNumber: this.registerForm.value.phoneNumber
+        // role: 'user',
+        // category: 'org',
+        phone_number: this.registerForm.value.phone_number
       }
-      this.authSrv.registerOrg(payload).subscribe({
+      this.authSrv.register(payload).subscribe({
         next: (res) => {
-          this.notifySrv.notifySuccess('User Registration successful')
+          this.notifySrv.notifySuccess('Registration successful')
 
           // after successful registration, navigate to company info registration page
-          this.router.navigateByUrl('/auth/reg-company-info')
+          this.router.navigateByUrl('/dashboard')
         },
         error: (error) => {
           // error handling notification

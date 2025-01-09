@@ -1,50 +1,134 @@
-<app-top-banner title="Make a Payment" />
+<app-top-banner title="Add Antenatal Record" />
 
 <div class="box mb-4 xxxl:mb-6">
   <div class="mb-6 pb-6 bb-dashed flex justify-between items-center">
     <h4 class="h4">Add A Record</h4>
-    <app-options-horiz />
+    <!-- <app-options-horiz /> -->
   </div>
-  <form class="grid grid-cols-2 gap-4 xxxl:gap-6">
+  <form class="grid grid-cols-2 gap-4 xxxl:gap-6" [formGroup]="armForm" (ngSubmit)="onSubmit()">
     <div class="col-span-2 md:col-span-1">
-      <label for="name" class="mb-4 md:text-lg font-medium block"> Patient's Name</label>
-      <input type="text" class="w-full text-sm bg-secondary1/5 dark:bg-bg3 !border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3" placeholder="Enter name" id="name" required />
+      <label for="name" class="mb-4 md:text-lg font-medium block">
+        Patient's Name</label
+      >
+      <ng-select
+        formControlName="mother_id"
+        [items]="mothersList"
+        bindLabel="name"
+        bindValue="id"
+        [multiple]="false"
+        [searchable]="true"
+        class="w-full text-sm bg-secondary1/5 dark:bg-bg3 !border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+        ></ng-select>
+        @if (armForm.get('mother_id')?.errors &&
+        armForm.get('mother_id')?.touched) {
+        <span
+        class="text-secondary2"
+        *ngIf="armForm.get('mother_id')?.errors?.['required']"
+        >{{ "Patient's Name is required" }}</span
+        >
+        }
     </div>
     <div class="col-span-2 md:col-span-1">
-      <label for="payfor" class="mb-4 md:text-lg font-medium block"> Weight </label>
-      <app-dropdown [options]="payfor" btnClassProps="w-full lg:!py-3 bg-secondary1/5 rounded-3xl" dropdownClassProps="w-full" />
+      <label for="weight" class="mb-4 md:text-lg font-medium block">
+        Patient's Weight
+      </label>
+      <input
+        type="text"
+        formControlName="weight"
+        class="w-full text-sm bg-secondary1/5 dark:bg-bg3 !border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+        placeholder="Enter Weight"
+        id="weight"
+        required
+      />
+      @if (armForm.get('weight')?.errors &&
+      armForm.get('weight')?.touched) {
+      <span
+      class="text-secondary2"
+      *ngIf="armForm.get('weight')?.errors?.['required']"
+      >{{ "Patient's weight is required" }}</span
+      >
+      }
     </div>
     <div class="col-span-2 md:col-span-1">
-      <label for="account" class="mb-4 md:text-lg font-medium block">Blood Pressure</label>
-      <input type="number" class="w-full text-sm bg-secondary1/5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3" placeholder="Enter Account" id="account" required />
+      <label for="blood_pressure" class="mb-4 md:text-lg font-medium block"
+        >Patient's Blood Pressure</label
+      >
+      <input
+        type="text"
+        formControlName="blood_pressure"
+        class="w-full text-sm bg-secondary1/5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+        placeholder="Enter Blood Pressure"
+        id="blood_pressure"
+        required
+      />
+      @if (armForm.get('blood_pressure')?.errors &&
+      armForm.get('blood_pressure')?.touched) {
+      <span
+      class="text-secondary2"
+      *ngIf="armForm.get('blood_pressure')?.errors?.['required']"
+      >{{ "Patient's Blood Pressure is required" }}</span
+      >
+      }
     </div>
     <div class="col-span-2 md:col-span-1">
-      <label for="currency" class="mb-4 md:text-lg font-medium block"> Tests </label>
-      <app-dropdown [options]="currencies" btnClassProps="w-full lg:!py-3 bg-secondary1/5 rounded-3xl" dropdownClassProps="w-full" />
+      <label for="tests" class="mb-4 md:text-lg font-medium block">
+        Tests
+      </label>
+      <input
+        type="text"
+        formControlName="tests"
+        class="w-full text-sm bg-secondary1/5 dark:bg-bg3 !border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+        placeholder="Enter Tests"
+        id="tests"
+        required
+      />
+      @if (armForm.get('tests')?.errors &&
+      armForm.get('tests')?.touched) {
+      <span
+      class="text-secondary2"
+      *ngIf="armForm.get('tests')?.errors?.['required']"
+      >{{ "Carried out tests are required" }}</span
+      >
+      }
     </div>
     <div class="col-span-2 md:col-span-1">
+      <label for="remarks" class="mb-4 md:text-lg font-medium block">
+        Remarks
+      </label>
+      <textarea
+        formControlName="remark"
+        type="text"
+        cols="5"
+        rows="10"
+        class="w-full text-sm bg-secondary1/5 dark:bg-bg3 !border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+        placeholder="Enter remarks"
+        id="remarks"
+        required
+      ></textarea>
+      @if (armForm.get('remark')?.errors &&
+      armForm.get('remark')?.touched) {
+      <span
+      class="text-secondary2"
+      *ngIf="armForm.get('remark')?.errors?.['required']"
+      >{{ "Doctors remark is required" }}</span
+      >
+      }
+    </div>
+    <!-- <div class="col-span-2 md:col-span-1">
       <label for="medium" class="mb-4 md:text-lg font-medium block"> Created Date </label>
       <app-dropdown [options]="medium" btnClassProps="w-full lg:!py-3 bg-secondary1/5 rounded-3xl" dropdownClassProps="w-full" />
-    </div>
+    </div> -->
     <!-- <div class="col-span-2 md:col-span-1">
       <label for="date" class="md:text-lg font-medium block mb-4"> Date </label>
       <div class="relative bg-secondary1/5 dark:bg-bg3 border py-2.5 border-n30 dark:border-n500 rounded-3xl">
         <p-calendar [(ngModel)]="date" styleClass="bg-white" name="date"  placeholder="Select Date" inputStyleClass="px-5 focus:outline-none !bg-secondary1/5 dark:!bg-bg3 w-full rounded-none focus:shadow-none active:shadow-none" panelStyleClass="bg-n0 dark:bg-bg3 sm:p-3 rounded-lg"></p-calendar>
         <i class="las la-calendar absolute ltr:right-4 rtl:left-4 top-1/2 -translate-y-1/2 cursor-pointer"></i>
       </div>
-    </div>
-
-    <div class="col-span-2 md:col-span-1">
-      <label for="number" class="md:text-lg font-medium block mb-4"> Phone Number </label>
-      <input type="number" class="w-full text-sm bg-secondary1/5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3" placeholder="Enter Number" id="number" required />
-    </div>
-    <div class="col-span-2 md:col-span-1">
-      <label for="amount" class="md:text-lg font-medium block mb-4"> Amount </label>
-      <input type="number" class="w-full text-sm bg-secondary1/5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3" placeholder="Enter Amount" id="amount" required />
     </div> -->
+
     <div class="col-span-2 flex gap-4 md:gap-6 mt-2">
       <button class="btn" type="submit">Submit Record</button>
-      <button class="btn-outline" type="reset">Cancel</button>
+      <button class="btn-outline" (click)="armForm.reset()" type="reset">Reset Fields</button>
     </div>
   </form>
 </div>

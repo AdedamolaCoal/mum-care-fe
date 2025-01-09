@@ -34,7 +34,6 @@ export class AddMotherComponent implements OnInit {
 
   motherForm!: FormGroup;
 
-	// bloodGroups2: Array<any> = ["A+", "B+", "O+", "AB+", "A-", "B-", "O-", "AB-"];
   bloodGroups: Array<any> = [
     { id: "A+", name: "A+" },
     { id: "B+", name: "B+" },

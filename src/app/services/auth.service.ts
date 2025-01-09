@@ -8,6 +8,7 @@ import {
 	ValidatorFn,
 } from "@angular/forms";
 import { NotifyService } from "./notify.service";
+import { StorageService } from "./storage.service";
 
 @Injectable({
 	providedIn: "root",
@@ -15,7 +16,7 @@ import { NotifyService } from "./notify.service";
 export class AuthService {
 	env = environment.url;
 
-	constructor(private http: HttpClient, private notifySrv: NotifyService) {}
+	constructor(private http: HttpClient, private notifySrv: NotifyService, private storageSrv: StorageService) {}
 
 	// Check if the user is logged in
 	isLoggedIn(): boolean {
@@ -25,12 +26,12 @@ export class AuthService {
 
 	// get user data from local storage
 	getUser() {
-		const user = localStorage.getItem("user");
+		const user = this.storageSrv.getItem("user");
 		if (!user) {
 			this.notifySrv.notifyError("User not found");
 			return;
 		}
-		return JSON.parse(user);
+		return user;
 	}
 
 	// get token from local storage
@@ -55,32 +56,31 @@ export class AuthService {
 		return refreshToken;
 	}
 
-	// register api for backoffice users
-	login(body: { username: string; password: string }) {
-		return this.http.post(`${this.env}backoffice/auth`, body);
+	// login api
+	login(body: { email: string; password: string }) {
+		return this.http.post(`${this.env}/login`, body);
 	}
 
-	// register api for organization
-	registerOrg(body: {
-		name: string;
+	// register api for hospital
+	register(body: {
+		hospital_name: string;
+		hospital_address: string;
 		email: string;
 		password: string;
-		role: string;
-		category: string;
-		phoneNumber?: number;
+		phone_number: number;
 	}) {
 		return this.http.post(`${this.env}auth/register`, body);
 	}
 
 	// register api for company information
-	companyInfo(body: {
-		companyName: string;
-		companyEmail: string;
-		companyDescription: string;
-		rcNumber: string;
-	}) {
-		return this.http.post(`${this.env}auth`, body);
-	}
+	// companyInfo(body: {
+	// 	companyName: string;
+	// 	companyEmail: string;
+	// 	companyDescription: string;
+	// 	rcNumber: string;
+	// }) {
+	// 	return this.http.post(`${this.env}auth`, body);
+	// }
 
 	// logout api
 	logout(token: any) {

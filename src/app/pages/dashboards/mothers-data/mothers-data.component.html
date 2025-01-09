@@ -1,4 +1,4 @@
-<app-top-banner title="Mothers Datas" />
+<app-top-banner title="Mothers Data Table" />
 
 <div class="box">
 	<!-- <div class="flex flex-wrap gap-4 justify-between items-center bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6">
@@ -26,7 +26,7 @@
 			<thead>
 				<tr class="bg-secondary1/5 dark:bg-bg3">
 					<th
-						(click)="invoices.sortData('title')"
+						(click)="mothers.sortData('first_name')"
 						class="text-start py-5 px-6 min-w-[250px] cursor-pointer"
 					>
 						<div class="flex items-center gap-1">
@@ -35,13 +35,13 @@
 						</div>
 					</th>
 					<th
-						(click)="invoices.sortData('invoice')"
+						(click)="mothers.sortData('last_name')"
 						class="text-start py-5 min-w-[200px] cursor-pointer"
 					>
 						Last Name <i class="las la-exchange-alt rotate-90 text-base"></i>
 					</th>
 					<th
-						(click)="invoices.sortData('amount')"
+						(click)="mothers.sortData('blood_group')"
 						class="text-start py-5 min-w-[200px] cursor-pointer"
 					>
 						<div class="flex items-center gap-1">
@@ -49,7 +49,7 @@
 						</div>
 					</th>
 					<th
-						(click)="invoices.sortData('rate')"
+						(click)="mothers.sortData('genotype')"
 						class="text-start py-5 min-w-[200px] cursor-pointer"
 					>
 						<div class="flex items-center gap-1">
@@ -57,43 +57,43 @@
 						</div>
 					</th>
 					<th
-						(click)="invoices.sortData('dueDate')"
+						(click)="mothers.sortData('email')"
 						class="text-start py-5 min-w-[200px]"
 					>
 						Email <i class="las la-exchange-alt rotate-90 text-base"></i>
 					</th>
 					<th
-						(click)="invoices.sortData('dueDate')"
+						(click)="mothers.sortData('phone')"
 						class="text-start py-5 min-w-[200px]"
 					>
 						Phone <i class="las la-exchange-alt rotate-90 text-base"></i>
 					</th>
 					<th
-						(click)="invoices.sortData('time')"
+						(click)="mothers.sortData('nationality')"
 						class="text-start py-5 min-w-[200px]"
 					>
 						Nationality <i class="las la-exchange-alt rotate-90 text-base"></i>
 					</th>
 					<th
-						(click)="invoices.sortData('time')"
+						(click)="mothers.sortData('age')"
 						class="text-start py-5 min-w-[200px]"
 					>
 						Age <i class="las la-exchange-alt rotate-90 text-base"></i>
 					</th>
 					<!-- <th
-						(click)="invoices.sortData('time')"
+						(click)="mothers.sortData('time')"
 						class="text-start py-5 min-w-[200px]"
 					>
 						Weight <i class="las la-exchange-alt rotate-90 text-base"></i>
 					</th>
 					<th
-						(click)="invoices.sortData('time')"
+						(click)="mothers.sortData('time')"
 						class="text-start py-5 min-w-[200px]"
 					>
 						Date Added <i class="las la-exchange-alt rotate-90 text-base"></i>
 					</th> -->
 					<!-- <th
-						(click)="invoices.sortData('status')"
+						(click)="mothers.sortData('status')"
 						class="text-start py-5 cursor-pointer"
 					>
 						<div class="flex items-center gap-1">
@@ -104,7 +104,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				@for (item of invoices.paginatedData; track $index) {
+				@for (item of mothers.paginatedData; track $index) {
 				<tr
 					class="hover:bg-[#334CAE]/5 dark:hover:bg-bg3 duration-500 border-b border-n30 dark:border-n500 first:border-t"
 				>
@@ -162,14 +162,14 @@
 		class="flex col-span-12 gap-4 sm:justify-between justify-center items-center flex-wrap"
 	>
 		<p>
-			Showing {{ invoices.startIndex + 1 }} to {{ invoices.endIndex + 1 }} of
-			{{ invoices.totalData }} entries
+			Showing {{ mothers.startIndex + 1 }} to {{ mothers.endIndex + 1 }} of
+			{{ mothers.totalData }} entries
 		</p>
 		<ul class="flex gap-2 md:gap-3 flex-wrap md:font-semibold items-center">
 			<li>
 				<button
-					[disabled]="invoices.currentPage == 1"
-					(click)="invoices.prevPage()"
+					[disabled]="mothers.currentPage == 1"
+					(click)="mothers.prevPage()"
 					class="hover:bg-[#334CAE] text-[#334CAE] rtl:rotate-180 hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
 				>
 					<i class="las la-angle-left text-lg"></i>
@@ -177,8 +177,8 @@
 			</li>
 			<li *ngFor="let page of pages">
 				<button
-					(click)="invoices.paginate(page)"
-					[ngClass]="{ 'bg-[#334CAE] !text-n0': invoices.currentPage == page }"
+					(click)="mothers.paginate(page)"
+					[ngClass]="{ 'bg-[#334CAE] !text-n0': mothers.currentPage == page }"
 					class="hover:bg-[#334CAE] bg-[#334CAE] hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex text-[#334CAE] items-center rounded-full justify-center border-[#334CAE]"
 				>
 					{{ page }}
@@ -186,8 +186,8 @@
 			</li>
 			<li>
 				<button
-					[disabled]="invoices.currentPage == invoices.totalPages"
-					(click)="invoices.nextPage()"
+					[disabled]="mothers.currentPage == mothers.totalPages"
+					(click)="mothers.nextPage()"
 					class="hover:bg-[#334CAE] text-[#334CAE] hover:text-n0 rtl:rotate-180 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
 				>
 					<i class="las la-angle-right text-lg"></i>

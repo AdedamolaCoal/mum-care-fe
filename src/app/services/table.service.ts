@@ -78,13 +78,18 @@ export class TableService <T extends TableItem> {
   }
 
   get paginatedData() {
+    if (!this.tableData || this.tableData.length === 0) {
+      return [];
+    }
     const indexOfLastItem = this.currentPage * this.itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - this.itemsPerPage;
     return this.tableData.slice(indexOfFirstItem, indexOfLastItem);
   }
 
   get totalPages() {
-    return Math.ceil(this.tableData.length / this.itemsPerPage);
+    // return Math.ceil(this.tableData.length / this.itemsPerPage);
+    // return this.tableData ? Math.ceil(this.tableData?.length / this.itemsPerPage) : 1;
+    return Math.ceil(this.tableData?.length / this.itemsPerPage) ?? 1;
   }
 
   get startIndex() {
@@ -92,11 +97,12 @@ export class TableService <T extends TableItem> {
   }
 
   get endIndex() {
-    return Math.min(this.startIndex + this.itemsPerPage - 1, this.tableData.length - 1);
+    // return Math.min(this.startIndex + this.itemsPerPage - 1, this.tableData.length - 1);
+    return Math.min(this.startIndex + this.itemsPerPage - 1, this.tableData?.length - 1) ?? 0;
   }
 
   get totalData() {
-    return this.tableData.length;
+    return this.tableData?.length;
   }
 
   handleSelect(event: any) {

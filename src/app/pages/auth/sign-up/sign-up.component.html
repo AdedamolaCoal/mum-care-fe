@@ -10,58 +10,58 @@
 		>
 			<h3 class="h3 mb-4">Let&apos;s Get Started!</h3>
 			<p class="md:mb-6 pb-4 mb-4 md:pb-6 bb-dashed text-sm md:text-base">
-				Please fill in the details to start your Online Application
+				Kindly fill in the Hospital details to start your Online Application
 			</p>
 			<div class="grid grid-cols-2 gap-x-4 xxxl:gap-x-6">
 				<!-- FIRST NAME -->
 				<div class="col-span-2 md:col-span-1">
-					<label for="name" class="md:text-lg font-medium block mb-1">
-						First Name <span class="text-secondary2">*</span>
+					<label for="hospital_name" class="md:text-lg font-medium block mb-1">
+						Hospital Name <span class="text-secondary2">*</span>
 					</label>
 					<input
-						formControlName="firstname"
-						type="name"
+						formControlName="hospital_name"
+						type="text"
 						class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3 mb-2"
 						placeholder=""
-						id="fname"
+						id="hospital_name"
 					/>
-					@if (registerForm.get('firstname')?.errors &&
-					registerForm.get('firstname')?.touched) {
+					@if (registerForm.get('hospital_name')?.errors &&
+					registerForm.get('hospital_name')?.touched) {
 					<span
 						class="text-secondary2 block"
-						*ngIf="registerForm.get('firstname')?.errors?.['required']"
-						>First name is required</span
+						*ngIf="registerForm.get('hospital_name')?.errors?.['required']"
+						>Hospital name is required</span
 					>
 					<span
 						class="text-secondary2 block"
-						*ngIf="registerForm.get('firstname')?.errors?.['minlength']"
-						>First name must be at least 2 character</span
+						*ngIf="registerForm.get('hospital_name')?.errors?.['minlength']"
+						>Hospital name must be at least 2 character</span
 					>
 					}
 				</div>
 				<!-- LAST NAME -->
 				<div class="col-span-2 md:col-span-1">
-					<label for="lname" class="md:text-lg font-medium block mb-1"
-						>Last Name <span class="text-secondary2">*</span>
+					<label for="hospital_address" class="md:text-lg font-medium block mb-1"
+						>Hospital Address <span class="text-secondary2">*</span>
 					</label>
 					<input
-						formControlName="lastname"
-						type="lname"
+						formControlName="hospital_address"
+						type="text"
 						class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3 mb-2"
 						placeholder=""
-						id="lname"
+						id="hospital_address"
 					/>
-					@if (registerForm.get('lastname')?.errors &&
-					registerForm.get('lastname')?.touched) {
+					@if (registerForm.get('hospital_address')?.errors &&
+					registerForm.get('hospital_address')?.touched) {
 					<span
 						class="text-secondary2 block"
-						*ngIf="registerForm.get('lastname')?.errors?.['required']"
-						>Last name is required</span
+						*ngIf="registerForm.get('hospital_address')?.errors?.['required']"
+						>Hospital Address is required</span
 					>
 					<span
 						class="text-secondary2 block"
-						*ngIf="registerForm.get('lastname')?.errors?.['minlength']"
-						>Last name must be at least 2 character</span
+						*ngIf="registerForm.get('hospital_address')?.errors?.['minlength']"
+						>Hospital Address must be at least 2 character</span
 					>
 					}
 				</div>
@@ -73,7 +73,7 @@
 					</label>
 					<input
 						formControlName="email"
-						type="text"
+						type="email"
 						class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3 mb-2"
 						placeholder=""
 						id="email"
@@ -83,17 +83,17 @@
 					<span
 						class="text-secondary2 block"
 						*ngIf="registerForm.get('email')?.errors?.['required']"
-						>Email is required</span
+						>Hospital Email is required</span
 					>
 					<span
 						class="text-secondary2 block"
 						*ngIf="registerForm.get('email')?.errors?.['email']"
-						>Email is not valid</span
+						>Hospital Email is not valid</span
 					>
 					<span
 						class="text-secondary2 block"
 						*ngIf="registerForm.get('email')?.errors?.['minlength']"
-						>Email must be at least 2 character</span
+						>Hospital Email must be at least 2 character</span
 					>
 					}
 				</div>
@@ -104,27 +104,27 @@
 						>Phone Number <span class="text-secondary2">*</span>
 					</label>
 					<input
-						formControlName="phoneNumber"
-						type="text"
+						formControlName="phone_number"
+						type="tel"
 						class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3 mb-2"
 						placeholder=""
 						id="phone"
 					/>
-					@if (registerForm.get('phoneNumber')?.errors &&
-					registerForm.get('phoneNumber')?.touched) {
+					@if (registerForm.get('phone_number')?.errors &&
+					registerForm.get('phone_number')?.touched) {
 					<span
 						class="text-secondary2 block"
-						*ngIf="registerForm.get('phoneNumber')?.errors?.['required']"
+						*ngIf="registerForm.get('phone_number')?.errors?.['required']"
 						>Phone Number is required</span
 					>
 					<span
 						class="text-secondary2 block"
-						*ngIf="registerForm.get('phoneNumber')?.errors?.['minlength']"
+						*ngIf="registerForm.get('phone_number')?.errors?.['minlength']"
 						>Phone Number must be at least 10 characters</span
 					>
 					<span
 						class="text-secondary2 block"
-						*ngIf="registerForm.get('phoneNumber')?.errors?.['pattern']"
+						*ngIf="registerForm.get('phone_number')?.errors?.['pattern']"
 						>Phone Number must be of Numeric characters only</span
 					>
 					}

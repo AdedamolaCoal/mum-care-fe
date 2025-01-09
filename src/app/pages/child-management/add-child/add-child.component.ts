@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { DropdownComponent } from "@component/shared/dropdown/dropdown.component";
 import { OptionsHorizComponent } from "@component/shared/options-horiz/options-horiz.component";
 import { TopBannerComponent } from "@component/shared/top-banner/top-banner.component";
+import { NgSelectModule } from "@ng-select/ng-select";
 import { Child } from "@pages/models/child.model";
 import { CalendarModule } from "primeng/calendar";
 
@@ -18,6 +19,7 @@ import { CalendarModule } from "primeng/calendar";
 		CalendarModule,
 		FormsModule,
 		ReactiveFormsModule,
+		NgSelectModule,
 	],
 	templateUrl: "./add-child.component.html",
 })
@@ -25,8 +27,24 @@ export class AddChildComponent implements OnInit{
 
 	parentName: Array<any> = ["Mrs Florence Michaels", "Mrs Majid Daniels", "Mrs Khalid Alizadeh", "Mrs Fatimah Richards"];
 	parentEmail: Array<any> = ["flor23@gmail.com", "mamamama@gmail", "mamamama@gmail",];
-	bloodGroups: Array<any> = ["A+", "B+", "O+", "AB+", "A-", "B-", "O-", "AB-"];
-	genotypes: Array<any> = ["AA", "AS", "SS", "AC", "SC", "CC"];
+
+	bloodGroups: Array<any> = [
+	  { id: "A+", name: "A+" },
+	  { id: "B+", name: "B+" },
+	  { id: "O+", name: "O+" },
+	  { id: "AB+", name: "AB+" },
+	  { id: "A-", name: "A-" },
+	  { id: "B-", name: "B-" },
+	  { id: "O-", name: "O-" },
+	  { id: "AB-", name: "AB-" },
+	];
+  
+	genotypes: Array<any> = [
+	  { id: "AA", name: "AA" },
+	  { id: "AS", name: "AS" },
+	  { id: "SS", name: "SS" },
+	  { id: "AC", name: "AC" },
+	];
 	date: Date | undefined = new Date();
 
 	childForm!: FormGroup;

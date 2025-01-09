@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { DropdownComponent } from "@component/shared/dropdown/dropdown.component";
 import { TopBannerComponent } from "@component/shared/top-banner/top-banner.component";
-import { invoiceData } from "@data/invoice/invoiceData";
+// import { this.motherData } from "@data/invoice/this.motherData";
 import { TableService } from "@service/table.service";
 import { OptionsVerticalComponent } from "../../../components/shared/options-vertical/options-vertical.component";
 interface Invoice {
@@ -27,32 +27,33 @@ interface Invoice {
 	templateUrl: "./mothers-data.component.html",
 })
 export class MothersDataComponent {
-	invoices;
+	mothers;
+	motherData: any; // this should house the data from the mother api
 	pages: number[] = [1];
 	filters = ["all", "paid", "unpaid", "rejected"];
 	currentFilter = this.filters[0];
 	constructor() {
-		this.invoices = new TableService();
-		this.invoices.initialize(invoiceData, 12);
+		this.mothers = new TableService();
+		this.mothers.initialize(this.motherData, 12);
 	}
 	setFilter(filter: string) {
 		this.currentFilter = filter;
 		if (filter == "all") {
-			this.invoices.initialize(invoiceData, 12);
+			this.mothers.initialize(this.motherData, 12);
 			this.pages = Array.from(
-				{ length: this.invoices.totalPages },
+				{ length: this.mothers.totalPages },
 				(_, i) => i + 1
 			);
 		} else {
-			const result = invoiceData.filter((item) => item.status == filter);
-			this.invoices.initialize(result);
-			this.invoices.paginate(1);
+			const result = this.motherData.filter((item: any) => item.status == filter);
+			this.mothers.initialize(result);
+			this.mothers.paginate(1);
 			this.pages = [1];
 		}
 	}
 	ngOnInit() {
 		this.pages = Array.from(
-			{ length: this.invoices.totalPages },
+			{ length: this.mothers.totalPages },
 			(_, i) => i + 1
 		);
 	}

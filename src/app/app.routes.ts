@@ -1,19 +1,19 @@
 import { Routes } from "@angular/router";
 import { DefaultLayoutComponent } from "./components/layouts/default-layout/default-layout.component";
-import { Style01Component } from "./pages/dashboards/style-01/style-01.component";
-import { Style02Component } from "./pages/dashboards/style-02/style-02.component";
+// import { Style01Component } from "./pages/dashboards/style-01/style-01.component";
+// import { Style02Component } from "./pages/dashboards/style-02/style-02.component";
 import { MainDashboardComponent } from "./pages/dashboards/main-dashboard/main-dashboard.component";
-import { Style04Component } from "./pages/dashboards/style-04/style-04.component";
-import { Style05Component } from "./pages/dashboards/style-05/style-05.component";
-import { BankAccountComponent } from "./pages/accounts/bank-account/bank-account.component";
-import { AccountOverviewComponent } from "./pages/accounts/account-overview/account-overview.component";
-import { AccountDetailsComponent } from "./pages/accounts/account-details/account-details.component";
-import { DepositDetailsComponent } from "./pages/accounts/deposit-details/deposit-details.component";
-import { CardOverviewComponent } from "./pages/cards/card-overview/card-overview.component";
-import { CardDetailsComponent } from "./pages/cards/card-details/card-details.component";
-import { TransactionStyle01Component } from "./pages/transaction/style-01/style-01.component";
-import { TransactionStyle02Component } from "./pages/transaction/style-02/style-02.component";
-import { TransactionStyle03Component } from "./pages/transaction/style-03/style-03.component";
+// import { Style04Component } from "./pages/dashboards/style-04/style-04.component";
+// import { Style05Component } from "./pages/dashboards/style-05/style-05.component";
+// import { BankAccountComponent } from "./pages/accounts/bank-account/bank-account.component";
+// import { AccountOverviewComponent } from "./pages/accounts/account-overview/account-overview.component";
+// import { AccountDetailsComponent } from "./pages/accounts/account-details/account-details.component";
+// import { DepositDetailsComponent } from "./pages/accounts/deposit-details/deposit-details.component";
+// import { CardOverviewComponent } from "./pages/cards/card-overview/card-overview.component";
+// import { CardDetailsComponent } from "./pages/cards/card-details/card-details.component";
+// import { TransactionStyle01Component } from "./pages/transaction/style-01/style-01.component";
+// import { TransactionStyle02Component } from "./pages/transaction/style-02/style-02.component";
+// import { TransactionStyle03Component } from "./pages/transaction/style-03/style-03.component";
 import { AntenatalRecordsOverviewComponent } from "./pages/antenatal-records-management/arm-overview/arm-overview.component";
 import { PaymentProvidersComponent } from "./pages/antenatal-records-management/payment-providers/payment-providers.component";
 import { AddArmComponent } from "./pages/antenatal-records-management/add-arm/add-arm.component";
@@ -23,10 +23,10 @@ import { MakeTransferComponent } from "./pages/supplement-tracking/make-transfer
 import { ChatComponent } from "./pages/supplement-tracking/chat/chat.component";
 import { AddChildComponent } from "./pages/child-management/add-child/add-child.component";
 import { ChildrenDataComponent } from "./pages/child-management/children-data/children-data.component";
-import { InvoicingStyle02Component } from "./pages/child-management/style-02/style-02.component";
-import { TradingStyle01Component } from "./pages/trading/style-01/style-01.component";
-import { ReportsStyle01Component } from "./pages/reports/style-01/style-01.component";
-import { ReportsStyle02Component } from "./pages/reports/style-02/style-02.component";
+// import { InvoicingStyle02Component } from "./pages/child-management/style-02/style-02.component";
+// import { TradingStyle01Component } from "./pages/trading/style-01/style-01.component";
+// import { ReportsStyle01Component } from "./pages/reports/style-01/style-01.component";
+// import { ReportsStyle02Component } from "./pages/reports/style-02/style-02.component";
 import { ProfileComponent } from "./pages/settings/profile/profile.component";
 import { SecurityComponent } from "./pages/settings/security/security.component";
 import { SocialNetworkComponent } from "./pages/settings/social-network/social-network.component";
@@ -40,10 +40,9 @@ import { SignInComponent } from "./pages/auth/sign-in/sign-in.component";
 import { SignInQrcodeComponent } from "./pages/auth/sign-in-qrcode/sign-in-qrcode.component";
 import { AuthLayoutComponent } from "./components/layouts/auth-layout/auth-layout.component";
 import { ErrorComponent } from "./pages/auth/error/error.component";
-import { TradingStyle02Component } from "@pages/trading/style-02/style-02.component";
-import { TradingStyle03Component } from "@pages/trading/style-03/style-03.component";
-import { EmptyLayoutComponent } from "@component/layouts/empty-layout/empty-layout.component";
-import { CompanyInfoRegistrationComponent } from "@pages/auth/company-info-registration/company-info-registration.component";
+// import { TradingStyle02Component } from "@pages/trading/style-02/style-02.component";
+// import { TradingStyle03Component } from "@pages/trading/style-03/style-03.component";
+// import { EmptyLayoutComponent } from "@component/layouts/empty-layout/empty-layout.component";
 import { LandingComponent } from "@pages/landing/landing.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { MothersDataComponent } from "@pages/dashboards/mothers-data/mothers-data.component";
@@ -63,7 +62,6 @@ export const routes: Routes = [
 		component: AuthLayoutComponent,
 		children: [
 			{ path: "sign-up", component: SignUpComponent },
-			// { path: "reg-company-info", component: CompanyInfoRegistrationComponent },
 			{ path: "sign-in", component: SignInComponent },
 		],
 	},
@@ -85,7 +83,6 @@ export const routes: Routes = [
 				children: [
 					{ path: "add-child", component: AddChildComponent },
 					{ path: "children-data", component: ChildrenDataComponent },
-					// { path: "style-02", component: InvoicingStyle02Component },
 				],
 			},
 			// {
