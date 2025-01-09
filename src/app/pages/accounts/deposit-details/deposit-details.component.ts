@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common'
 import { Component } from '@angular/core'
-import { AddAccountModalComponent } from '@component/shared/add-account-modal/add-account-modal.component'
+import { AddMotherModalComponent } from '@component/shared/add-mother-modal/add-mother-modal.component'
 import { DropdownComponent } from '@component/shared/dropdown/dropdown.component'
 import { OptionsVerticalComponent } from '@component/shared/options-vertical/options-vertical.component'
 import { TopBannerComponent } from '@component/shared/top-banner/top-banner.component'
@@ -35,7 +35,7 @@ export class DepositDetailsComponent {
   }
 
   addAccountModal() {
-    this.modalService.open(AddAccountModalComponent, {
+    this.modalService.open(AddMotherModalComponent, {
       modal: {
         enter: 'enter-going-down 0.3s ease-out',
         leave: 'fade-out 0.5s'

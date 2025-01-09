@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { AddAccountModalComponent } from "@component/shared/add-account-modal/add-account-modal.component";
+import { AddMotherModalComponent } from "@component/shared/add-mother-modal/add-mother-modal.component";
 import { DropdownComponent } from "@component/shared/dropdown/dropdown.component";
 import { OptionsHorizComponent } from "@component/shared/options-horiz/options-horiz.component";
 import { OptionsVerticalComponent } from "@component/shared/options-vertical/options-vertical.component";

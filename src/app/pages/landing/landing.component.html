@@ -1,331 +1,314 @@
 <div class="thrively-body">
-	<!-- HEADER -->
-	<header>
-		<nav>
-			<div class="thrively-logo">
-				<div class="thrively-logo-div">
-					<a href="#">
-						<img src="./assets/mother-child-images/logo.jpg" alt="mum-care" />
-						<span>Mum Care</span>
-					</a>
-				</div>
-				<div class="menu-button">
-					<button>
-						<i class="fa-solid fa-bars"></i>
-					</button>
-				</div>
-			</div>
-			<div class="thrively-menu-body">
-				<div class="thrively-menu-div">
-					<!--FIXED BODY-->
-					<div class="thrively-menu-card">
-						<!--SECOND FIXED-->
-						<div class="thrively-menu-flex">
-							<div class="top-menu-div">
-								<ul>
-									<li class="close-btn">
-										<button>
-											<i class="fa-solid fa-xmark"></i>
-										</button>
-									</li>
-									<li>
-										<a href="#">Home</a>
-									</li>
-									<!-- <li>
-										<a href="#features">Features</a>
-									</li> -->
-									<li>
-										<a href="#about">About</a>
-									</li>
-									<li>
-										<a href="#download">FAQ's</a>
-									</li>
-								</ul>
-							</div>
-							<div class="sign-log-div">
-								<a
-									[routerLink]="['/auth/sign-up']"
-									routerLinkActive="router-link-active"
-								>
-									<button>Signup</button>
-								</a>
-								<a
-									[routerLink]="['/auth/sign-in']"
-									routerLinkActive="router-link-active"
-								>
-									<button>Login</button>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</nav>
-	</header>
+  <!-- HEADER -->
+  <header>
+    <nav>
+      <div class="thrively-logo">
+        <div class="thrively-logo-div">
+          <a routerLink="/landing">
+            <img src="./assets/mother-child-images/logo.jpg" alt="mum-care" />
+            <span>Mum Care</span>
+          </a>
+        </div>
+        <div class="menu-button">
+          <button>
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+      <div class="thrively-menu-body">
+        <div class="thrively-menu-div">
+          <!--FIXED BODY-->
+          <div class="thrively-menu-card">
+            <!--SECOND FIXED-->
+            <div class="thrively-menu-flex">
+              <div class="top-menu-div">
+                <ul>
+                  <li class="close-btn">
+                    <button>
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                  </li>
+                  <li>
+                    <a routerLink="/landing" >Home</a>
+                  </li>
+                  <li>
+                    <a routerLink="/landing" fragment="goals">Goals</a>
+                  </li>
+                  <li>
+                    <a routerLink="/landing" fragment="about" >About</a>
+                  </li>
+                  <li>
+                    <a routerLink="/landing" fragment="testimonials">Testimonials</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="sign-log-div">
+                <a
+                  [routerLink]="['/auth/sign-up']"
+                  routerLinkActive="router-link-active"
+                >
+                  <button>Signup</button>
+                </a>
+                <a
+                  [routerLink]="['/auth/sign-in']"
+                  routerLinkActive="router-link-active"
+                >
+                  <button>Login</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-	<main>
-		<!-- HERO SECTION -->
-		<div class="hero-section-body">
-			<div class="hero-section-flex">
-				<div class="hero-section-left">
-					<div class="hero-section-left-flex">
-						<span class="right-top-span">Let's Ipsum the Lorem Care</span>
-						<div class="right-big-text">
-							<div class="right-big-image">
-								<img src="./assets/hero-arrow.png" alt="arrow" />
-								<div class="right-big-image-bg"></div>
-							</div>
-							<p class="right-top-big-text">
-								MUM CARE: For a Mother and Child <br />
-								<!-- <span style="color: #892292">Thrifting App</span> Lorem <br />
+  <main>
+    <!-- HERO SECTION -->
+    <div class="hero-section-body">
+      <div class="hero-section-flex">
+        <div class="hero-section-left">
+          <div class="hero-section-left-flex">
+            <!-- <span class="right-top-span">Let's Ipsum the Lorem Care</span> -->
+            <div class="right-big-text">
+              <div class="right-big-image">
+                <img src="./assets/hero-arrow.png" alt="arrow" />
+                <div class="right-big-image-bg"></div>
+              </div>
+              <p class="right-top-big-text">
+                MUM CARE: For a Mother and Child <br />
+                <!-- <span style="color: #892292">Thrifting App</span> Lorem <br />
 								Ipsum -->
-							</p>
-						</div>
-						<p class="right-top-p">
-							Lorem, ipsum dolor sit amet consectetur adipisicing elit. <br />
-							Dolor explicabo, tempore aperiam sed labore eius numquam quae?
-							<br />
-							Asperiores a voluptas consectetur vel ad! Minus voluptatem a odio
-							<br />
-							qui exercitationem! <br />
-							Mum Care.
-						</p>
-						<a href="#" class="right-top-download-btn">
-							<button>FAQ's</button>
-						</a>
-					</div>
-				</div>
-				<div class="hero-section-right">
-					<div class="hero-section-right-flex">
-						<div class="div-right-bg"></div>
-						<div class="hero-img-div">
-							<!-- <img src="./assets/phone.png" alt="thrively-image"> -->
-						</div>
-						<div class="divv-right-bg"></div>
-					</div>
-				</div>
-			</div>
-		</div>
+              </p>
+            </div>
+            <!-- <p class="right-top-p">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. <br />
+              Dolor explicabo, tempore aperiam sed labore eius numquam quae?
+              <br />
+              Asperiores a voluptas consectetur vel ad! Minus voluptatem a odio
+              <br />
+              qui exercitationem! <br />
+              Mum Care.
+            </p> -->
+            <a routerLink="/landing" class="right-top-download-btn">
+              <button>FAQ's</button>
+            </a>
+          </div>
+        </div>
+        <div class="hero-section-right">
+          <div class="hero-section-right-flex">
+            <div class="div-right-bg"></div>
+            <div class="hero-img-div">
+              <!-- <img src="./assets/phone.png" alt="thrively-image"> -->
+            </div>
+            <div class="divv-right-bg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-		<!-- THRIVELY OFFER CARDS -->
-		<a name="features"></a>
-		<div class="thrively-offer-div">
-			<div class="thrively-offer-body">
-				<h2>What MUM CARE Offers</h2>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. <br />
-					Perspiciatis provident cupiditate ipsa quaerat reprehenderit quo,
-					<br />
-					dicta, expedita ab voluptatibus excepturi distinctio cum architecto
-					<br />
-					charum veritatis maxime nulla id. Eum, sapiente?
-				</p>
-			</div>
-			<div class="thrively-card-div">
-				<div class="thrively-offer-cards-div">
-					<div class="thrively-offer-card-flex">
-						<div class="thrively-offer-card">
-							<div class="thrively-offer-card-body">
-								<div class="offer-card-img create">
-									<img src="./assets/thrift-icon.svg" alt="thrift" />
-								</div>
-								<p>Cassava</p>
-								<span>Employ 50 million Nigerians</span>
-							</div>
-						</div>
-						<div class="thrively-offer-card">
-							<div class="thrively-offer-card-body">
-								<div class="offer-card-img manage">
-									<img src="./assets/wallet-icon.svg" alt="wallet" />
-								</div>
-								<p>Garri</p>
-								<span
-									>Track your health, medications, view Supplements, <br />
-									and never worry about missing a doctor's or dosage
-									appointmnt</span
-								>
-							</div>
-						</div>
-						<div class="thrively-offer-card">
-							<div class="thrively-offer-card-body">
-								<div class="offer-card-img achieve">
-									<i class="las la-check"></i>
-								</div>
-								<p>Ewa and Agbado</p>
-								<span>A child in hand is a future assured.</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+    <!-- THRIVELY OFFER CARDS -->
+    <a name="features"></a>
+    <div class="thrively-offer-div">
+      <div class="thrively-offer-body">
+        <h2>What MUM CARE Offers</h2>
+        <p>
+          We offer a record management system for mothers and hospitals to track and manage antenatal visits, supplements, and child immunizations. Our platform provides personalized health insights to improve maternal and child health outcomes.
+        </p>
+      </div>
+      <div class="thrively-card-div">
+        <div class="thrively-offer-cards-div">
+          <div class="thrively-offer-card-flex">
+            <div class="thrively-offer-card">
+              <div class="thrively-offer-card-body">
+                <div class="offer-card-img create">
+                  <img src="./assets/thrift-icon.svg" alt="thrift" />
+                </div>
+                <p>Comprehensive Antenatal Tracking</p>
+                <span
+                  >Monitor antenatal visits, track prescribed supplements and
+                  drugs, and ensure no essential care is missed. Child
+                  Immunization Records: Keep detailed records of immunizations
+                  from birth to ensure your child stays protected.
+                </span>
+              </div>
+            </div>
+            <div class="thrively-offer-card">
+              <div class="thrively-offer-card-body">
+                <div class="offer-card-img manage">
+                  <img src="./assets/wallet-icon.svg" alt="wallet" />
+                </div>
+                <p>Seamless Hospital Integration</p>
+                <span>
+                  Designed for healthcare providers to streamline care, ensuring
+                  every mother and child receives timely attention. Personalized
+                  Health Insights: Gain access to tailored recommendations for
+                  better maternal and child health outcomes.
+                </span>
+              </div>
+            </div>
+            <div class="thrively-offer-card">
+              <div class="thrively-offer-card-body">
+                <div class="offer-card-img achieve">
+                  <i class="las la-check"></i>
+                </div>
+                <p>Personalized Health Insights</p>
+                <span
+                  >Gain access to tailored recommendations for better maternal
+                  and child health outcomes with User-Friendly Dashboard to help with
+                  Simplified tools for mothers and hospitals to manage health
+                  information efficiently and securely.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-		<!-- WIDTH 80 -->
-		<div class="div-body">
-			<div class="div-body-80">
-				<!-- TESTIMONIALS -->
-				<div class="testimonials-body">
-					<div class="testimonial-div">
-						<p class="test-top-text">Testimonials</p>
-						<div class="testimonial-card-flex">
-							<div class="testimonial-card">
-								<div class="test-card-flex">
-									<div class="test-card-img">
-										<img
-											src="/assets/mother-child-images/mum-child.jpg"
-											alt=""
-										/>
-									</div>
-									<p>Anjola Perptua</p>
-									<span
-										>"MUM CARE helped me immensely on keeping track Lorem Ipsum
-										you want to lorem, ipsum dolor sit amet "</span
-									>
-									<div class="test-card-rating">
-										<i class="fa-solid fa-star"></i>
-										<i class="fa-solid fa-star"></i>
-										<i class="fa-solid fa-star"></i>
-										<i class="fa-solid fa-star"></i>
-										<i class="fa-solid fa-star"></i>
-									</div>
-								</div>
-							</div>
-							<div class="testimonial-card">
-								<div class="test-card-flex">
-									<div class="test-card-img">
-										<img
-											src="/assets/mother-child-images/mum-child1.jpg"
-											alt=""
-										/>
-									</div>
-									<p>Promise Suleiman</p>
-									<span
-										>"MUM CARE helped me immensely on keeping track Lorem Ipsum
-										you want to lorem, ipsum dolor sit amet "</span
-									>
-									<div class="test-card-rating">
-										<i class="fa-solid fa-star"></i>
-										<i class="fa-solid fa-star"></i>
-										<i class="fa-solid fa-star"></i>
-										<i class="fa-solid fa-star"></i>
-										<i class="fa-solid fa-star"></i>
-									</div>
-								</div>
-							</div>
-							<div class="testimonial-card">
-								<div class="test-card-flex">
-									<div class="test-card-img">
-										<img
-											src="/assets/mother-child-images/mum-child2.jpg"
-											alt=""
-										/>
-									</div>
-									<p>Yerima Abdul</p>
-									<span
-										>"MUM CARE helped me immensely on keeping track Lorem Ipsum
-										you want to lorem, ipsum dolor sit amet "</span
-									>
-									<div class="test-card-rating">
-										<i class="fa-solid fa-star"></i>
-										<i class="fa-solid fa-star"></i>
-										<i class="fa-solid fa-star"></i>
-										<i class="fa-solid fa-star"></i>
-										<i class="fa-solid fa-star"></i>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+    <!-- WIDTH 80 -->
+	 <a name="testimonials" id="testimonials"></a>
+    <div class="div-body">
+      <div class="div-body-80">
+        <!-- TESTIMONIALS -->
+        <div class="testimonials-body">
+          <div class="testimonial-div">
+            <p class="test-top-text">Testimonials</p>
+            <div class="testimonial-card-flex">
+              <div class="testimonial-card">
+                <div class="test-card-flex">
+                  <div class="test-card-img">
+                    <img
+                      src="/assets/mother-child-images/mum-child.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <p>Amara O</p>
+                  <span
+                    >"As a first-time mom, MumCare has been a lifesaver. It reminds me of every antenatal appointment and tracks my supplements, so I never forget what I need to stay healthy. The child immunization feature gives me peace of mind knowing my baby is protected. MumCare truly bridges the gap between mothers and hospitals!"
+					</span
+                  >
+                  <div class="test-card-rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="testimonial-card">
+                <div class="test-card-flex">
+                  <div class="test-card-img">
+                    <img
+                      src="/assets/mother-child-images/mum-child1.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <p>Promise S</p>
+                  <span
+                    >"MUM CARE helped me immensely on keeping track of all my appointments at the hospital while I was pregnant of my beautiful son. Thank you Mum Care."</span
+                  >
+                  <div class="test-card-rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="testimonial-card">
+                <div class="test-card-flex">
+                  <div class="test-card-img">
+                    <img
+                      src="/assets/mother-child-images/mum-child2.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <p>Yerima A</p>
+                  <span
+                    >"I thank God for a system like Mum Care. It made my life easier and helped me keep track of all my appointments. I am a forgetful person, and Mum Care was always there to help me out."</span
+                  >
+                  <div class="test-card-rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-				<!-- ABOUT MUM CARE -->
-				<a name="about"></a>
-				<div class="about-thrively-body">
-					<div class="about-thrively-flex">
-						<div class="about-thrively-details">
-							<p>About MUM CARE</p>
-							<span
-								>MUM CARE is a platform dedicated to Lorem Ipsum domi Ipsum
-								Lorem Lorem for everyone. Lorem have the opportunity Lorem,
-								Ipsum. Join us and enjoy the Lorem Ipsum. domi ipsum.</span
-							>
-							<a href="">
-								<button>Read More</button>
-							</a>
-						</div>
-						<div class="about-thrively-img">
-							<img
-								src="./assets/mother-child-images/mum-child.jpg"
-								alt="about"
-							/>
-						</div>
-					</div>
-				</div>
+        <!-- ABOUT MUM CARE -->
+        <a name="about" id="about"></a>
+        <div class="about-thrively-body">
+          <div class="about-thrively-flex">
+            <div class="about-thrively-details">
+              <p>About MUM CARE</p>
+              <span
+                >At MumCare, we believe every mother and child deserves access to quality healthcare. Our mission is to empower healthcare providers and families with tools to improve maternal and child health outcomes. Designed with hospitals in mind, MumCare simplifies the process of tracking antenatal visits, supplements, and child immunizations, ensuring no vital detail is overlooked.
 
-				<!-- THRIFT PLAN -->
-				<!-- @if (moreSection) { -->
-				<div class="thrift-plan-body">
-					<div class="thrift-plan-div">
-						<p class="thrift-plan-text">Our Goal</p>
-						<div class="thrift-plan-card-body">
-							<div class="thrift-plan-card-flex">
-								<div class="thrift-plan-card daily">
-									<p>Goal 1</p>
-									<ul>
-										<li>
-											Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-										</li>
-										<li>
-											Quo autem tempore est in? Dolorum id eius quibusdam,
-											gradually.
-										</li>
-										<li>
-											autem error cupiditate, velit debitis ratione deserunt .
-										</li>
-									</ul>
-								</div>
-								<div class="thrift-plan-card weekly">
-									<p>Goal 2</p>
-									<ul>
-										<li>
-											cumque quis voluptatem beatae exercitationem corrupti
-										</li>
-										<li>
-											Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-										</li>
-										<li>
-											Odio quae et ad amet ipsa officiis quaerat saepe magni
-											sequi
-										</li>
-									</ul>
-								</div>
-								<div class="thrift-plan-card monthly">
-									<p>Goal 3</p>
-									<ul>
-										<li>
-											debitis quos numquam cum repudiandae nam voluptas, quo
-											delectusmolestias nemo.
-										</li>
-										<li>
-											debitis quos numquam cum repudiandae nam voluptas, quo
-											delectus molestias nemo.
-										</li>
-										<li>
-											debitis quos numquam cum repudiandae nam voluptas, quo
-											delectus molestias nemo.
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- } -->
-			</div>
-		</div>
+				By combining technology with a deep understanding of maternal health, we aim to create a seamless experience for hospitals and mothers, fostering healthier communities and brighter futures.</span
+              >
+              <a>
+                <button>Read More</button>
+              </a>
+            </div>
+            <div class="about-thrively-img">
+              <img
+                src="./assets/mother-child-images/mum-child.jpg"
+                alt="about"
+              />
+            </div>
+          </div>
+        </div>
 
-		<!-- DOWNLOAD APP -->
-		<!-- <a name="download"></a>
+        <!-- THRIFT PLAN -->
+        <!-- @if (moreSection) { -->
+	 <a name="goals" id="goals"></a>
+        <div class="thrift-plan-body">
+          <div class="thrift-plan-div">
+            <p class="thrift-plan-text">Our Goal</p>
+            <div class="thrift-plan-card-body">
+              <div class="thrift-plan-card-flex">
+                <div class="thrift-plan-card daily">
+                  <p>Enhance Maternal Health</p>
+                  <ul>
+                    <li>
+						Empower mothers with tools to stay informed and adhere to antenatal care schedules, improving health outcomes.
+                    </li>
+                  </ul>
+                </div>
+                <div class="thrift-plan-card weekly">
+                  <p>Support Hospitals</p>
+                  <ul>
+                    <li>
+						Simplify hospital workflows by providing a centralized system for tracking and managing patient records.
+                    </li>
+                  </ul>
+                </div>
+                <div class="thrift-plan-card monthly">
+                  <p>Protect Future Generations</p>
+                  <ul>
+                    <li>
+						Ensure every child receives their immunizations on time by maintaining accurate and accessible vaccination records.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- } -->
+      </div>
+    </div>
+
+    <!-- DOWNLOAD APP -->
+    <!-- <a name="download"></a>
 		<div class="download-thrively-body">
 			<div class="downlaod-thrively-div">
 				<div class="download-thrively-flex">
@@ -337,7 +320,7 @@
 							make it easy for people to download, contribute and browse through
 							our Ipsum. Download and enjoy the Lorem Ipsum.</span
 						>
-						<a href="#">
+						<a routerLink="/landing">
 							<button>Download Now</button>
 						</a>
 					</div>
@@ -348,8 +331,8 @@
 			</div>
 		</div> -->
 
-		<!-- SUBSCRIBE EMAIL -->
-		<!-- <div class="subscribe-email-body">
+    <!-- SUBSCRIBE EMAIL -->
+    <!-- <div class="subscribe-email-body">
 			<div class="subscribe-email-div">
 				<div class="subscribe-email-flex">
 					<span>Subscribe to Our Newsletter Newest Contributions Updates</span>
@@ -362,108 +345,108 @@
 				</div>
 			</div>
 		</div> -->
-	</main>
+  </main>
 
-	<!-- FOOTER -->
-	<footer>
-		<div class="thrively-footer-body">
-			<div class="thrively-footer-div">
-				<div class="thrively-footer-flex">
-					<div class="thrively-footer-logo">
-						<div class="footer-logo">
-							<img src="./assets/mother-child-images/logo.jpg" alt="logo" />
-							<span>MUM CARE</span>
-						</div>
-						<span class="footer-span"
-							>MUM CARE is more than just a lorem <br />
-							Lorem ipsum dolor sit amet consectetur, <br />
-							Lorem Ipsum domi Ipsum Lorem <br />
-							Lorem for everyone</span
-						>
-					</div>
-					<div class="thrively-footer-links quick-links-web">
-						<span>Quick Links</span>
-						<ul>
-							<li>Home</li>
-							<li>About Us</li>
-							<!-- <li>Team</li> -->
-							<li>Help</li>
-						</ul>
-					</div>
-					<div class="thrively-footer-links legal-web">
-						<span>Legal</span>
-						<ul>
-							<li>Support</li>
-							<li>Privacy Policy</li>
-							<li>FAQ</li>
-							<!-- <li>Refer and Earn</li> -->
-							<li>Terms</li>
-						</ul>
-					</div>
-					<div class="thrively-footer-links social-media">
-						<span>Social Media</span>
-						<ul class="media-flex">
-							<!-- <li><i class="fa-brands fa-facebook-f"></i></li> -->
-							<li><i class="lab la-facebook-f"></i></li>
-							<!-- <li><i class="fa-brands fa-twitter"></i></li> -->
-							<li><i class="lab la-twitter"></i></li>
-							<!-- <li><i class="fa-brands fa-linkedin-in"></i></li> -->
-							<li><i class="lab la-linkedin-in"></i></li>
-							<!-- <li><i class="fa-brands fa-instagram"></i></li> -->
-							<li><i class="lab la-instagram"></i></li>
-							<li><i class="lab la-github"></i></li>
-						</ul>
-					</div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="thrively-footer-body">
+      <div class="thrively-footer-div">
+        <div class="thrively-footer-flex">
+          <div class="thrively-footer-logo">
+            <div class="footer-logo">
+              <img src="./assets/mother-child-images/logo.jpg" alt="logo" />
+              <span>MUM CARE</span>
+            </div>
+            <!-- <span class="footer-span"
+              >MUM CARE is more than just a lorem <br />
+              Lorem ipsum dolor sit amet consectetur, <br />
+              Lorem Ipsum domi Ipsum Lorem <br />
+              Lorem for everyone</span
+            > -->
+          </div>
+          <div class="thrively-footer-links quick-links-web">
+            <span>Quick Links</span>
+            <ul>
+              <li>Home</li>
+              <li>About Us</li>
+              <!-- <li>Team</li> -->
+              <li>Help</li>
+            </ul>
+          </div>
+          <div class="thrively-footer-links legal-web">
+            <span>Legal</span>
+            <ul>
+              <li>Support</li>
+              <li>Privacy Policy</li>
+              <li>FAQ</li>
+              <!-- <li>Refer and Earn</li> -->
+              <li>Terms</li>
+            </ul>
+          </div>
+          <div class="thrively-footer-links social-media">
+            <span>Social Media</span>
+            <ul class="media-flex">
+              <!-- <li><i class="fa-brands fa-facebook-f"></i></li> -->
+              <li><i class="lab la-facebook-f"></i></li>
+              <!-- <li><i class="fa-brands fa-twitter"></i></li> -->
+              <li><i class="lab la-twitter"></i></li>
+              <!-- <li><i class="fa-brands fa-linkedin-in"></i></li> -->
+              <li><i class="lab la-linkedin-in"></i></li>
+              <!-- <li><i class="fa-brands fa-instagram"></i></li> -->
+              <li><i class="lab la-instagram"></i></li>
+              <li><i class="lab la-github"></i></li>
+            </ul>
+          </div>
 
-					<!-- MOBILE VIEW FOR QUICK LINK AND LEGAL -->
-					<div class="mobile-footer-div">
-						<div class="thrively-footer-links quick-links-mobile">
-							<details class="quick-links-details">
-								<summary>
-									<span>Quick Links</span>
-									<button class="quick-details-arrow-btn">
-										<i class="fa-solid fa-chevron-down"></i>
-									</button>
-								</summary>
-								<ul>
-									<li>Home</li>
-									<li>About Us</li>
-									<li>Team</li>
-									<li>Help</li>
-								</ul>
-							</details>
-						</div>
-						<div class="thrively-footer-links legal-mobile">
-							<details class="legal-details">
-								<summary>
-									<span>Legal</span>
-									<button class="legal-details-arrow-btn">
-										<i class="fa-solid fa-chevron-down"></i>
-									</button>
-								</summary>
-								<ul>
-									<li>Support</li>
-									<li>Privacy Policy</li>
-									<li>FAQ</li>
-									<li>Refer and Earn</li>
-									<li>Terms</li>
-								</ul>
-							</details>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+          <!-- MOBILE VIEW FOR QUICK LINK AND LEGAL -->
+          <div class="mobile-footer-div">
+            <div class="thrively-footer-links quick-links-mobile">
+              <details class="quick-links-details">
+                <summary>
+                  <span>Quick Links</span>
+                  <button class="quick-details-arrow-btn">
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </button>
+                </summary>
+                <ul>
+                  <li>Home</li>
+                  <li>About Us</li>
+                  <li>Team</li>
+                  <li>Help</li>
+                </ul>
+              </details>
+            </div>
+            <div class="thrively-footer-links legal-mobile">
+              <details class="legal-details">
+                <summary>
+                  <span>Legal</span>
+                  <button class="legal-details-arrow-btn">
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </button>
+                </summary>
+                <ul>
+                  <li>Support</li>
+                  <li>Privacy Policy</li>
+                  <li>FAQ</li>
+                  <li>Refer and Earn</li>
+                  <li>Terms</li>
+                </ul>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-		<!-- COPYRIGHT -->
-		<div class="copyright-body">
-			<p>
-				<i class="fa-regular fa-copyright"></i>
-				<span class="current-year"></span>
-				All rights reserved.
-			</p>
-		</div>
-	</footer>
+    <!-- COPYRIGHT -->
+    <div class="copyright-body">
+      <p>
+        <i class="fa-regular fa-copyright"></i>
+        <span class="current-year"></span>
+        All rights reserved.
+      </p>
+    </div>
+  </footer>
 </div>
 
 <script src="./app.js"></script>

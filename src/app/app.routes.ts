@@ -46,6 +46,7 @@ import { EmptyLayoutComponent } from "@component/layouts/empty-layout/empty-layo
 import { CompanyInfoRegistrationComponent } from "@pages/auth/company-info-registration/company-info-registration.component";
 import { LandingComponent } from "@pages/landing/landing.component";
 import { AuthGuard } from "./guards/auth.guard";
+import { MothersDataComponent } from "@pages/dashboards/mothers-data/mothers-data.component";
 
 export const routes: Routes = [
 	{
@@ -62,7 +63,7 @@ export const routes: Routes = [
 		component: AuthLayoutComponent,
 		children: [
 			{ path: "sign-up", component: SignUpComponent },
-			{ path: "reg-company-info", component: CompanyInfoRegistrationComponent },
+			// { path: "reg-company-info", component: CompanyInfoRegistrationComponent },
 			{ path: "sign-in", component: SignInComponent },
 		],
 	},
@@ -74,6 +75,10 @@ export const routes: Routes = [
 			{
 				path: "dashboard",
 				children: [{ path: "", component: MainDashboardComponent }],
+			},
+			{
+				path: "mother",
+				children: [ { path: '', component: MothersDataComponent}]
 			},
 			{
 				path: "child",

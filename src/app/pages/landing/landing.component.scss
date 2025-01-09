@@ -297,7 +297,7 @@ main {
 	color: #5e6282;
 	text-align: center;
 	font-weight: 400;
-	font-size: calc(1rem + 6px);
+	font-size: calc(1rem + 4px);
 }
 
 /* THRIVELY OFFER CARDS */
@@ -353,9 +353,9 @@ main {
 }
 .thrively-offer-card-body span {
 	font-weight: 400;
-	font-size: calc(1rem + 2px);
+	font-size: calc(1rem - 2px);
 	color: rgba(25, 24, 37, 0.5);
-	padding: 0 60px;
+	padding: 0 15px;
 	text-align: center;
 }
 .offer-card-img {

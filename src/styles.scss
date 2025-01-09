@@ -4,6 +4,7 @@
 @import "assets/scss/misc";
 @import "assets/scss/main";
 @import "ngx-toastr/toastr";
+@import "@ng-select/ng-select/themes/material.theme.css";
 
 .toast-success {
 	background-color: #334cae !important;

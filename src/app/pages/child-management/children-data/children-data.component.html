@@ -27,7 +27,7 @@
 				<tr class="bg-secondary1/5 dark:bg-bg3">
 					<th
 						(click)="invoices.sortData('title')"
-						class="text-start py-5 px-6 min-w-[230px] cursor-pointer"
+						class="text-start py-5 px-6 min-w-[250px] cursor-pointer"
 					>
 						<div class="flex items-center gap-1">
 							Child's Name
@@ -36,46 +36,70 @@
 					</th>
 					<th
 						(click)="invoices.sortData('invoice')"
-						class="text-start py-5 min-w-[130px] cursor-pointer"
+						class="text-start py-5 min-w-[200px] cursor-pointer"
 					>
-						ID <i class="las la-exchange-alt rotate-90 text-base"></i>
+						Parent's Name <i class="las la-exchange-alt rotate-90 text-base"></i>
 					</th>
 					<th
 						(click)="invoices.sortData('amount')"
-						class="text-start py-5 min-w-[130px] cursor-pointer"
+						class="text-start py-5 min-w-[200px] cursor-pointer"
 					>
 						<div class="flex items-center gap-1">
-							Amount <i class="las la-exchange-alt rotate-90 text-base"></i>
+							Blood Group <i class="las la-exchange-alt rotate-90 text-base"></i>
 						</div>
 					</th>
 					<th
 						(click)="invoices.sortData('rate')"
-						class="text-start py-5 min-w-[80px] cursor-pointer"
+						class="text-start py-5 min-w-[200px] cursor-pointer"
 					>
 						<div class="flex items-center gap-1">
-							Rate <i class="las la-exchange-alt rotate-90 text-base"></i>
+							Genotype <i class="las la-exchange-alt rotate-90 text-base"></i>
 						</div>
 					</th>
 					<th
 						(click)="invoices.sortData('dueDate')"
-						class="text-start py-5 min-w-[130px]"
+						class="text-start py-5 min-w-[200px]"
 					>
-						Due Date <i class="las la-exchange-alt rotate-90 text-base"></i>
+						Parent's Email <i class="las la-exchange-alt rotate-90 text-base"></i>
+					</th>
+					<th
+						(click)="invoices.sortData('dueDate')"
+						class="text-start py-5 min-w-[200px]"
+					>
+						Parent's Phone <i class="las la-exchange-alt rotate-90 text-base"></i>
 					</th>
 					<th
 						(click)="invoices.sortData('time')"
-						class="text-start py-5 min-w-[130px]"
+						class="text-start py-5 min-w-[200px]"
 					>
-						Time <i class="las la-exchange-alt rotate-90 text-base"></i>
+						Nationality <i class="las la-exchange-alt rotate-90 text-base"></i>
 					</th>
 					<th
+						(click)="invoices.sortData('time')"
+						class="text-start py-5 min-w-[200px]"
+					>
+						Age <i class="las la-exchange-alt rotate-90 text-base"></i>
+					</th>
+					<th
+						(click)="invoices.sortData('time')"
+						class="text-start py-5 min-w-[200px]"
+					>
+						Weight <i class="las la-exchange-alt rotate-90 text-base"></i>
+					</th>
+					<th
+						(click)="invoices.sortData('time')"
+						class="text-start py-5 min-w-[200px]"
+					>
+						Date Added <i class="las la-exchange-alt rotate-90 text-base"></i>
+					</th>
+					<!-- <th
 						(click)="invoices.sortData('status')"
 						class="text-start py-5 cursor-pointer"
 					>
 						<div class="flex items-center gap-1">
 							Status <i class="las la-exchange-alt rotate-90 text-base"></i>
 						</div>
-					</th>
+					</th> -->
 					<th class="text-center p-5">Action</th>
 				</tr>
 			</thead>
@@ -86,19 +110,24 @@
 				>
 					<td class="py-5 px-6">
 						<div class="flex items-center gap-3">
-							<i class="las la-file text-[#334CAE]"></i>
-							<span class="font-medium"> {{ item.title }} </span>
+							<!-- <i class="las la-file text-[#334CAE]"></i> -->
+							<span class="font-medium"> {{ item.first_name + ' ' + item.last_name }} </span>
 						</div>
 					</td>
 					<td class="py-5">
-						<p class="font-medium">{{ item.invoice }}</p>
+						<p class="font-medium">{{ item.parent_name }}</p>
 					</td>
 					<td class="py-5">
-						<span>$ {{ item.amount }} </span>
+						<span>{{ item.blood_group }} </span>
 					</td>
-					<td class="py-5">{{ item.rate }} %</td>
-					<td class="py-5">{{ item.dueDate }}</td>
-					<td>{{ item.time }}</td>
+					<td class="py-5">{{ item.genotype }}</td>
+					<td class="py-5">{{ item.parent_email }}</td>
+					<td class="py-5">{{ item.phone }}</td>
+					<td class="py-5">{{ item.nationality }}</td>
+					<td class="py-5">{{ item.age }}</td>
+					<td class="py-5">{{ item.weight }}</td>
+					<td class="py-5">{{ item.date_added }}</td>
+					<!-- <td>{{ item.time }}</td>
 					<td class="py-5">
 						<span
 							[ngClass]="{
@@ -110,7 +139,7 @@
 						>
 							{{ item.status }}
 						</span>
-					</td>
+					</td> -->
 					<td class="py-5">
 						<div class="flex justify-center">
 							<app-options-vertical></app-options-vertical>

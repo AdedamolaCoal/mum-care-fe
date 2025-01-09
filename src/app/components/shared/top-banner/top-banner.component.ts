@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core'
 import { ModalService } from 'ngx-modal-ease'
 import { DialogModule } from 'primeng/dialog'
-import { OpenAccountModalComponent } from '../open-account-modal/open-account-modal.component'
+import { AddMotherComponent } from '../add-mother/add-mother.component'
 
 // Recommended for animation support
 @Component({
@@ -21,7 +21,7 @@ export class TopBannerComponent {
     this.currentTitle = this.title ? this.title : 'Dashboard'
   }
   openModal() {
-    this.modalService.open(OpenAccountModalComponent, {
+    this.modalService.open(AddMotherComponent, {
       modal: {
         enter: 'enter-going-down 0.3s ease-out',
         leave: 'fade-out 0.5s'

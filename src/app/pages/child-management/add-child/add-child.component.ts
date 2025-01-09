@@ -1,9 +1,10 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DropdownComponent } from "@component/shared/dropdown/dropdown.component";
 import { OptionsHorizComponent } from "@component/shared/options-horiz/options-horiz.component";
 import { TopBannerComponent } from "@component/shared/top-banner/top-banner.component";
+import { Child } from "@pages/models/child.model";
 import { CalendarModule } from "primeng/calendar";
 
 @Component({
@@ -16,11 +17,46 @@ import { CalendarModule } from "primeng/calendar";
 		DropdownComponent,
 		CalendarModule,
 		FormsModule,
+		ReactiveFormsModule,
 	],
 	templateUrl: "./add-child.component.html",
 })
-export class AddChildComponent {
-	templates = ["Web Design", "Marketing", "UI/UX Design"];
-	categories = ["Design", "Development", "Uncategorized"];
-	date: Date | undefined;
+export class AddChildComponent implements OnInit{
+
+	parentName: Array<any> = ["Mrs Florence Michaels", "Mrs Majid Daniels", "Mrs Khalid Alizadeh", "Mrs Fatimah Richards"];
+	parentEmail: Array<any> = ["flor23@gmail.com", "mamamama@gmail", "mamamama@gmail",];
+	bloodGroups: Array<any> = ["A+", "B+", "O+", "AB+", "A-", "B-", "O-", "AB-"];
+	genotypes: Array<any> = ["AA", "AS", "SS", "AC", "SC", "CC"];
+	date: Date | undefined = new Date();
+
+	childForm!: FormGroup;
+
+	constructor(private fb: FormBuilder) {}
+
+	formInit() {
+		this.childForm = this.fb.group({
+			first_name: ["", Validators.required],
+			last_name: ["", Validators.required],
+			parent_name: ["", Validators.required],
+			blood_group: ["", Validators.required],
+			genotype: ["", Validators.required],
+			parent_email: ["", Validators.required],
+			nationality: ["", Validators.required],
+			age: ["", Validators.required],
+			date_added: [this.date, Validators.required],
+			weight: ["", Validators.required],
+		})
+	}
+
+	ngOnInit(): void {
+		this.formInit();
+	}
+
+	onSubmit() {
+		this.childForm.markAllAsTouched();
+		if (this.childForm.valid) {
+			console.log(this.childForm.value);
+			// this.childForm.reset();
+		}
+	}
 }

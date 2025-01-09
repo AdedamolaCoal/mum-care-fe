@@ -1,0 +1,198 @@
+<!-- { "translate-y-0 scale-100 opacity-100 my-10": open } -->
+<div class="box max-h-[90vh] w-[310px] sm:w-[450px] md:w-[700px] overflow-y-auto">
+  <div class="relative">
+    <button (click)="closeModal()" class="ac-modal-close-btn absolute top-0 ltr:right-0 rtl:left-0">
+      <i class="las la-times"></i>
+    </button>
+    <div class="bb-dashed mb-4 flex items-center justify-between pb-4 lg:mb-6 lg:pb-6">
+      <h4 class="h4">Add a Mother</h4>
+    </div>
+    <form [formGroup]="motherForm" (ngSubmit)="onSubmit()">
+      <!-- <p class="mb-4 text-lg font-medium">Profile Photo</p>
+      <div class="mb-6 flex flex-wrap items-center gap-5 xl:gap-10">
+        <img src="assets/images/placeholder.png" class="h-20 w-20 lg:h-auto lg:w-auto" alt="placeholder" />
+        <div class="flex gap-4">
+          <input type="file" name="photo" id="photo" class="hidden" />
+          <label for="photo" class="btn"> Upload Photo </label>
+          <button class="btn-outline">Cancel</button>
+        </div>
+      </div> -->
+      <div class="mt-6 grid grid-cols-2 gap-4 xl:mt-8 xxxl:gap-6">
+        <div class="col-span-2">
+          <label for="first_name" class="mb-4 block font-medium md:text-lg">
+            First Name
+          </label>
+          <input
+            type="text"
+            class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3"
+            placeholder="Enter First Name"
+            id="first_name"
+            formControlName="first_name"
+            required
+          />
+          @if (motherForm.get('first_name')?.errors &&
+          motherForm.get('first_name')?.touched) {
+          <span
+            class="text-secondary2"
+            *ngIf="motherForm.get('first_name')?.errors?.['required']"
+            >{{ "First Name is required" }}</span
+          >
+          }
+        </div>
+        <div class="col-span-2">
+          <label for="last_name" class="mb-4 block font-medium md:text-lg">
+            Last Name
+          </label>
+          <input
+            type="text"
+            class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3"
+            placeholder="Enter Last Name"
+            id="last_name"
+            formControlName="last_name"
+            required
+          />
+          @if (motherForm.get('last_name')?.errors &&
+          motherForm.get('last_name')?.touched) {
+          <span
+            class="text-secondary2"
+            *ngIf="motherForm.get('last_name')?.errors?.['required']"
+            >{{ "Last Name is required" }}</span
+          >
+          }
+        </div>
+        <div class="col-span-2">
+          <label for="age" class="mb-4 block font-medium md:text-lg">
+            Age
+          </label>
+          <input
+            type="number"
+            class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3"
+            placeholder="Enter Age"
+            formControlName="age"
+            id="age"
+            required
+          />
+          @if (motherForm.get('age')?.errors &&
+          motherForm.get('age')?.touched) {
+          <span
+            class="text-secondary2"
+            *ngIf="motherForm.get('age')?.errors?.['required']"
+            >{{ "Age is required" }}</span
+          >
+          }
+        </div>
+        <div class="col-span-2 md:col-span-1">
+          <label for="blood_group" class="mb-4 block font-medium md:text-lg">
+            Blood Group
+          </label>
+          <ng-select
+            formControlName="blood_group"
+            [items]="bloodGroups"
+            bindLabel="name"
+            bindValue="id"
+            [multiple]="false"
+            [searchable]="false"
+            class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-0.5 dark:border-n500 dark:bg-bg3 md:py-1"
+            ></ng-select>
+            @if (motherForm.get('blood_group')?.errors &&
+            motherForm.get('blood_group')?.touched) {
+            <span
+              class="text-secondary2"
+              *ngIf="motherForm.get('blood_group')?.errors?.['required']"
+              >{{ "Blood Group is required" }}</span
+            >
+            }
+        </div>
+        <div class="col-span-2 md:col-span-1">
+          <label for="genotype" class="mb-4 block font-medium md:text-lg">
+            Genotype
+          </label>
+          <ng-select
+            formControlName="genotype"
+            [items]="genotypes"
+            bindLabel="name"
+            bindValue="id"
+            [multiple]="false"
+            [searchable]="false"
+            class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-0.5 dark:border-n500 dark:bg-bg3 md:py-1"
+            ></ng-select>
+            @if (motherForm.get('genotype')?.errors &&
+            motherForm.get('genotype')?.touched) {
+            <span
+              class="text-secondary2"
+              *ngIf="motherForm.get('genotype')?.errors?.['required']"
+              >{{ "Genotype is required" }}</span
+            >
+            }
+        </div>
+        <div class="col-span-2">
+          <label for="hospital" class="mb-4 block font-medium md:text-lg">
+            Hospital
+          </label>
+          <ng-select
+          formControlName="hospital_id"
+          [items]="bloodGroups"
+          bindLabel="name"
+          bindValue="id"
+          [multiple]="false"
+          [searchable]="false"
+          class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-0.5 dark:border-n500 dark:bg-bg3 md:py-1"
+          ></ng-select>
+          @if (motherForm.get('hospital_id')?.errors &&
+          motherForm.get('hospital_id')?.touched) {
+          <span
+            class="text-secondary2"
+            *ngIf="motherForm.get('hospital_id')?.errors?.['required']"
+            >{{ "Hospital is required" }}</span
+          >
+          }
+        </div>
+        <div class="col-span-2 md:col-span-1">
+          <label for="nationality" class="mb-4 block font-medium md:text-lg">
+            Nationality
+          </label>
+          <input
+            type="text"
+            class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3"
+            placeholder="Enter Nationality"
+            id="nationality"
+            formControlName="nationality"
+            required
+          />
+          @if (motherForm.get('nationality')?.errors &&
+          motherForm.get('nationality')?.touched) {
+          <span
+            class="text-secondary2"
+            *ngIf="motherForm.get('nationality')?.errors?.['required']"
+            >{{ "Nationality is required" }}</span
+          >
+          }
+        </div>
+        <div class="col-span-2 md:col-span-1">
+          <label for="email" class="mb-4 block font-medium md:text-lg">
+            Email
+          </label>
+          <input
+            type="email"
+            class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3"
+            placeholder="Enter Email"
+            formControlName="email"
+            id="email"
+            required
+          />
+          @if (motherForm.get('email')?.errors &&
+          motherForm.get('email')?.touched) {
+          <span
+            class="text-secondary2"
+            *ngIf="motherForm.get('email')?.errors?.['required']"
+            >{{ "Email is required" }}</span
+          >
+          }
+        </div>
+        <div class="col-span-2 mt-4">
+          <button class="btn flex w-full justify-center" type="submit">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

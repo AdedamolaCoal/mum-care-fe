@@ -17,16 +17,17 @@ export const sidebarData: SidebarItem[] = [
 		submenus: [
 			// { title: 'Style 01', url: '/dashboards/style-01' },
 			// { title: 'Style 02', url: '/dashboards/style-02' },
-			{ title: "Mother's Dashboard", url: "/dashboard" },
+			{ title: "Hospital Dashboard", url: "/dashboard" },
 			// { title: 'Style 04', url: '/dashboards/style-04' },
 			// { title: 'Style 05', url: '/dashboards/style-05' }
 		],
 	},
 	{
 		id: 2,
-		name: "Child Management",
+		name: "Mother and Child Management",
 		icon: "las la-file-invoice",
 		submenus: [
+			{ title: "Mothers Datas", url: "/mother" },
 			{ title: "Add Child", url: "/child/add-child" },
 			{ title: "Children Data", url: "/child/children-data" },
 			// { title: "Style 02", url: "/child/style-02" },
