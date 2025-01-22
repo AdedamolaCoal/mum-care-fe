@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  url: 'http://localhost:3002/v1/'
-}
+  url: "http://mum-care-backend.onrender.com",
+};

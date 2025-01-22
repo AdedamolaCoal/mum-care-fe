@@ -1,0 +1,173 @@
+// .frame-child {
+//   width: 120px;
+//   position: relative;
+//   border-radius: 1782px;
+//   height: 120px;
+//   overflow: hidden;
+//   flex-shrink: 0;
+// }
+
+// .order-manager {
+//   position: relative;
+//   letter-spacing: 0.06em;
+//   line-height: 16px;
+//   font-weight: 700 !important;
+//   margin-bottom: 1vh;
+// }
+
+// .manage-all-your {
+//   position: relative;
+//   font-size: 11px;
+//   letter-spacing: 0.02em;
+//   line-height: 16px;
+// }
+
+// .order-manager-parent {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: flex-start;
+//   gap: 6px;
+// }
+
+// .frame-parent {
+//   position: relative;
+//   // height: 50vh;
+//   // margin-top: 40vh;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   gap: 22px;
+// }
+
+// .dashboard {
+//   width: 100%;
+//   position: relative;
+//   background-color: rgba(0, 0, 0, .3);
+//   height: 100vh;
+//   overflow: hidden;
+//   text-align: left;
+//   font-size: 15px;
+//   color: #000;
+//   font-family: 'Public Sans';
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   z-index: 1000;
+// }
+
+// .logo-position {
+//   background-color: #fff;
+//   border-radius: 100%;
+//   width: 100px;
+//   height: 100px;
+//   align-items: center;
+//   justify-content: center;
+//   display: flex;
+//   margin: auto;
+// }
+
+.blur-background {
+  filter: blur(5px);
+  pointer-events: none;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(34, 38, 67, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loader {
+  height: 180px;
+  width: 180px;
+  position: relative;
+  animation: spin 1.5s infinite;
+}
+
+/* Spin animation for loader */
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Loader circles styling and animations */
+.loader>div:nth-child(1) {
+  height: 75px;
+  width: 75px;
+  background-image: linear-gradient(45deg, #f7d000, #e6970e);
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  box-shadow: 0 0 3px #f7d000;
+  border-radius: 50%;
+  animation: move1 1.5s infinite;
+}
+
+@keyframes move1 {
+  50% {
+    transform: translate(-30px, -30px) scale(0.3);
+  }
+}
+
+.loader>div:nth-child(2) {
+  height: 45px;
+  width: 45px;
+  background-image: linear-gradient(45deg, #00d7f7, #04c0f5);
+  position: absolute;
+  top: 105px;
+  right: 110px;
+  box-shadow: 0 0 2px #00d7f7;
+  border-radius: 50%;
+  animation: move2 1.5s infinite;
+}
+
+@keyframes move2 {
+  50% {
+    transform: translate(15px, -20px) scale(0.55);
+  }
+}
+
+.loader>div:nth-child(3) {
+  height: 75px;
+  width: 75px;
+  background-image: linear-gradient(45deg, #f60180, #f7014f);
+  position: absolute;
+  bottom: 100px;
+  right: 100px;
+  box-shadow: 0 0 3px #f60180;
+  border-radius: 50%;
+  animation: move3 1.5s infinite;
+}
+
+@keyframes move3 {
+  50% {
+    transform: translate(30px, 30px) scale(0.3);
+  }
+}
+
+.loader>div:nth-child(4) {
+  height: 45px;
+  width: 45px;
+  background-image: linear-gradient(45deg, #da00f7, #b501f6);
+  position: absolute;
+  bottom: 105px;
+  left: 110px;
+  border-radius: 50%;
+  animation: move4 1.5s infinite;
+}
+
+@keyframes move4 {
+  50% {
+    transform: translate(-15px, 20px) scale(0.55);
+  }
+}
