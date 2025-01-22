@@ -1,83 +1,40 @@
 <app-top-banner title="Mothers Data Table" />
 
 <div class="box">
-	<!-- <div class="flex flex-wrap gap-4 justify-between items-center bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6">
-    <h4 class="h4">Recent Invoice</h4>
-    <div class="flex items-center max-lg:flex-wrap gap-4">
-      <form class="bg-[#334CAE]/5 dark:bg-bg3 border border-n30 dark:border-n500 flex gap-3 rounded-[30px] focus-within:border-[#334CAE] p-1 items-center justify-between min-w-[200px] xxl:max-w-[319px] w-full">
-        <input type="text" placeholder="Search" class="bg-transparent text-sm ltr:pl-4 border-0 rtl:pr-4 py-1 w-full" />
-        <button class="bg-[#334CAE] shrink-0 rounded-full w-7 h-7 lg:w-8 lg:h-8 flex justify-center items-center text-n0">
-          <i class="las la-search text-lg"></i>
-        </button>
-      </form>
-      <div class="rounded-[32px] bg-[#334CAE]/5 border border-n30 dark:border-n500 flex invoice-btns">
-        @for (item of filters; track $index) {
-        <button (click)="setFilter(item)" class="font-medium text-xs px-4 sm:px-5 xxxl:px-6 py-3 capitalize" [ngClass]="{ 'invoice-active': item == currentFilter }">{{ item }}</button>
-        }
-      </div>
-      <div class="flex items-center gap-3 whitespace-nowrap">
-        <span>Sort By : </span>
-        <app-dropdown />
-      </div>
-    </div>
-  </div> -->
 	<div class="overflow-x-auto mb-4 lg:mb-6">
 		<table class="w-full whitespace-nowrap">
 			<thead>
 				<tr class="bg-secondary1/5 dark:bg-bg3">
-					<th
-						(click)="mothers.sortData('first_name')"
-						class="text-start py-5 px-6 min-w-[250px] cursor-pointer"
-					>
+					<th (click)="mothers.sortData('first_name')"
+						class="text-start py-5 px-6 min-w-[250px] cursor-pointer">
 						<div class="flex items-center gap-1">
 							First Name
 							<i class="las la-exchange-alt rotate-90 text-base"></i>
 						</div>
 					</th>
-					<th
-						(click)="mothers.sortData('last_name')"
-						class="text-start py-5 min-w-[200px] cursor-pointer"
-					>
+					<th (click)="mothers.sortData('last_name')" class="text-start py-5 min-w-[200px] cursor-pointer">
 						Last Name <i class="las la-exchange-alt rotate-90 text-base"></i>
 					</th>
-					<th
-						(click)="mothers.sortData('blood_group')"
-						class="text-start py-5 min-w-[200px] cursor-pointer"
-					>
+					<th (click)="mothers.sortData('blood_group')" class="text-start py-5 min-w-[200px] cursor-pointer">
 						<div class="flex items-center gap-1">
 							Blood Group <i class="las la-exchange-alt rotate-90 text-base"></i>
 						</div>
 					</th>
-					<th
-						(click)="mothers.sortData('genotype')"
-						class="text-start py-5 min-w-[200px] cursor-pointer"
-					>
+					<th (click)="mothers.sortData('genotype')" class="text-start py-5 min-w-[200px] cursor-pointer">
 						<div class="flex items-center gap-1">
 							Genotype <i class="las la-exchange-alt rotate-90 text-base"></i>
 						</div>
 					</th>
-					<th
-						(click)="mothers.sortData('email')"
-						class="text-start py-5 min-w-[200px]"
-					>
+					<th (click)="mothers.sortData('email')" class="text-start py-5 min-w-[200px]">
 						Email <i class="las la-exchange-alt rotate-90 text-base"></i>
 					</th>
-					<th
-						(click)="mothers.sortData('phone')"
-						class="text-start py-5 min-w-[200px]"
-					>
+					<th (click)="mothers.sortData('phone')" class="text-start py-5 min-w-[200px]">
 						Phone <i class="las la-exchange-alt rotate-90 text-base"></i>
 					</th>
-					<th
-						(click)="mothers.sortData('nationality')"
-						class="text-start py-5 min-w-[200px]"
-					>
+					<th (click)="mothers.sortData('nationality')" class="text-start py-5 min-w-[200px]">
 						Nationality <i class="las la-exchange-alt rotate-90 text-base"></i>
 					</th>
-					<th
-						(click)="mothers.sortData('age')"
-						class="text-start py-5 min-w-[200px]"
-					>
+					<th (click)="mothers.sortData('age')" class="text-start py-5 min-w-[200px]">
 						Age <i class="las la-exchange-alt rotate-90 text-base"></i>
 					</th>
 					<!-- <th
@@ -106,8 +63,7 @@
 			<tbody>
 				@for (item of mothers.paginatedData; track $index) {
 				<tr
-					class="hover:bg-[#334CAE]/5 dark:hover:bg-bg3 duration-500 border-b border-n30 dark:border-n500 first:border-t"
-				>
+					class="hover:bg-[#334CAE]/5 dark:hover:bg-bg3 duration-500 border-b border-n30 dark:border-n500 first:border-t">
 					<td class="py-5 px-6">
 						<div class="flex items-center gap-3">
 							<!-- <i class="las la-file text-[#334CAE]"></i> -->
@@ -158,38 +114,28 @@
 		</table>
 	</div>
 
-	<div
-		class="flex col-span-12 gap-4 sm:justify-between justify-center items-center flex-wrap"
-	>
+	<div class="flex col-span-12 gap-4 sm:justify-between justify-center items-center flex-wrap">
 		<p>
 			Showing {{ mothers.startIndex + 1 }} to {{ mothers.endIndex + 1 }} of
 			{{ mothers.totalData }} entries
 		</p>
 		<ul class="flex gap-2 md:gap-3 flex-wrap md:font-semibold items-center">
 			<li>
-				<button
-					[disabled]="mothers.currentPage == 1"
-					(click)="mothers.prevPage()"
-					class="hover:bg-[#334CAE] text-[#334CAE] rtl:rotate-180 hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
-				>
+				<button [disabled]="mothers.currentPage == 1" (click)="mothers.prevPage()"
+					class="hover:bg-[#334CAE] text-[#334CAE] rtl:rotate-180 hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]">
 					<i class="las la-angle-left text-lg"></i>
 				</button>
 			</li>
 			<li *ngFor="let page of pages">
-				<button
-					(click)="mothers.paginate(page)"
+				<button (click)="mothers.paginate(page)"
 					[ngClass]="{ 'bg-[#334CAE] !text-n0': mothers.currentPage == page }"
-					class="hover:bg-[#334CAE] bg-[#334CAE] hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex text-[#334CAE] items-center rounded-full justify-center border-[#334CAE]"
-				>
+					class="hover:bg-[#334CAE] bg-[#334CAE] hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex text-[#334CAE] items-center rounded-full justify-center border-[#334CAE]">
 					{{ page }}
 				</button>
 			</li>
 			<li>
-				<button
-					[disabled]="mothers.currentPage == mothers.totalPages"
-					(click)="mothers.nextPage()"
-					class="hover:bg-[#334CAE] text-[#334CAE] hover:text-n0 rtl:rotate-180 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
-				>
+				<button [disabled]="mothers.currentPage == mothers.totalPages" (click)="mothers.nextPage()"
+					class="hover:bg-[#334CAE] text-[#334CAE] hover:text-n0 rtl:rotate-180 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]">
 					<i class="las la-angle-right text-lg"></i>
 				</button>
 			</li>

@@ -28,8 +28,6 @@ import { NotifyService } from "@service/notify.service";
     FormsModule,
     ReactiveFormsModule,
     NgSelectComponent,
-    NgLabelTemplateDirective,
-    NgOptionTemplateDirective,
   ],
   templateUrl: "./add-mother.component.html",
 })

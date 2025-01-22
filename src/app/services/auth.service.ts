@@ -9,12 +9,13 @@ import {
 } from "@angular/forms";
 import { NotifyService } from "./notify.service";
 import { StorageService } from "./storage.service";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
-  env = environment.url;
+  private readonly env = environment.url;
 
   constructor(
     private http: HttpClient,
@@ -74,7 +75,7 @@ export class AuthService {
     email: string;
     password: string;
     phone_number: number;
-  }) {
+  }): Observable<any> {
     return this.http.post(`${this.env}/register_hospital`, body, {
       headers: { "Content-Type": "application/json" },
     });

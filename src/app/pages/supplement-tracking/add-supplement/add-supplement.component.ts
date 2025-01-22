@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import { Component, inject, OnInit } from "@angular/core";
 import {
   FormBuilder,
@@ -9,6 +10,8 @@ import {
 import { DropdownComponent } from "@component/shared/dropdown/dropdown.component";
 import { OptionsHorizComponent } from "@component/shared/options-horiz/options-horiz.component";
 import { TopBannerComponent } from "@component/shared/top-banner/top-banner.component";
+import { ArmSuppService } from "@service/arm-supp.service";
+import { NotifyService } from "@service/notify.service";
 import { CalendarModule } from "primeng/calendar";
 
 @Component({
@@ -16,20 +19,21 @@ import { CalendarModule } from "primeng/calendar";
   standalone: true,
   imports: [
     TopBannerComponent,
-    DropdownComponent,
     OptionsHorizComponent,
     CalendarModule,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule,
   ],
   templateUrl: "./add-supplement.component.html",
 })
 export class AddSupplementComponent implements OnInit {
   suppForm!: FormGroup;
-  currencies = ["USD", "GBP", "EUR"];
   date: Date | undefined;
 
   fb: FormBuilder = inject(FormBuilder);
+  suppSrv: ArmSuppService = inject(ArmSuppService);
+  notify: NotifyService = inject(NotifyService);
 
   ngOnInit(): void {
     this.formInit();
@@ -45,6 +49,15 @@ export class AddSupplementComponent implements OnInit {
   onSubmit() {
     this.suppForm.markAllAsTouched();
     if (this.suppForm.valid) {
+      this.suppSrv.addSupplement(this.suppForm.value).subscribe({
+        next: (res) => {
+          this.notify.notifySuccess("Supplement Added Successfully");
+          this.suppForm.reset();
+        },
+        error: (err) => {
+          this.notify.notifyError(err.message);
+        },
+      });
       console.log(this.suppForm.value);
     }
   }

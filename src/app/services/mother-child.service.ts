@@ -1,23 +1,13 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../../environment/environment";
-
-export interface IGetMother {
-  hospital_id?: string;
-  first_name: string;
-  last_name: string;
-  age: number;
-  genotype: string;
-  blood_group: string;
-  nationality: string;
-  email: string;
-}
+import { IGetMother, IGetMotherEdit } from "@pages/models/child.model";
 
 @Injectable({
   providedIn: "root",
 })
 export class MotherChildService {
-  api = environment.url;
+  private readonly api = environment.url;
 
   constructor(private http: HttpClient) {}
 
@@ -25,4 +15,20 @@ export class MotherChildService {
   addMother(body: IGetMother) {
     return this.http.post(`${this.api}/register_mother`, body);
   }
+
+  // get all mothers
+  getAllMothers() {
+    return this.http.get(`${this.api}/mothers`);
+  }
+
+  // update mother
+  updateMother(id: string, body: IGetMotherEdit) {
+    return this.http.put(`${this.api}/update_mother/${id}`, body);
+  }
+
+  // delete mother
+  deleteMother(id: string) {
+    return this.http.delete(`${this.api}/delete_mother/${id}`);
+  }
 }
+export { IGetMother };
