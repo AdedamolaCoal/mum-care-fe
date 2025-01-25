@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../../environment/environment";
+import { IGetArm, IGetImmunization } from "@pages/models/arm-supp.model";
 
 @Injectable({
   providedIn: "root",
@@ -11,13 +12,7 @@ export class ArmSuppService {
   constructor(private http: HttpClient) {}
 
   // add antenatal record
-  addARM(body: {
-    mother_id: string;
-    weight: string;
-    blood_pressure: string;
-    remark: string;
-    tests: string;
-  }) {
+  addARM(body: IGetArm) {
     return this.http.post(`${this.api}/create_antenatal_record`, body);
   }
 
@@ -58,7 +53,7 @@ export class ArmSuppService {
   }
 
   // get supplement by id
-  getSupplementByID(id: number) {
+  getSupplementByID(id: any) {
     return this.http.get(`${this.api}/supplement/${id}`);
   }
 
@@ -68,7 +63,34 @@ export class ArmSuppService {
   }
 
   // delete supplement
-  deleteSupplement(id: number) {
+  deleteSupplement(id: string) {
     return this.http.delete(`${this.api}/delete_supplements/${id}`);
+  }
+
+  // ***************************************** IMMUNIZATION *****************************************
+
+  // add immunization
+  addImmunization(body: IGetImmunization) {
+    return this.http.post(`${this.api}/add`, body);
+  }
+
+  // get all immunization
+  getImmunization() {
+    return this.http.get(`${this.api}/get_immunization`);
+  }
+
+  // get immunization by id
+  getImmunizationById(id: string) {
+    return this.http.get(`${this.api}/get_immunization_details/${id}`);
+  }
+
+  // update immunization
+  updateImmunization(id: string, body: IGetImmunization) {
+    return this.http.put(`${this.api}/update/${id}`, body);
+  }
+
+  // delete Immunization
+  deleteImmunization(id: string) {
+    return this.http.delete(`${this.api}/delete_immunization/${id}`);
   }
 }

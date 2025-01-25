@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -7,11 +7,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { DropdownComponent } from "@component/shared/dropdown/dropdown.component";
+import { ActivatedRoute, Router } from "@angular/router";
 import { OptionsHorizComponent } from "@component/shared/options-horiz/options-horiz.component";
 import { TopBannerComponent } from "@component/shared/top-banner/top-banner.component";
 import { ArmSuppService } from "@service/arm-supp.service";
 import { NotifyService } from "@service/notify.service";
+import { SharedService } from "@service/shared.service";
 import { CalendarModule } from "primeng/calendar";
 
 @Component({
@@ -19,7 +20,6 @@ import { CalendarModule } from "primeng/calendar";
   standalone: true,
   imports: [
     TopBannerComponent,
-    OptionsHorizComponent,
     CalendarModule,
     FormsModule,
     ReactiveFormsModule,
@@ -27,13 +27,22 @@ import { CalendarModule } from "primeng/calendar";
   ],
   templateUrl: "./add-supplement.component.html",
 })
-export class AddSupplementComponent implements OnInit {
+export class AddSupplementComponent implements OnInit, OnDestroy {
   suppForm!: FormGroup;
   date: Date | undefined;
+
+  isView: boolean = false;
+  isEdit: boolean = false;
+
+  supplementId: string | null = "";
+  supplementData: any = null;
 
   fb: FormBuilder = inject(FormBuilder);
   suppSrv: ArmSuppService = inject(ArmSuppService);
   notify: NotifyService = inject(NotifyService);
+  router: Router = inject(Router);
+  activatedRoute: ActivatedRoute = inject(ActivatedRoute);
+  sharedSrv: SharedService = inject(SharedService);
 
   ngOnInit(): void {
     this.formInit();
@@ -44,6 +53,34 @@ export class AddSupplementComponent implements OnInit {
       name: ["", Validators.required],
       description: ["", Validators.required],
     });
+
+    this.isView = this.sharedSrv.getViewMode();
+    this.isEdit = this.sharedSrv.getViewMode();
+
+    const id = this.activatedRoute.snapshot.paramMap.get("id");
+
+    if (id) {
+      this.getSupplementByID(id);
+    }
+  }
+
+  getSupplementByID(id: any) {
+    this.suppSrv.getSupplementByID(id).subscribe({
+      next: (res) => {
+        this.supplementData = res;
+        this.suppForm.patchValue({
+          name: this.supplementData.name,
+          description: this.supplementData.description,
+        });
+
+        if (this.isView) {
+          this.suppForm.disable();
+        }
+      },
+      error: (err) => {
+        this.notify.notifyError(err.message);
+      },
+    });
   }
 
   onSubmit() {
@@ -53,6 +90,7 @@ export class AddSupplementComponent implements OnInit {
         next: (res) => {
           this.notify.notifySuccess("Supplement Added Successfully");
           this.suppForm.reset();
+          this.router.navigateByUrl("/supplement/supplement-overview");
         },
         error: (err) => {
           this.notify.notifyError(err.message);
@@ -60,5 +98,9 @@ export class AddSupplementComponent implements OnInit {
       });
       console.log(this.suppForm.value);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.sharedSrv.setViewMode(false);
   }
 }

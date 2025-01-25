@@ -1,0 +1,256 @@
+<app-top-banner title="Add Mother" />
+
+<div class="box mb-4 xxxl:mb-6">
+  <div class="mb-6 pb-6 bb-dashed flex justify-between items-center">
+    <h4 class="h4">Mother Details</h4>
+  </div>
+  <form
+    class="flex flex-col gap-6"
+    [formGroup]="motherForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div
+      class="box bg-secondary1/5 dark:bg-bg3 xl:p-8 grid grid-cols-2 gap-4 xxl:gap-6"
+    >
+      <div class="col-span-2 md:col-span-1">
+        <label for="firstName" class="md:text-lg font-medium block mb-4">
+          First Name
+        </label>
+        <input
+          type="text"
+          class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3"
+          placeholder="Enter First Name"
+          id="first_name"
+          formControlName="first_name"
+          required
+        />
+        @if (motherForm.get('first_name')?.errors &&
+        motherForm.get('first_name')?.touched) {
+        <span
+          class="text-secondary2"
+          *ngIf="motherForm.get('first_name')?.errors?.['required']"
+          >{{
+            "First Name is
+          required"
+          }}</span
+        >
+        }
+      </div>
+
+      <div class="col-span-2 md:col-span-1">
+        <label for="lastName" class="md:text-lg font-medium block mb-4">
+          Last Name
+        </label>
+        <input
+          type="text"
+          class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3"
+          placeholder="Enter Last Name"
+          id="last_name"
+          formControlName="last_name"
+          required
+        />
+        @if (motherForm.get('last_name')?.errors &&
+        motherForm.get('last_name')?.touched) {
+        <span
+          class="text-secondary2"
+          *ngIf="motherForm.get('last_name')?.errors?.['required']"
+          >{{
+            "Last Name is
+            required"
+          }}</span
+        >
+        }
+      </div>
+
+      <div class="col-span-2 md:col-span-1">
+        <label for="category" class="mb-4 md:text-lg font-medium block">
+          Hospital ID
+        </label>
+        <input
+          type="text"
+          class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3"
+          placeholder="Enter Hospital ID"
+          id="hospital_id"
+          formControlName="hospital_id"
+          required
+        />
+        @if (motherForm.get('hospital_id')?.errors &&
+        motherForm.get('hospital_id')?.touched) {
+        <span
+          class="text-secondary2"
+          *ngIf="motherForm.get('hospital_id')?.errors?.['required']"
+          >{{
+            "Hospital ID is
+          required"
+          }}</span
+        >
+        }
+      </div>
+
+      <div class="col-span-2 md:col-span-1">
+        <label for="category" class="mb-4 md:text-lg font-medium block">
+          Age
+        </label>
+        <input
+          type="number"
+          class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3"
+          placeholder="Enter Age"
+          formControlName="age"
+          id="age"
+          required
+        />
+        @if (motherForm.get('age')?.errors && motherForm.get('age')?.touched) {
+        <span
+          class="text-secondary2"
+          *ngIf="motherForm.get('age')?.errors?.['required']"
+          >{{ "Age is required" }}</span
+        >
+        }
+      </div>
+
+      <div class="col-span-2 md:col-span-1">
+        <label for="weight" class="md:text-lg font-medium block mb-4">
+          Blood Group
+        </label>
+        <ng-select
+          formControlName="blood_group"
+          [items]="bloodGroups"
+          bindLabel="name"
+          bindValue="id"
+          [multiple]="false"
+          [searchable]="false"
+          class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-0.5 dark:border-n500 dark:bg-bg3 md:py-1"
+        ></ng-select>
+        @if (motherForm.get('blood_group')?.errors &&
+        motherForm.get('blood_group')?.touched) {
+        <span
+          class="text-secondary2"
+          *ngIf="motherForm.get('blood_group')?.errors?.['required']"
+          >{{
+            "Blood Group is
+          required"
+          }}</span
+        >
+        }
+      </div>
+
+      <div class="col-span-2 md:col-span-1">
+        <label for="nationality" class="md:text-lg font-medium block mb-4">
+          Genotype
+        </label>
+        <ng-select
+          formControlName="genotype"
+          [items]="genotypes"
+          bindLabel="name"
+          bindValue="id"
+          [multiple]="false"
+          [searchable]="false"
+          class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-0.5 dark:border-n500 dark:bg-bg3 md:py-1"
+        ></ng-select>
+        @if (motherForm.get('genotype')?.errors &&
+        motherForm.get('genotype')?.touched) {
+        <span
+          class="text-secondary2"
+          *ngIf="motherForm.get('genotype')?.errors?.['required']"
+          >{{
+            "Genotype is
+            required"
+          }}</span
+        >
+        }
+      </div>
+
+      <div class="col-span-2 md:col-span-1">
+        <label for="age" class="md:text-lg font-medium block mb-4">
+          Nationality
+        </label>
+        <input
+          type="text"
+          class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3"
+          placeholder="Enter Nationality"
+          id="nationality"
+          formControlName="nationality"
+          required
+        />
+        @if (motherForm.get('nationality')?.errors &&
+        motherForm.get('nationality')?.touched) {
+        <span
+          class="text-secondary2"
+          *ngIf="motherForm.get('nationality')?.errors?.['required']"
+          >{{
+            "Nationality is
+          required"
+          }}</span
+        >
+        }
+      </div>
+
+      <div class="col-span-2 md:col-span-1">
+        <label for="parent_email" class="md:text-lg font-medium block mb-4">
+          Email
+        </label>
+        <input
+          type="text"
+          class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3"
+          placeholder="Enter Email"
+          formControlName="email"
+          id="email"
+          required
+        />
+        @if (motherForm.get('email')?.errors &&
+        motherForm.get('email')?.touched) {
+        <span
+          class="text-secondary2"
+          *ngIf="motherForm.get('email')?.errors?.['required']"
+          >{{ "Email is required" }}</span
+        >
+        <span
+          class="text-secondary2"
+          *ngIf="motherForm.get('email')?.errors?.['email']"
+          >{{ "Email isn't valid" }}</span
+        >
+        }
+      </div>
+
+      <div class="col-span-2 md:col-span-1">
+        <label for="parent_email" class="mb-4 md:text-lg font-medium block">
+          Password
+        </label>
+        <input
+          type="text"
+          class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3"
+          placeholder="Enter Password"
+          id="password"
+          formControlName="password"
+          required
+        />
+        @if (motherForm.get('password')?.errors &&
+        motherForm.get('password')?.touched) {
+        <span
+          class="text-secondary2"
+          *ngIf="motherForm.get('password')?.errors?.['required']"
+          >{{
+            "Password is
+          required"
+          }}</span
+        >
+        <span
+          class="text-secondary2"
+          *ngIf="motherForm.get('password')?.errors?.['minLength']"
+          >{{
+            "Password should be
+          at least 8 character"
+          }}</span
+        >
+        }
+      </div>
+    </div>
+
+    <div class="col-span-2 flex gap-4 md:gap-6 mt-2">
+      <button class="btn" type="submit">Save</button>
+      <button class="btn-outline" (click)="motherForm.reset()" type="reset">
+        Reset Fields
+      </button>
+    </div>
+  </form>
+</div>

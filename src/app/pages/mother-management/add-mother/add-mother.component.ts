@@ -1,6 +1,5 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { CalendarModule } from "primeng/calendar";
 import {
   FormBuilder,
   FormGroup,
@@ -8,31 +7,31 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { ModalService } from "ngx-modal-ease";
-import { NgSelectComponent, NgSelectModule } from "@ng-select/ng-select";
-import { IGetMother, MotherChildService } from "@service/mother-child.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { OptionsHorizComponent } from "@component/shared/options-horiz/options-horiz.component";
+import { TopBannerComponent } from "@component/shared/top-banner/top-banner.component";
+import { NgSelectModule } from "@ng-select/ng-select";
+import { IGetMother } from "@pages/models/child.model";
+import { MotherChildService } from "@service/mother-child.service";
 import { NotifyService } from "@service/notify.service";
+import { SharedService } from "@service/shared.service";
 import { StorageService } from "@service/storage.service";
+import { CalendarModule } from "primeng/calendar";
 
 @Component({
-  selector: "app-open-account-modal",
+  selector: "app-add-mother",
   standalone: true,
   imports: [
     CommonModule,
+    TopBannerComponent,
     CalendarModule,
     FormsModule,
     ReactiveFormsModule,
-    NgSelectComponent,
+    NgSelectModule,
   ],
   templateUrl: "./add-mother.component.html",
 })
 export class AddMotherComponent implements OnInit {
-  date: Date | undefined;
-
-  hospitalId!: string;
-
-  motherForm!: FormGroup;
-
   bloodGroups: Array<any> = [
     { id: "A+", name: "A+" },
     { id: "B+", name: "B+" },
@@ -51,19 +50,23 @@ export class AddMotherComponent implements OnInit {
     { id: "AC", name: "AC" },
   ];
 
+  date: Date | undefined = new Date();
+
+  isView: boolean = false;
+  isEdit: boolean = false;
+
+  motherForm!: FormGroup;
+  motherData: any;
+
   constructor(
-    private modalService: ModalService,
     private fb: FormBuilder,
     private motherSrv: MotherChildService,
     private notify: NotifyService,
-    private storage: StorageService
+    private storage: StorageService,
+    private router: Router,
+    private sharedSrv: SharedService,
+    private activatedRoute: ActivatedRoute
   ) {}
-
-  ngOnInit(): void {
-    const hospital = this.storage.getItem("user");
-    this.hospitalId = hospital?.id;
-    this.formInit();
-  }
 
   formInit() {
     this.motherForm = this.fb.group({
@@ -76,6 +79,42 @@ export class AddMotherComponent implements OnInit {
       blood_group: ["", Validators.required],
       nationality: ["", Validators.required],
       email: ["", Validators.required],
+    });
+
+    this.isView = this.sharedSrv.getViewMode();
+    this.isEdit = this.sharedSrv.getViewMode();
+
+    const id = this.activatedRoute.snapshot.paramMap.get("id");
+
+    if (id) {
+      this.getMotherByID(id);
+    }
+  }
+
+  ngOnInit(): void {
+    this.formInit();
+  }
+
+  getMotherByID(id: string) {
+    this.motherSrv.getMotherById(id).subscribe({
+      next: (res) => {
+        this.motherData = res;
+        this.motherForm.patchValue({
+          first_name: this.motherData.first_name,
+          last_name: this.motherData.last_name,
+          password: this.motherData.password,
+          age: this.motherData.age,
+          genotype: this.motherData.genotype,
+          blood_group: this.motherData.blood_group,
+          nationality: this.motherData.nationality,
+          email: this.motherData.email,
+        });
+
+        if (this.isView) {
+          this.motherForm.disable();
+        }
+      },
+      error: (err) => {},
     });
   }
 
@@ -101,18 +140,12 @@ export class AddMotherComponent implements OnInit {
         // console.log(res);
         this.notify.notifySuccess("Mother added successfully");
         this.motherForm.reset();
-        this.closeModal();
+        this.router.navigateByUrl("/mothers/mothers-data");
       },
       error: (error) => {
         // console.log(error.message);
         this.notify.notifyError(error.message);
       },
     });
-    // console.log(this.motherForm.value);
-    this.closeModal();
-  }
-
-  closeModal() {
-    this.modalService.close("OpenAccountModalComponent");
   }
 }

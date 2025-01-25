@@ -1,0 +1,148 @@
+<app-top-banner title="Mothers Data Table" />
+
+<div class="box">
+  <div class="overflow-x-auto mb-4 lg:mb-6">
+    <table class="w-full whitespace-nowrap">
+      <thead>
+        <tr class="bg-secondary1/5 dark:bg-bg3">
+          <th
+            (click)="mothers.sortData('first_name')"
+            class="text-start py-5 px-6 min-w-[250px] cursor-pointer"
+          >
+            <div class="flex items-center gap-1">
+              First Name
+              <i class="las la-exchange-alt rotate-90 text-base"></i>
+            </div>
+          </th>
+          <th
+            (click)="mothers.sortData('last_name')"
+            class="text-start py-5 min-w-[200px] cursor-pointer"
+          >
+            Last Name <i class="las la-exchange-alt rotate-90 text-base"></i>
+          </th>
+          <th
+            (click)="mothers.sortData('blood_group')"
+            class="text-start py-5 min-w-[200px] cursor-pointer"
+          >
+            <div class="flex items-center gap-1">
+              Blood Group
+              <i class="las la-exchange-alt rotate-90 text-base"></i>
+            </div>
+          </th>
+          <th
+            (click)="mothers.sortData('genotype')"
+            class="text-start py-5 min-w-[200px] cursor-pointer"
+          >
+            <div class="flex items-center gap-1">
+              Genotype <i class="las la-exchange-alt rotate-90 text-base"></i>
+            </div>
+          </th>
+          <th
+            (click)="mothers.sortData('email')"
+            class="text-start py-5 min-w-[200px]"
+          >
+            Email <i class="las la-exchange-alt rotate-90 text-base"></i>
+          </th>
+          <th
+            (click)="mothers.sortData('nationality')"
+            class="text-start py-5 min-w-[200px]"
+          >
+            Nationality <i class="las la-exchange-alt rotate-90 text-base"></i>
+          </th>
+          <th
+            (click)="mothers.sortData('age')"
+            class="text-start py-5 min-w-[200px]"
+          >
+            Age <i class="las la-exchange-alt rotate-90 text-base"></i>
+          </th>
+          <th class="text-center p-5">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of mothers.paginatedData; track $index) {
+        <tr
+          class="hover:bg-[#334CAE]/5 dark:hover:bg-bg3 duration-500 border-b border-n30 dark:border-n500 first:border-t"
+        >
+          <td class="py-5 px-6">
+            <div class="flex items-center gap-3">
+              <!-- <i class="las la-file text-[#334CAE]"></i> -->
+              <span class="font-medium"> {{ item.first_name }} </span>
+            </div>
+          </td>
+          <td class="py-5">
+            <p class="font-medium">{{ item.last_name }}</p>
+          </td>
+          <td class="py-5">
+            <span>{{ item.blood_group }} </span>
+          </td>
+          <td class="py-5">{{ item.genotype }}</td>
+          <td class="py-5">{{ item.email }}</td>
+          <td class="py-5">{{ item.nationality }}</td>
+          <td class="py-5">{{ item.age }}</td>
+          <td class="py-5">
+            <div class="flex justify-center">
+              <div class="flex justify-center space-x-4">
+                <!-- Edit Icon -->
+                <i
+                  class="la la-edit text-blue-500 cursor-pointer"
+                  (click)="onEdit(item.id)"
+                ></i>
+
+                <!-- View Icon -->
+                <i
+                  class="la la-eye text-green-500 cursor-pointer"
+                  (click)="onView(item.id)"
+                ></i>
+
+                <!-- Delete Icon -->
+                <i
+                  class="la la-trash text-red-500 cursor-pointer"
+                  (click)="onDelete(item.id)"
+                ></i>
+              </div>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div
+    class="flex col-span-12 gap-4 sm:justify-between justify-center items-center flex-wrap"
+  >
+    <p>
+      Showing {{ mothers.startIndex + 1 }} to {{ mothers.endIndex + 1 }} of
+      {{ mothers.totalData }} entries
+    </p>
+    <ul class="flex gap-2 md:gap-3 flex-wrap md:font-semibold items-center">
+      <li>
+        <button
+          [disabled]="mothers.currentPage == 1"
+          (click)="mothers.prevPage()"
+          class="hover:bg-[#334CAE] text-[#334CAE] rtl:rotate-180 hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+        >
+          <i class="las la-angle-left text-lg"></i>
+        </button>
+      </li>
+      <li *ngFor="let page of pages">
+        <button
+          (click)="mothers.paginate(page)"
+          [ngClass]="{ 'bg-[#334CAE] !text-n0': mothers.currentPage == page }"
+          class="hover:bg-[#334CAE] bg-[#334CAE] hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex text-[#334CAE] items-center rounded-full justify-center border-[#334CAE]"
+        >
+          {{ page }}
+        </button>
+      </li>
+      <li>
+        <button
+          [disabled]="mothers.currentPage == mothers.totalPages"
+          (click)="mothers.nextPage()"
+          class="hover:bg-[#334CAE] text-[#334CAE] hover:text-n0 rtl:rotate-180 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+        >
+          <i class="las la-angle-right text-lg"></i>
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

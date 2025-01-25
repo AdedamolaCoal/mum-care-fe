@@ -1,7 +1,7 @@
 export interface Child {
   first_name: string;
   last_name: string;
-  parent_id: string;
+  // parent_id: string;
   blood_group: string;
   genotype: string;
   weight: number;
@@ -13,7 +13,8 @@ export interface Child {
 }
 
 export interface IGetMother {
-  hospital_id?: string;
+  hospital_id: string;
+  password: string;
   first_name: string;
   last_name: string;
   age: number;

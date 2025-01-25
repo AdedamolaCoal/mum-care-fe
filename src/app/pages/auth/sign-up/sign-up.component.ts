@@ -88,7 +88,7 @@ export class SignUpComponent implements OnInit {
           console.log(this.registerForm);
 
           // after successful registration, navigate to company info registration page
-          this.router.navigateByUrl("/dashboard");
+          this.router.navigateByUrl("/auth/sign-in");
         },
         error: (error) => {
           // error handling notification

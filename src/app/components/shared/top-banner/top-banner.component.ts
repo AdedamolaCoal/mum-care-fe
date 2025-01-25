@@ -1,37 +1,36 @@
-import { Component, Input } from '@angular/core'
-import { ModalService } from 'ngx-modal-ease'
-import { DialogModule } from 'primeng/dialog'
-import { AddMotherComponent } from '../add-mother/add-mother.component'
+import { Component, Input } from "@angular/core";
+import { ModalService } from "ngx-modal-ease";
+import { DialogModule } from "primeng/dialog";
 
 // Recommended for animation support
 @Component({
-  selector: 'app-top-banner',
+  selector: "app-top-banner",
   standalone: true,
   imports: [DialogModule],
-  templateUrl: './top-banner.component.html'
+  templateUrl: "./top-banner.component.html",
 })
 export class TopBannerComponent {
   constructor(private modalService: ModalService) {}
 
-  @Input() title?: string
-  currentTitle = ''
-  visible: boolean = false
+  @Input() title?: string;
+  currentTitle = "";
+  visible: boolean = false;
 
   ngOnInit() {
-    this.currentTitle = this.title ? this.title : 'Dashboard'
+    this.currentTitle = this.title ? this.title : "Dashboard";
   }
-  openModal() {
-    this.modalService.open(AddMotherComponent, {
-      modal: {
-        enter: 'enter-going-down 0.3s ease-out',
-        leave: 'fade-out 0.5s'
-      },
-      overlay: {
-        leave: 'fade-out 0.5s'
-      },
-      data: {
-        type: 'Angular modal library'
-      }
-    })
-  }
+  // openModal() {
+  //   this.modalService.open(AddMotherComponent, {
+  //     modal: {
+  //       enter: 'enter-going-down 0.3s ease-out',
+  //       leave: 'fade-out 0.5s'
+  //     },
+  //     overlay: {
+  //       leave: 'fade-out 0.5s'
+  //     },
+  //     data: {
+  //       type: 'Angular modal library'
+  //     }
+  //   })
+  // }
 }

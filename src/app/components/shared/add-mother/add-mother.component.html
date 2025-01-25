@@ -1,10 +1,17 @@
 <!-- { "translate-y-0 scale-100 opacity-100 my-10": open } -->
-<div class="box max-h-[90vh] w-[310px] sm:w-[450px] md:w-[700px] overflow-y-auto">
+<div
+  class="box max-h-[90vh] w-[310px] sm:w-[450px] md:w-[700px] overflow-y-auto"
+>
   <div class="relative">
-    <button (click)="closeModal()" class="ac-modal-close-btn absolute top-0 ltr:right-0 rtl:left-0">
+    <button
+      (click)="closeModal()"
+      class="ac-modal-close-btn absolute top-0 ltr:right-0 rtl:left-0"
+    >
       <i class="las la-times"></i>
     </button>
-    <div class="bb-dashed mb-4 flex items-center justify-between pb-4 lg:mb-6 lg:pb-6">
+    <div
+      class="bb-dashed mb-4 flex items-center justify-between pb-4 lg:mb-6 lg:pb-6"
+    >
       <h4 class="h4">Add a Mother</h4>
     </div>
     <form [formGroup]="motherForm" (ngSubmit)="onSubmit()">
@@ -35,10 +42,14 @@
           <span
             class="text-secondary2"
             *ngIf="motherForm.get('first_name')?.errors?.['required']"
-            >{{ "First Name is required" }}</span
+            >{{
+              "First Name is
+            required"
+            }}</span
           >
           }
         </div>
+
         <div class="col-span-2">
           <label for="last_name" class="mb-4 block font-medium md:text-lg">
             Last Name
@@ -56,11 +67,40 @@
           <span
             class="text-secondary2"
             *ngIf="motherForm.get('last_name')?.errors?.['required']"
-            >{{ "Last Name is required" }}</span
+            >{{
+              "Last Name is
+            required"
+            }}</span
           >
           }
         </div>
-        <div class="col-span-2">
+
+        <div class="col-span-2 md:col-span-1">
+          <label for="hospital_id" class="mb-4 block font-medium md:text-lg">
+            Hospital ID
+          </label>
+          <input
+            type="text"
+            class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3"
+            placeholder="Enter Hospital ID"
+            id="hospital_id"
+            formControlName="hospital_id"
+            required
+          />
+          @if (motherForm.get('hospital_id')?.errors &&
+          motherForm.get('hospital_id')?.touched) {
+          <span
+            class="text-secondary2"
+            *ngIf="motherForm.get('hospital_id')?.errors?.['required']"
+            >{{
+              "Hospital ID is
+            required"
+            }}</span
+          >
+          }
+        </div>
+
+        <div class="col-span-2 md:col-span-1">
           <label for="age" class="mb-4 block font-medium md:text-lg">
             Age
           </label>
@@ -72,8 +112,8 @@
             id="age"
             required
           />
-          @if (motherForm.get('age')?.errors &&
-          motherForm.get('age')?.touched) {
+          @if (motherForm.get('age')?.errors && motherForm.get('age')?.touched)
+          {
           <span
             class="text-secondary2"
             *ngIf="motherForm.get('age')?.errors?.['required']"
@@ -81,6 +121,7 @@
           >
           }
         </div>
+
         <div class="col-span-2 md:col-span-1">
           <label for="blood_group" class="mb-4 block font-medium md:text-lg">
             Blood Group
@@ -93,16 +134,20 @@
             [multiple]="false"
             [searchable]="false"
             class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-0.5 dark:border-n500 dark:bg-bg3 md:py-1"
-            ></ng-select>
-            @if (motherForm.get('blood_group')?.errors &&
-            motherForm.get('blood_group')?.touched) {
-            <span
-              class="text-secondary2"
-              *ngIf="motherForm.get('blood_group')?.errors?.['required']"
-              >{{ "Blood Group is required" }}</span
-            >
-            }
+          ></ng-select>
+          @if (motherForm.get('blood_group')?.errors &&
+          motherForm.get('blood_group')?.touched) {
+          <span
+            class="text-secondary2"
+            *ngIf="motherForm.get('blood_group')?.errors?.['required']"
+            >{{
+              "Blood Group is
+            required"
+            }}</span
+          >
+          }
         </div>
+
         <div class="col-span-2 md:col-span-1">
           <label for="genotype" class="mb-4 block font-medium md:text-lg">
             Genotype
@@ -115,38 +160,20 @@
             [multiple]="false"
             [searchable]="false"
             class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-0.5 dark:border-n500 dark:bg-bg3 md:py-1"
-            ></ng-select>
-            @if (motherForm.get('genotype')?.errors &&
-            motherForm.get('genotype')?.touched) {
-            <span
-              class="text-secondary2"
-              *ngIf="motherForm.get('genotype')?.errors?.['required']"
-              >{{ "Genotype is required" }}</span
-            >
-            }
-        </div>
-        <div class="col-span-2">
-          <label for="hospital" class="mb-4 block font-medium md:text-lg">
-            Hospital
-          </label>
-          <ng-select
-          formControlName="hospital_id"
-          [items]="bloodGroups"
-          bindLabel="name"
-          bindValue="id"
-          [multiple]="false"
-          [searchable]="false"
-          class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-0.5 dark:border-n500 dark:bg-bg3 md:py-1"
           ></ng-select>
-          @if (motherForm.get('hospital_id')?.errors &&
-          motherForm.get('hospital_id')?.touched) {
+          @if (motherForm.get('genotype')?.errors &&
+          motherForm.get('genotype')?.touched) {
           <span
             class="text-secondary2"
-            *ngIf="motherForm.get('hospital_id')?.errors?.['required']"
-            >{{ "Hospital is required" }}</span
+            *ngIf="motherForm.get('genotype')?.errors?.['required']"
+            >{{
+              "Genotype is
+            required"
+            }}</span
           >
           }
         </div>
+
         <div class="col-span-2 md:col-span-1">
           <label for="nationality" class="mb-4 block font-medium md:text-lg">
             Nationality
@@ -164,16 +191,20 @@
           <span
             class="text-secondary2"
             *ngIf="motherForm.get('nationality')?.errors?.['required']"
-            >{{ "Nationality is required" }}</span
+            >{{
+              "Nationality is
+            required"
+            }}</span
           >
           }
         </div>
+
         <div class="col-span-2 md:col-span-1">
           <label for="email" class="mb-4 block font-medium md:text-lg">
             Email
           </label>
           <input
-            type="email"
+            type="text"
             class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3"
             placeholder="Enter Email"
             formControlName="email"
@@ -187,10 +218,50 @@
             *ngIf="motherForm.get('email')?.errors?.['required']"
             >{{ "Email is required" }}</span
           >
+          <span
+            class="text-secondary2"
+            *ngIf="motherForm.get('email')?.errors?.['email']"
+            >{{ "Email isn't valid" }}</span
+          >
+          }
+        </div>
+
+        <div class="col-span-2 md:col-span-1">
+          <label for="password" class="mb-4 block font-medium md:text-lg">
+            Password
+          </label>
+          <input
+            type="text"
+            class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3"
+            placeholder="Enter Password"
+            id="password"
+            formControlName="password"
+            required
+          />
+          @if (motherForm.get('password')?.errors &&
+          motherForm.get('password')?.touched) {
+          <span
+            class="text-secondary2"
+            *ngIf="motherForm.get('password')?.errors?.['required']"
+            >{{
+              "Password is
+            required"
+            }}</span
+          >
+          <span
+            class="text-secondary2"
+            *ngIf="motherForm.get('password')?.errors?.['minLength']"
+            >{{
+              "Password should be
+            at least 8 character"
+            }}</span
+          >
           }
         </div>
         <div class="col-span-2 mt-4">
-          <button class="btn flex w-full justify-center" type="submit">Save</button>
+          <button class="btn flex w-full justify-center" type="submit">
+            Save
+          </button>
         </div>
       </div>
     </form>

@@ -23,7 +23,8 @@ import { AuthLayoutComponent } from "./components/layouts/auth-layout/auth-layou
 import { ErrorComponent } from "./pages/auth/error/error.component";
 import { LandingComponent } from "@pages/landing/landing.component";
 import { AuthGuard } from "./guards/auth.guard";
-import { MothersDataComponent } from "@pages/dashboards/mothers-data/mothers-data.component";
+import { MothersDataComponent } from "@pages/mother-management/mothers-data/mothers-data.component";
+import { AddMotherComponent } from "@pages/mother-management/add-mother/add-mother.component";
 
 export const routes: Routes = [
   {
@@ -53,8 +54,22 @@ export const routes: Routes = [
         children: [{ path: "", component: MainDashboardComponent }],
       },
       {
-        path: "mother",
-        children: [{ path: "", component: MothersDataComponent }],
+        path: "mothers",
+        children: [
+          { path: "mothers-data", component: MothersDataComponent },
+          {
+            path: "add-mother",
+            component: AddMotherComponent,
+          },
+          {
+            path: "edit-mother/:id",
+            component: AddMotherComponent,
+          },
+          {
+            path: "view-mother/:id",
+            component: AddMotherComponent,
+          },
+        ],
       },
       {
         path: "child",
@@ -67,6 +82,8 @@ export const routes: Routes = [
         path: "arm",
         children: [
           { path: "add-arm", component: AddArmComponent },
+          { path: "edit-arm/:id", component: AddArmComponent },
+          { path: "view-arm/:id", component: AddArmComponent },
           {
             path: "antenatal-records",
             component: AntenatalRecordsOverviewComponent,
@@ -80,6 +97,14 @@ export const routes: Routes = [
           {
             path: "supplement-overview",
             component: SupplementOverviewComponent,
+          },
+          {
+            path: "edit-supplement/:id",
+            component: AddSupplementComponent,
+          },
+          {
+            path: "view-supplement/:id",
+            component: AddSupplementComponent,
           },
         ],
       },

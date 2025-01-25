@@ -1,11 +1,25 @@
-<app-top-banner title="Add Antenatal Record" />
+<app-top-banner
+  title="{{
+    isView
+      ? 'View Antenatal Record'
+      : isEdit
+      ? 'Edit Antenatal Record'
+      : 'Add Antenatal Record'
+  }}"
+/>
 
 <div class="box mb-4 xxxl:mb-6">
   <div class="mb-6 pb-6 bb-dashed flex justify-between items-center">
-    <h4 class="h4">Add A Record</h4>
+    <h4 class="h4">
+      {{ isView ? "View Arm" : isEdit ? "Edit Arm" : "Add ARM" }}
+    </h4>
     <!-- <app-options-horiz /> -->
   </div>
-  <form class="grid grid-cols-2 gap-4 xxxl:gap-6" [formGroup]="armForm" (ngSubmit)="onSubmit()">
+  <form
+    class="grid grid-cols-2 gap-4 xxxl:gap-6"
+    [formGroup]="armForm"
+    (ngSubmit)="onSubmit()"
+  >
     <div class="col-span-2 md:col-span-1">
       <label for="name" class="mb-4 md:text-lg font-medium block">
         Patient's Name</label
@@ -13,21 +27,50 @@
       <ng-select
         formControlName="mother_id"
         [items]="mothersList"
-        bindLabel="name"
+        bindLabel="first_name"
         bindValue="id"
         [multiple]="false"
         [searchable]="true"
         class="w-full text-sm bg-secondary1/5 dark:bg-bg3 !border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
-        ></ng-select>
-        @if (armForm.get('mother_id')?.errors &&
-        armForm.get('mother_id')?.touched) {
-        <span
+      ></ng-select>
+      @if (armForm.get('mother_id')?.errors &&
+      armForm.get('mother_id')?.touched) {
+      <span
         class="text-secondary2"
         *ngIf="armForm.get('mother_id')?.errors?.['required']"
-        >{{ "Patient's Name is required" }}</span
-        >
-        }
+        >{{
+          "Patient's Name is
+        required"
+        }}</span
+      >
+      }
     </div>
+
+    <!-- <div class="col-span-2 md:col-span-1">
+      <label for="name" class="mb-4 md:text-lg font-medium block">
+        Patient's Name
+      </label>
+      <input
+        type="text"
+        formControlName="mother_id"
+        class="w-full text-sm bg-secondary1/5 dark:bg-bg3 !border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+        placeholder="Enter name"
+        id="name"
+        required
+      />
+      @if (armForm.get('mother_id')?.errors &&
+      armForm.get('mother_id')?.touched) {
+      <span
+        class="text-secondary2"
+        *ngIf="armForm.get('mother_id')?.errors?.['required']"
+        >{{
+          "Patient's Name is
+        required"
+        }}</span
+      >
+      }
+    </div> -->
+
     <div class="col-span-2 md:col-span-1">
       <label for="weight" class="mb-4 md:text-lg font-medium block">
         Patient's Weight
@@ -40,12 +83,14 @@
         id="weight"
         required
       />
-      @if (armForm.get('weight')?.errors &&
-      armForm.get('weight')?.touched) {
+      @if (armForm.get('weight')?.errors && armForm.get('weight')?.touched) {
       <span
-      class="text-secondary2"
-      *ngIf="armForm.get('weight')?.errors?.['required']"
-      >{{ "Patient's weight is required" }}</span
+        class="text-secondary2"
+        *ngIf="armForm.get('weight')?.errors?.['required']"
+        >{{
+          "Patient's weight is
+        required"
+        }}</span
       >
       }
     </div>
@@ -64,9 +109,12 @@
       @if (armForm.get('blood_pressure')?.errors &&
       armForm.get('blood_pressure')?.touched) {
       <span
-      class="text-secondary2"
-      *ngIf="armForm.get('blood_pressure')?.errors?.['required']"
-      >{{ "Patient's Blood Pressure is required" }}</span
+        class="text-secondary2"
+        *ngIf="armForm.get('blood_pressure')?.errors?.['required']"
+        >{{
+          "Patient's Blood
+        Pressure is required"
+        }}</span
       >
       }
     </div>
@@ -82,14 +130,16 @@
         id="tests"
         required
       />
-      @if (armForm.get('tests')?.errors &&
-      armForm.get('tests')?.touched) {
+      <!-- @if (armForm.get('tests')?.errors && armForm.get('tests')?.touched) {
       <span
-      class="text-secondary2"
-      *ngIf="armForm.get('tests')?.errors?.['required']"
-      >{{ "Carried out tests are required" }}</span
+        class="text-secondary2"
+        *ngIf="armForm.get('tests')?.errors?.['required']"
+        >{{
+          "Carried out tests are
+        required"
+        }}</span
       >
-      }
+      } -->
     </div>
     <div class="col-span-2 md:col-span-1">
       <label for="remarks" class="mb-4 md:text-lg font-medium block">
@@ -105,14 +155,13 @@
         id="remarks"
         required
       ></textarea>
-      @if (armForm.get('remark')?.errors &&
-      armForm.get('remark')?.touched) {
+      <!-- @if (armForm.get('remark')?.errors && armForm.get('remark')?.touched) {
       <span
-      class="text-secondary2"
-      *ngIf="armForm.get('remark')?.errors?.['required']"
-      >{{ "Doctors remark is required" }}</span
+        class="text-secondary2"
+        *ngIf="armForm.get('remark')?.errors?.['required']"
+        >{{ "Doctors remark is required" }}</span
       >
-      }
+      } -->
     </div>
     <!-- <div class="col-span-2 md:col-span-1">
       <label for="medium" class="mb-4 md:text-lg font-medium block"> Created Date </label>
@@ -126,9 +175,11 @@
       </div>
     </div> -->
 
-    <div class="col-span-2 flex gap-4 md:gap-6 mt-2">
+    <div class="col-span-2 flex gap-4 md:gap-6 mt-2" *ngIf="!isView">
       <button class="btn" type="submit">Submit Record</button>
-      <button class="btn-outline" (click)="armForm.reset()" type="reset">Reset Fields</button>
+      <button class="btn-outline" (click)="armForm.reset()" type="reset">
+        Reset Fields
+      </button>
     </div>
   </form>
 </div>

@@ -7,12 +7,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { DropdownComponent } from "@component/shared/dropdown/dropdown.component";
-import { OptionsHorizComponent } from "@component/shared/options-horiz/options-horiz.component";
+import { ActivatedRoute, Router } from "@angular/router";
 import { TopBannerComponent } from "@component/shared/top-banner/top-banner.component";
 import { NgSelectModule } from "@ng-select/ng-select";
+import { IGetArm } from "@pages/models/arm-supp.model";
 import { ArmSuppService } from "@service/arm-supp.service";
+import { MotherChildService } from "@service/mother-child.service";
 import { NotifyService } from "@service/notify.service";
+import { SharedService } from "@service/shared.service";
 import { CalendarModule } from "primeng/calendar";
 
 @Component({
@@ -33,13 +35,23 @@ export class AddArmComponent implements OnInit {
   date: Date | undefined;
   mothersList: any;
 
+  isView: boolean = false;
+  isEdit: boolean = false;
+
+  armData: any;
+
   constructor(
     private fb: FormBuilder,
     private armSrv: ArmSuppService,
-    private notify: NotifyService
+    private notify: NotifyService,
+    private router: Router,
+    private mothersSrv: MotherChildService,
+    private activatedRoute: ActivatedRoute,
+    private sharedSrv: SharedService
   ) {}
 
   ngOnInit(): void {
+    this.fetchAllMothers();
     this.formInit();
   }
 
@@ -48,24 +60,74 @@ export class AddArmComponent implements OnInit {
       mother_id: ["", Validators.required],
       weight: ["", Validators.required],
       blood_pressure: ["", Validators.required],
-      remark: ["", Validators.required],
-      tests: ["", Validators.required],
+      remark: [""],
+      tests: [""],
+    });
+
+    this.isView = this.sharedSrv.getViewMode();
+    this.isEdit = this.sharedSrv.getViewMode();
+
+    const id = this.activatedRoute.snapshot.paramMap.get("id");
+
+    if (id) {
+      this.getArmById(id);
+    }
+  }
+
+  getArmById(id: string) {
+    this.armSrv.getArmByMotherID(id).subscribe({
+      next: (res) => {
+        this.armData = res;
+        this.armForm.patchValue({
+          mother_id: this.armData.mother_id,
+          weight: this.armData.weight,
+          blood_pressure: this.armData.blood_pressure,
+          remark: this.armData.remark,
+          tests: this.armData.tests,
+        });
+
+        if (this.isView) {
+          this.armForm.disable();
+        }
+      },
+    });
+  }
+
+  fetchAllMothers() {
+    this.mothersSrv.getAllMothers().subscribe({
+      next: (res) => {
+        this.mothersList = res;
+      },
+      error: (err) => {
+        console.log(err);
+        // this.notify.notifyError(err.message);
+      },
     });
   }
 
   onSubmit() {
     this.armForm.markAllAsTouched();
-    if (this.armForm.valid) {
-      this.armSrv.addARM(this.armForm.value).subscribe({
-        next: (res) => {
-          this.notify.notifySuccess("Antenatal Record Added Successfully");
-          this.armForm.reset();
-        },
-        error: (err) => {
-          this.notify.notifyError(err.message);
-        },
-      });
-      console.log(this.armForm.value);
+    if (this.armForm.invalid) {
+      this.notify.notifyInfo("Please fill all fields");
     }
+
+    const payload: IGetArm = {
+      mother_id: this.armForm.get("mother_id")?.value,
+      weight: this.armForm.get("weight")?.value,
+      blood_pressure: this.armForm.get("blood_pressure")?.value,
+      remark: this.armForm.get("remark")?.value,
+      tests: this.armForm.get("tests")?.value,
+    };
+    this.armSrv.addARM(payload).subscribe({
+      next: (res) => {
+        this.notify.notifySuccess("Antenatal Record Added Successfully");
+        this.armForm.reset();
+        this.router.navigateByUrl("/arm/antenatal-records");
+      },
+      error: (err) => {
+        this.notify.notifyError(err.message);
+      },
+    });
+    console.log(this.armForm.value);
   }
 }

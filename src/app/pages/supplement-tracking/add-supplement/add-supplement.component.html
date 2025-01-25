@@ -1,8 +1,7 @@
 <app-top-banner title="Add Supplement" />
 <div class="box mb-4 xxxl:mb-6">
   <div class="mb-6 pb-6 bb-dashed flex justify-between items-center">
-    <h4 class="h4">Add Supplement</h4>
-    <app-options-horiz />
+    <h4 class="h4">{{ isView ? "View Supplement" : "Add Supplement" }}</h4>
   </div>
   <form
     class="grid grid-cols-2 gap-4 xxxl:gap-6"
@@ -51,7 +50,7 @@
       }
     </div>
 
-    <div class="col-span-2 flex gap-4 md:gap-6 mt-2">
+    <div class="col-span-2 flex gap-4 md:gap-6 mt-2" *ngIf="!isView">
       <button class="btn" type="submit">Save</button>
       <button class="btn-outline" type="reset" (click)="suppForm.reset()">
         Cancel

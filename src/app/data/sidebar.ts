@@ -24,33 +24,49 @@ export const sidebarData: SidebarItem[] = [
   },
   {
     id: 2,
-    name: "Mother and Child Management",
-    icon: "las la-file-invoice",
+    name: "Mother Management",
+    icon: "las la-female",
     submenus: [
-      { title: "Mothers Datas", url: "/mother" },
-      { title: "Add Child", url: "/child/add-child" },
-      { title: "Children Data", url: "/child/children-data" },
-      // { title: "Style 02", url: "/child/style-02" },
+      { title: "Add Mother", url: "/mothers/add-mother" },
+      { title: "Mothers Datas", url: "/mothers/mothers-data" },
     ],
   },
   {
     id: 3,
+    name: "Child Management",
+    icon: "las la-baby",
+    submenus: [
+      { title: "Add Child", url: "/child/add-child" },
+      { title: "Children Data", url: "/child/children-data" },
+    ],
+  },
+  {
+    id: 4,
     name: "Antenatal Record Management",
-    icon: "las la-wallet",
+    icon: "las la-notes-medical",
     submenus: [
       { title: "Add A-R-M", url: "/arm/add-arm" },
       { title: "Antenatal Records", url: "/arm/antenatal-records" },
     ],
   },
   {
-    id: 3,
+    id: 5,
     name: "Supplements Tracking",
-    icon: "las la-coins",
+    icon: "las la-hourglass-half",
     submenus: [
       { title: "Add Supplement", url: "/supplement/add-supplement" },
       { title: "Supplement Overview", url: "/supplement/supplement-overview" },
-      // { title: "Make Transfer", url: "/supplement/make-transfer" },
-      // { title: "Chat", url: "/supplement/chat" },
+    ],
+  },
+  {
+    id: 6,
+    name: "Settings and Support",
+    icon: "las la-cog",
+    submenus: [
+      { title: "Security", url: "/settings/security" },
+      { title: "Social Network", url: "/settings/social-network" },
+      { title: "Notification", url: "/settings/notification" },
+      { title: "Contact Us", url: "/support/contact-us" },
     ],
   },
   // {
@@ -102,19 +118,6 @@ export const sidebarData: SidebarItem[] = [
   //     { title: 'Style 02', url: '/reports/style-02' }
   //   ]
   // },
-  {
-    id: 9,
-    name: "Settings and Support",
-    icon: "las la-cog",
-    submenus: [
-      // { title: "Profile", url: "/settings/profile" },
-      { title: "Security", url: "/settings/security" },
-      { title: "Social Network", url: "/settings/social-network" },
-      { title: "Notification", url: "/settings/notification" },
-      { title: "Contact Us", url: "/support/contact-us" },
-      // { title: 'Payment Limits', url: '/settings/payment-limits' }
-    ],
-  },
   // {
   //   id: 10,
   //   name: 'Authentication',

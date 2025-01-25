@@ -1,269 +1,201 @@
-<app-top-banner title="Add Child" />
+<app-top-banner
+  title="{{ isView ? 'View Arm' : isEdit ? 'Edit Arm' : 'Add ARM' }}"
+/>
 
 <div class="box mb-4 xxxl:mb-6">
-	<div class="mb-6 pb-6 bb-dashed flex justify-between items-center">
-		<h4 class="h4">Child Details</h4>
-		<app-options-horiz />
-	</div>
-	<form class="flex flex-col gap-6" [formGroup]="childForm" (ngSubmit)="onSubmit()">
-		<div
-			class="box bg-secondary1/5 dark:bg-bg3 xl:p-8 grid grid-cols-2 gap-4 xxl:gap-6"
-		>
-			<div class="col-span-2 flex justify-center items-center gap-6">
-				<div class="w-full h-px bg-secondary1 bg-opacity-[0.15]"></div>
-				<span
-					class="btn-white dark:bg-bg4 text-secondary1 font-semibold hover:text-secondary1"
-				>
-					Parent Details
-				</span>
-				<div class="w-full h-px bg-secondary1 bg-opacity-[0.15]"></div>
-			</div>
+  <div class="mb-6 pb-6 bb-dashed flex justify-between items-center">
+    <h4 class="h4">Child Details</h4>
+  </div>
+  <form
+    class="flex flex-col gap-6"
+    [formGroup]="childForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div
+      class="box bg-secondary1/5 dark:bg-bg3 xl:p-8 grid grid-cols-2 gap-4 xxl:gap-6"
+    >
+      <div class="col-span-2 md:col-span-1">
+        <label for="firstName" class="md:text-lg font-medium block mb-4">
+          First Name
+        </label>
+        <input
+          type="text"
+          class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+          placeholder="Enter First Name"
+          id="firstName"
+          formControlName="first_name"
+          required
+        />
+        @if (childForm.get('first_name')?.errors &&
+        childForm.get('first_name')?.touched) {
+        <span
+          class="text-secondary2"
+          *ngIf="childForm.get('first_name')?.errors?.['required']"
+          >{{ "First Name is required" }}</span
+        >
+        }
+      </div>
+      <div class="col-span-2 md:col-span-1">
+        <label for="lastName" class="md:text-lg font-medium block mb-4">
+          Last Name
+        </label>
+        <input
+          type="text"
+          class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+          placeholder="Enter Last Name"
+          id="lastName"
+          formControlName="last_name"
+          required
+        />
+        @if (childForm.get('last_name')?.errors &&
+        childForm.get('last_name')?.touched) {
+        <span
+          class="text-secondary2"
+          *ngIf="childForm.get('last_name')?.errors?.['required']"
+          >{{ "Last Name is required" }}</span
+        >
+        }
+      </div>
 
-			<div class="col-span-2 md:col-span-1">
-				<label for="parent_name" class="mb-4 md:text-lg font-medium block">
-					Parent Name
-				</label>
-				<ng-select
-				  formControlName="parent_name"
-				  [items]="bloodGroups"
-				  bindLabel="name"
-				  bindValue="id"
-				  [multiple]="false"
-				  [searchable]="true"
-				  class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
-				  ></ng-select>
-				  @if (childForm.get('parent_name')?.errors &&
-				  childForm.get('parent_name')?.touched) {
-				  <span
-					class="text-secondary2"
-					*ngIf="childForm.get('parent_name')?.errors?.['required']"
-					>{{ "Parent Name is required" }}</span
-				  >
-				  }
-				<!-- <app-dropdown
-					[options]="parentName"
-					btnClassProps="w-full !py-3 bg-n0 dark:bg-bg4 rounded-3xl"
-					dropdownClassProps="w-full"
-				/> -->
-			</div>
+      <div class="col-span-2 md:col-span-1">
+        <label for="category" class="mb-4 md:text-lg font-medium block">
+          Blood Groups
+        </label>
+        <ng-select
+          formControlName="blood_group"
+          [items]="bloodGroups"
+          bindLabel="name"
+          bindValue="id"
+          [multiple]="false"
+          [searchable]="false"
+          class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+        ></ng-select>
+        @if (childForm.get('blood_group')?.errors &&
+        childForm.get('blood_group')?.touched) {
+        <span
+          class="text-secondary2"
+          *ngIf="childForm.get('blood_group')?.errors?.['required']"
+          >{{ "Blood Group is required" }}</span
+        >
+        }
+      </div>
 
-			<div class="col-span-2 md:col-span-1">
-				<label for="parent_email" class="mb-4 md:text-lg font-medium block">
-					Parent Email
-				</label>
-				<ng-select
-				  formControlName="parent_email"
-				  [items]="bloodGroups"
-				  bindLabel="name"
-				  bindValue="id"
-				  [multiple]="false"
-				  [searchable]="true"
-				  class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
-				  ></ng-select>
-				  @if (childForm.get('parent_email')?.errors &&
-				  childForm.get('parent_email')?.touched) {
-				  <span
-					class="text-secondary2"
-					*ngIf="childForm.get('parent_email')?.errors?.['required']"
-					>{{ "Parent Email is required" }}</span
-				  >
-				  }
-				<!-- <app-dropdown
-					[options]="parentEmail"
-					btnClassProps="w-full !py-3 bg-n0 dark:bg-bg4 rounded-3xl"
-					dropdownClassProps="w-full"
-				/> -->
-			</div>
-		</div>
+      <div class="col-span-2 md:col-span-1">
+        <label for="category" class="mb-4 md:text-lg font-medium block">
+          Genotypes
+        </label>
+        <ng-select
+          formControlName="genotype"
+          [items]="genotypes"
+          bindLabel="name"
+          bindValue="id"
+          [multiple]="false"
+          [searchable]="false"
+          class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+        ></ng-select>
+        @if (childForm.get('genotype')?.errors &&
+        childForm.get('genotype')?.touched) {
+        <span
+          class="text-secondary2"
+          *ngIf="childForm.get('genotype')?.errors?.['required']"
+          >{{ "Genotype is required" }}</span
+        >
+        }
+      </div>
 
-		<div
-			class="box bg-secondary1/5 dark:bg-bg3 xl:p-8 grid grid-cols-2 gap-4 xxl:gap-6"
-		>
-			<div class="col-span-2 flex justify-center items-center gap-6">
-				<div class="w-full h-px bg-secondary1 bg-opacity-[0.15]"></div>
-				<span
-					class="btn-white dark:bg-bg4 shrink-0 text-secondary1 font-semibold hover:text-secondary1"
-				>
-					Child Details
-				</span>
-				<div class="w-full h-px bg-secondary1 bg-opacity-[0.15]"></div>
-			</div>
-			<div class="col-span-2 md:col-span-1">
-				<label for="firstName" class="md:text-lg font-medium block mb-4">
-					First Name
-				</label>
-				<input
-					type="text"
-					class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
-					placeholder="Enter First Name"
-					id="firstName"
-					formControlName="first_name"
-					required
-				/>
-				@if (childForm.get('first_name')?.errors && childForm.get('first_name')?.touched)
-				{
-				<span
-					class="text-secondary2"
-					*ngIf="childForm.get('first_name')?.errors?.['required']"
-					>{{ "First Name is required" }}</span
-				>
-				}
-			</div>
-			<div class="col-span-2 md:col-span-1">
-				<label for="lastName" class="md:text-lg font-medium block mb-4">
-					Last Name
-				</label>
-				<input
-					type="text"
-					class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
-					placeholder="Enter Last Name"
-					id="lastName"
-					formControlName="last_name"
-					required
-				/>
-				@if (childForm.get('last_name')?.errors && childForm.get('last_name')?.touched)
-				{
-				<span
-					class="text-secondary2"
-					*ngIf="childForm.get('last_name')?.errors?.['required']"
-					>{{ "Last Name is required" }}</span
-				>
-				}
-			</div>
+      <div class="col-span-2 md:col-span-1">
+        <label for="weight" class="md:text-lg font-medium block mb-4">
+          Weight
+        </label>
+        <input
+          type="text"
+          class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+          placeholder="Enter Weight"
+          formControlName="weight"
+          id="weight"
+          required
+        />
+        @if (childForm.get('weight')?.errors &&
+        childForm.get('weight')?.touched) {
+        <span
+          class="text-secondary2"
+          *ngIf="childForm.get('weight')?.errors?.['required']"
+          >{{ "Weight is required" }}</span
+        >
+        }
+      </div>
+      <div class="col-span-2 md:col-span-1">
+        <label for="nationality" class="md:text-lg font-medium block mb-4">
+          Nationality
+        </label>
+        <input
+          type="text"
+          class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+          placeholder="Enter Nationality"
+          formControlName="nationality"
+          id="nationality"
+          required
+        />
+        @if (childForm.get('nationality')?.errors &&
+        childForm.get('nationality')?.touched) {
+        <span
+          class="text-secondary2"
+          *ngIf="childForm.get('nationality')?.errors?.['required']"
+          >{{ "Nationality is required" }}</span
+        >
+        }
+      </div>
 
-			<div class="col-span-2 md:col-span-1">
-				<label for="category" class="mb-4 md:text-lg font-medium block">
-					Blood Groups
-				</label>
-				<ng-select
-				  formControlName="blood_group"
-				  [items]="bloodGroups"
-				  bindLabel="name"
-				  bindValue="id"
-				  [multiple]="false"
-				  [searchable]="false"
-				  class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
-				  ></ng-select>
-				  @if (childForm.get('blood_group')?.errors &&
-				  childForm.get('blood_group')?.touched) {
-				  <span
-					class="text-secondary2"
-					*ngIf="childForm.get('blood_group')?.errors?.['required']"
-					>{{ "Blood Group is required" }}</span
-				  >
-				  }
-			</div>
+      <div class="col-span-2 md:col-span-1">
+        <label for="age" class="md:text-lg font-medium block mb-4">
+          Child's Age
+        </label>
+        <input
+          type="text"
+          class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+          placeholder="Enter Age"
+          formControlName="age"
+          id="age"
+          required
+        />
+        @if (childForm.get('age')?.errors && childForm.get('age')?.touched) {
+        <span
+          class="text-secondary2"
+          *ngIf="childForm.get('age')?.errors?.['required']"
+          >{{ "Child's Age is required" }}</span
+        >
+        }
+      </div>
 
-			<div class="col-span-2 md:col-span-1">
-				<label for="category" class="mb-4 md:text-lg font-medium block">
-					Genotypes
-				</label>
-				<ng-select
-				  formControlName="genotype"
-				  [items]="genotypes"
-				  bindLabel="name"
-				  bindValue="id"
-				  [multiple]="false"
-				  [searchable]="false"
-				  class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
-				  ></ng-select>
-				  @if (childForm.get('genotype')?.errors &&
-				  childForm.get('genotype')?.touched) {
-				  <span
-					class="text-secondary2"
-					*ngIf="childForm.get('genotype')?.errors?.['required']"
-					>{{ "Genotype is required" }}</span
-				  >
-				  }
-			</div>
-			<!-- <div class="col-span-2 md:col-span-1">
-				<label for="date" class="md:text-lg font-medium block mb-4">
-					Due Date
-				</label>
-				<div
-					class="relative bg-n0 py-2.5 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl pl-1"
-				>
-					<p-calendar
-						[(ngModel)]="date"
-						styleClass="bg-white"
-						name="date"
-						placeholder="Select Date"
-						inputStyleClass="px-5  focus:outline-none bg-n0 dark:bg-bg4 w-full rounded-none focus:shadow-none active:shadow-none"
-						panelStyleClass="bg-n0 dark:bg-bg3 rounded-lg"
-					></p-calendar>
-					<i
-						class="las la-calendar absolute ltr:right-4 rtl:left-4 top-1/2 -translate-y-1/2 cursor-pointer"
-					></i>
-				</div>
-			</div> -->
+      <div class="col-span-2 md:col-span-1">
+        <label for="parent_email" class="mb-4 md:text-lg font-medium block">
+          Parent Email
+        </label>
+        <ng-select
+          formControlName="parent_email"
+          [items]="parentData"
+          bindLabel="email"
+          bindValue="id"
+          [multiple]="false"
+          [searchable]="true"
+          class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+        ></ng-select>
+        @if (childForm.get('parent_email')?.errors &&
+        childForm.get('parent_email')?.touched) {
+        <span
+          class="text-secondary2"
+          *ngIf="childForm.get('parent_email')?.errors?.['required']"
+          >{{ "Parent Email is required" }}</span
+        >
+        }
+      </div>
+    </div>
 
-			<div class="col-span-2 md:col-span-1">
-				<label for="weight" class="md:text-lg font-medium block mb-4">
-					Weight
-				</label>
-				<input
-					type="text"
-					class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
-					placeholder="Enter Weight"
-					formControlName="weight"
-					id="weight"
-					required
-				/>
-				@if (childForm.get('weight')?.errors && childForm.get('weight')?.touched)
-				{
-				<span
-					class="text-secondary2"
-					*ngIf="childForm.get('weight')?.errors?.['required']"
-					>{{ "Weight is required" }}</span
-				>
-				}
-			</div>
-			<div class="col-span-2 md:col-span-1">
-				<label for="nationality" class="md:text-lg font-medium block mb-4">
-					Nationality
-				</label>
-				<input
-					type="text"
-					class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
-					placeholder="Enter Nationality"
-					formControlName="nationality"
-					id="nationality"
-					required
-				/>
-				@if (childForm.get('nationality')?.errors && childForm.get('nationality')?.touched)
-				{
-				<span
-					class="text-secondary2"
-					*ngIf="childForm.get('nationality')?.errors?.['required']"
-					>{{ "Nationality is required" }}</span
-				>
-				}
-			</div>
-			<div class="col-span-2 md:col-span-1">
-				<label for="age" class="md:text-lg font-medium block mb-4">
-					Age
-				</label>
-				<input
-					type="number"
-					class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
-					placeholder="Enter Age"
-					formControlName="age"
-					id="age"
-					required
-				/>
-				@if (childForm.get('age')?.errors && childForm.get('age')?.touched)
-				{
-				<span
-					class="text-secondary2"
-					*ngIf="childForm.get('age')?.errors?.['required']"
-					>{{ "Age is required" }}</span
-				>
-				}
-			</div>
-		</div>
-
-		<div class="flex gap-4 md:gap-6 mt-2">
-			<button class="btn" type="submit">Save</button>
-		</div>
-	</form>
+    <div class="col-span-2 flex gap-4 md:gap-6 mt-2" *ngIf="!isView">
+      <button class="btn" type="submit">Save</button>
+      <button class="btn-outline" (click)="childForm.reset()" type="reset">
+        Reset Fields
+      </button>
+    </div>
+  </form>
 </div>

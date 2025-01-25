@@ -7,6 +7,8 @@ import { TableService } from "@service/table.service";
 import { OptionsVerticalComponent } from "../../../components/shared/options-vertical/options-vertical.component";
 import { MotherChildService } from "@service/mother-child.service";
 import { NotifyService } from "@service/notify.service";
+import { SharedService } from "@service/shared.service";
+import { Router } from "@angular/router";
 @Component({
   selector: "mothers",
   standalone: true,
@@ -21,31 +23,41 @@ export class MothersDataComponent {
   // currentFilter = this.filters[0];
   constructor(
     private motherSrv: MotherChildService,
-    private notify: NotifyService
+    private notify: NotifyService,
+    private sharedSrv: SharedService,
+    private router: Router
   ) {
     this.mothers = new TableService();
     this.mothers.initialize(this.motherData, 12);
   }
-  // setFilter(filter: string) {
-  // 	this.currentFilter = filter;
-  // 	if (filter == "all") {
-  // 		this.mothers.initialize(this.motherData, 12);
-  // 		this.pages = Array.from(
-  // 			{ length: this.mothers.totalPages },
-  // 			(_, i) => i + 1
-  // 		);
-  // 	} else {
-  // 		const result = this.motherData.filter((item: any) => item.status == filter);
-  // 		this.mothers.initialize(result);
-  // 		this.mothers.paginate(1);
-  // 		this.pages = [1];
-  // 	}
-  // }
   ngOnInit() {
+    this.getMothers();
     this.pages = Array.from(
       { length: this.mothers.totalPages },
       (_, i) => i + 1
     );
+  }
+
+  onEdit(id: string) {
+    this.sharedSrv.setViewMode(false);
+    this.router.navigateByUrl("/mothers/edit-mother/" + id);
+  }
+
+  onView(id: string) {
+    this.sharedSrv.setViewMode(true);
+    this.router.navigateByUrl("/mothers/view-mother/" + id);
+    // const data = this.motherData.find((item: any) => item.id === id);
+    // this.router.navigate(["/mothers/view-mother/"], {queryParams: {id: data.id}});
+  }
+
+  onDelete(id: string) {
+    this.motherSrv.deleteMother(id).subscribe({
+      next: (res) => {
+        this.notify.notifySuccess("Mother deleted successfully");
+        this.getMothers();
+      },
+      error: (err) => {},
+    });
   }
 
   getMothers() {

@@ -1,9 +1,9 @@
 <app-top-banner title="Antenatal Records Management" />
 <div class="grid grid-cols-12 gap-4 xxl:gap-6">
-	<div class="col-span-12">
-		<!-- Recent Payments -->
-		<div class="box col-span-12 lg:col-span-6">
-			<!-- <div
+  <div class="col-span-12">
+    <!-- Recent Payments -->
+    <div class="box col-span-12 lg:col-span-6">
+      <!-- <div
 				class="flex flex-wrap gap-4 justify-between items-center bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6"
 			>
 				<h4 class="h4">Recent Payments</h4>
@@ -28,149 +28,135 @@
 					</div>
 				</div>
 			</div> -->
-			<div class="overflow-x-auto mb-4 lg:mb-6">
-				<table class="w-full whitespace-nowrap">
-					<thead>
-						<tr class="bg-[#334CAE]/5 dark:bg-bg3">
-							<th
-								(click)="arm.sortData('mother_id')"
-								class="text-start py-5 px-6 cursor-pointer min-w-[250px]"
-							>
-								<div class="flex items-center gap-1">
-									Patient's Name <i class="las la-exchange-alt rotate-90 text-base"></i>
-								</div>
-							</th>
-							<th
-								(click)="arm.sortData('weight')"
-								class="text-start py-5 min-w-[100px]"
-							>
-								Weight <i class="las la-exchange-alt rotate-90 text-base"></i>
-							</th>
-							<th
-								(click)="arm.sortData('blood_pressure')"
-								class="text-start py-5 min-w-[120px] cursor-pointer"
-							>
-								<div class="flex items-center gap-1">
-									Blood Pressure <i class="las la-exchange-alt rotate-90 text-base"></i>
-								</div>
-							</th>
-							<th
-								(click)="arm.sortData('tests')"
-								class="text-start py-5 min-w-[130px]"
-							>
-								Tests <i class="las la-exchange-alt rotate-90 text-base"></i>
-							</th>
-							<th
+      <div class="overflow-x-auto mb-4 lg:mb-6">
+        <table class="w-full whitespace-nowrap">
+          <thead>
+            <tr class="bg-[#334CAE]/5 dark:bg-bg3">
+              <th
+                (click)="arm.sortData('mother_id')"
+                class="text-start py-5 px-6 cursor-pointer min-w-[250px]"
+              >
+                <div class="flex items-center gap-1">
+                  Patient's Name
+                  <i class="las la-exchange-alt rotate-90 text-base"></i>
+                </div>
+              </th>
+              <th
+                (click)="arm.sortData('weight')"
+                class="text-start py-5 min-w-[100px]"
+              >
+                Weight <i class="las la-exchange-alt rotate-90 text-base"></i>
+              </th>
+              <th
+                (click)="arm.sortData('blood_pressure')"
+                class="text-start py-5 min-w-[120px] cursor-pointer"
+              >
+                <div class="flex items-center gap-1">
+                  Blood Pressure
+                  <i class="las la-exchange-alt rotate-90 text-base"></i>
+                </div>
+              </th>
+              <th
+                (click)="arm.sortData('tests')"
+                class="text-start py-5 min-w-[130px]"
+              >
+                Tests <i class="las la-exchange-alt rotate-90 text-base"></i>
+              </th>
+              <!-- <th
 								(click)="arm.sortData('date_created')"
 								class="text-start py-5 min-w-[130px] cursor-pointer"
 							>
 								<div class="flex items-center gap-1">
 									Created Date <i class="las la-exchange-alt rotate-90 text-base"></i>
 								</div>
-							</th>
-							<!-- <th
-								(click)="arm.sortData('time')"
-								class="text-start py-5 min-w-[130px]"
-							>
-								Time <i class="las la-exchange-alt rotate-90 text-base"></i>
-							</th>
-							<th
-								(click)="arm.sortData('status')"
-								class="text-start py-5 cursor-pointer"
-							>
-								<div class="flex items-center gap-1">
-									Status <i class="las la-exchange-alt rotate-90 text-base"></i>
-								</div>
 							</th> -->
-							<th class="text-center p-5">Action</th>
-						</tr>
-					</thead>
-					<tbody>
-						@for (item of arm.paginatedData; track item.id;let i =
-						$index) {
-						<tr
-							class="hover:bg-[#334CAE]/5 dark:hover:bg-bg3 duration-500 border-b border-n30 dark:border-n500 first:border-t"
-						>
-							<td class="py-5 px-6">
-								<div class="flex items-center gap-3">
-									<i class="las la-file text-[#334CAE]"></i>
-									<span class="font-medium"> {{ item.mother_id }} </span>
-								</div>
-							</td>
-							<td class="py-5">
-								<p class="font-medium">{{ item.weight }}</p>
-							</td>
-							<td class="py-5">
-								<span> {{ item.blood_pressure }} </span>
-							</td>
-							<td class="py-5">{{ item.tests }}</td>
-							<td class="py-5">$ {{ item.date_created }}</td>
-							<!-- <td>{{ item.time }}</td>
-							<td class="py-5">
-								<span
-									[ngClass]="{
-										'text-[#334CAE] bg-[#334CAE]/10': item.status == 'active',
-										'text-secondary2 bg-secondary2/20':
-											item.status == 'cancelled',
-										'text-secondary3 bg-secondary3/10': item.status == 'paused'
-									}"
-									class="block w-28 rounded-[30px] border border-n30 bg-[#334CAE]/10 py-2 text-center text-xs text-[#334CAE] dark:border-n500 dark:bg-bg3 xxl:w-36"
-								>
-									{{ item.status }}
-								</span>
-							</td> -->
-							<td class="py-5">
-								<div class="flex justify-center">
-									<app-options-vertical></app-options-vertical>
-								</div>
-							</td>
-						</tr>
-						}
-					</tbody>
-				</table>
-			</div>
-			<div
-				class="flex col-span-12 gap-4 sm:justify-between justify-center items-center flex-wrap"
-			>
-				<p>
-					Showing {{ arm.startIndex + 1 }} to
-					{{ arm.endIndex + 1 }} of
-					{{ arm.totalData }} entries
-				</p>
-				<ul class="flex gap-2 md:gap-3 flex-wrap md:font-semibold items-center">
-					<li>
-						<button
-							[disabled]="arm.currentPage == 1"
-							(click)="arm.prevPage()"
-							class="hover:bg-[#334CAE] text-[#334CAE] rtl:rotate-180 hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
-						>
-							<i class="las la-angle-left text-lg"></i>
-						</button>
-					</li>
-					<li *ngFor="let page of pages">
-						<button
-							(click)="arm.paginate(page)"
-							[ngClass]="{
-								'bg-[#334CAE] !text-n0': arm.currentPage == page
-							}"
-							class="hover:bg-[#334CAE] bg-[#334CAE] hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex text-[#334CAE] items-center rounded-full justify-center border-[#334CAE]"
-						>
-							{{ page }}
-						</button>
-					</li>
-					<li>
-						<button
-							[disabled]="
-								arm.currentPage == arm.totalPages
-							"
-							(click)="arm.nextPage()"
-							class="hover:bg-[#334CAE] text-[#334CAE] hover:text-n0 rtl:rotate-180 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
-						>
-							<i class="las la-angle-right text-lg"></i>
-						</button>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+              <th class="text-center p-5">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of arm.paginatedData; track item.id;let i = $index) {
+            <tr
+              class="hover:bg-[#334CAE]/5 dark:hover:bg-bg3 duration-500 border-b border-n30 dark:border-n500 first:border-t"
+            >
+              <td class="py-5 px-6">
+                <div class="flex items-center gap-3">
+                  <i class="las la-file text-[#334CAE]"></i>
+                  <span class="font-medium"> {{ item.mother_id }} </span>
+                </div>
+              </td>
+              <td class="py-5">
+                <p class="font-medium">{{ item.weight }}</p>
+              </td>
+              <td class="py-5">
+                <span> {{ item.blood_pressure }} </span>
+              </td>
+              <td class="py-5">{{ item.tests }}</td>
+              <!-- <td class="py-5">$ {{ item.date_created }}</td> -->
+              <td class="py-5">
+                <div class="flex justify-center space-x-4">
+                  <!-- Edit Icon -->
+                  <i
+                    class="la la-edit text-blue-500 cursor-pointer"
+                    (click)="onEdit(item.id)"
+                  ></i>
+
+                  <!-- View Icon -->
+                  <i
+                    class="la la-eye text-green-500 cursor-pointer"
+                    (click)="onView(item.id)"
+                  ></i>
+
+                  <!-- Delete Icon -->
+                  <i
+                    class="la la-trash text-red-500 cursor-pointer"
+                    (click)="onDelete(item.id)"
+                  ></i>
+                </div>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="flex col-span-12 gap-4 sm:justify-between justify-center items-center flex-wrap"
+      >
+        <p>
+          Showing {{ arm.startIndex + 1 }} to {{ arm.endIndex + 1 }} of
+          {{ arm.totalData }} entries
+        </p>
+        <ul class="flex gap-2 md:gap-3 flex-wrap md:font-semibold items-center">
+          <li>
+            <button
+              [disabled]="arm.currentPage == 1"
+              (click)="arm.prevPage()"
+              class="hover:bg-[#334CAE] text-[#334CAE] rtl:rotate-180 hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+            >
+              <i class="las la-angle-left text-lg"></i>
+            </button>
+          </li>
+          <li *ngFor="let page of pages">
+            <button
+              (click)="arm.paginate(page)"
+              [ngClass]="{
+                'bg-[#334CAE] !text-n0': arm.currentPage == page
+              }"
+              class="hover:bg-[#334CAE] bg-[#334CAE] hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex text-[#334CAE] items-center rounded-full justify-center border-[#334CAE]"
+            >
+              {{ page }}
+            </button>
+          </li>
+          <li>
+            <button
+              [disabled]="arm.currentPage == arm.totalPages"
+              (click)="arm.nextPage()"
+              class="hover:bg-[#334CAE] text-[#334CAE] hover:text-n0 rtl:rotate-180 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+            >
+              <i class="las la-angle-right text-lg"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

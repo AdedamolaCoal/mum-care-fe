@@ -1,40 +1,32 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { AddMotherModalComponent } from "@component/shared/add-mother-modal/add-mother-modal.component";
-import { DropdownComponent } from "@component/shared/dropdown/dropdown.component";
-import { OptionsHorizComponent } from "@component/shared/options-horiz/options-horiz.component";
-import { OptionsVerticalComponent } from "@component/shared/options-vertical/options-vertical.component";
+import { Router } from "@angular/router";
 import { TopBannerComponent } from "@component/shared/top-banner/top-banner.component";
-// import { paymentAccountData } from "@data/accounts/paymentAccount";
-import { ChartOptions } from "@pages/dashboards/style-01/style-01.component";
 import { ArmSuppService } from "@service/arm-supp.service";
 import { NotifyService } from "@service/notify.service";
+import { SharedService } from "@service/shared.service";
 import { TableService } from "@service/table.service";
 import { NgApexchartsModule } from "ng-apexcharts";
 import { ModalService } from "ngx-modal-ease";
-// import { AddSupplementComponent } from "../add-supplement/add-supplement.component";
 
 @Component({
   selector: "supplement-overview",
   standalone: true,
-  imports: [
-    TopBannerComponent,
-    CommonModule,
-    NgApexchartsModule,
-    OptionsVerticalComponent,
-  ],
+  imports: [TopBannerComponent, CommonModule, NgApexchartsModule],
   templateUrl: "./supplement-overview.component.html",
 })
 export class SupplementOverviewComponent {
-  totalTransferChart!: ChartOptions;
   supplements;
   supplementsData: any; // should house the data from the api
   pages: number[] = [];
 
+  isView: boolean = false;
+
   constructor(
-    private modalService: ModalService,
     private suppSrv: ArmSuppService,
-    private notify: NotifyService
+    private notify: NotifyService,
+    private sharedSrv: SharedService,
+    private router: Router
   ) {
     this.supplements = new TableService();
     this.supplements.initialize(this.supplementsData, 10);
@@ -60,26 +52,25 @@ export class SupplementOverviewComponent {
     });
   }
 
-  // getLocale(number: number) {
-  // 	return new Intl.NumberFormat("en-US", {
-  // 		style: "currency",
-  // 		currency: "usd",
-  // 		minimumFractionDigits: 2,
-  // 		maximumFractionDigits: 2,
-  // 	}).format(number);
-  // }
-  // addAccountModal() {
-  // 	this.modalService.open(AddSupplementComponent, {
-  // 		modal: {
-  // 			enter: "enter-going-down 0.3s ease-out",
-  // 			leave: "fade-out 0.5s",
-  // 		},
-  // 		overlay: {
-  // 			leave: "fade-out 0.5s",
-  // 		},
-  // 		data: {
-  // 			type: "Angular modal library",
-  // 		},
-  // 	});
-  // }
+  onEdit(id: string) {
+    this.sharedSrv.setViewMode(false);
+    this.router.navigateByUrl("/supplement/edit-supplement/" + id);
+  }
+
+  onDelete(id: string) {
+    this.suppSrv.deleteSupplement(id).subscribe({
+      next: (res) => {
+        this.getSupplements();
+        this.notify.notifySuccess("Supplement Deleted Successfully");
+      },
+      error: (err) => {
+        this.notify.notifyError(err.message);
+      },
+    });
+  }
+
+  onView(id: string) {
+    this.sharedSrv.setViewMode(true);
+    this.router.navigateByUrl("/supplement/view-supplement/" + id);
+  }
 }
