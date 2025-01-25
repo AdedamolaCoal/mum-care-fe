@@ -8,10 +8,10 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { OptionsHorizComponent } from "@component/shared/options-horiz/options-horiz.component";
 import { TopBannerComponent } from "@component/shared/top-banner/top-banner.component";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { Child, IGetMother } from "@pages/models/child.model";
+import { ArmSuppService } from "@service/arm-supp.service";
 import { MotherChildService } from "@service/mother-child.service";
 import { NotifyService } from "@service/notify.service";
 import { SharedService } from "@service/shared.service";
@@ -23,7 +23,6 @@ import { CalendarModule } from "primeng/calendar";
   imports: [
     CommonModule,
     TopBannerComponent,
-    OptionsHorizComponent,
     CalendarModule,
     FormsModule,
     ReactiveFormsModule,
@@ -33,8 +32,7 @@ import { CalendarModule } from "primeng/calendar";
 })
 export class AddChildComponent implements OnInit {
   parentData: Array<IGetMother> = [];
-  // parentName: Array<any> = ["Mrs Florence Michaels", "Mrs Majid Daniels", "Mrs Khalid Alizadeh", "Mrs Fatimah Richards"];
-  // parentEmail: Array<any> = ["flor23@gmail.com", "mamamama@gmail", "mamamama@gmail",];
+  immunizationData: any;
 
   bloodGroups: Array<any> = [
     { id: "A+", name: "A+" },
@@ -68,7 +66,8 @@ export class AddChildComponent implements OnInit {
     private notify: NotifyService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private sharedSrv: SharedService
+    private sharedSrv: SharedService,
+    private immunizationSrv: ArmSuppService
   ) {}
 
   formInit() {
@@ -81,6 +80,8 @@ export class AddChildComponent implements OnInit {
       nationality: ["", Validators.required],
       age: ["", Validators.required],
       weight: ["", Validators.required],
+      parent_id: ["", Validators.required],
+      immunizations: ["", Validators.required],
     });
 
     this.isView = this.sharedSrv.getViewMode();
@@ -95,6 +96,7 @@ export class AddChildComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMothers();
+    this.getImmunizations();
     this.formInit();
   }
 
@@ -111,6 +113,7 @@ export class AddChildComponent implements OnInit {
           nationality: this.childData.nationality,
           age: this.childData.age,
           weight: this.childData.weight,
+          immunizations: this.childData.immunizations,
         });
 
         if (this.isView) {
@@ -144,7 +147,9 @@ export class AddChildComponent implements OnInit {
       nationality: this.childForm.get("nationality")?.value,
       age: this.childForm.get("age")?.value,
       weight: this.childForm.get("weight")?.value,
+      immunizations: this.childForm.get("immunizations")?.value,
     };
+    console.log(payload);
 
     this.childSrv.addChild(payload).subscribe({
       next: (res) => {
@@ -154,6 +159,17 @@ export class AddChildComponent implements OnInit {
         this.router.navigateByUrl("/child/children-data");
       },
       error: (err) => {},
+    });
+  }
+
+  getImmunizations() {
+    this.immunizationSrv.getImmunization().subscribe({
+      next: (res) => {
+        this.immunizationData = res;
+      },
+      error: (res) => {
+        this.notify.notifyError(res.message);
+      },
     });
   }
 }

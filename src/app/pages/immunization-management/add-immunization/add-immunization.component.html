@@ -1,0 +1,323 @@
+<app-top-banner
+  title="{{
+    isView
+      ? 'View Immunization Record'
+      : isEdit
+      ? 'Edit Immunization Record'
+      : 'Add Immunization Record'
+  }}"
+/>
+
+<div class="box mb-4 xxxl:mb-6">
+  <div class="mb-6 pb-6 bb-dashed flex justify-between items-center">
+    <h4 class="h4">
+      {{
+        isView
+          ? "View Immunization"
+          : isEdit
+          ? "Edit Immunization"
+          : "Add Immunization"
+      }}
+    </h4>
+    <!-- <app-options-horiz /> -->
+  </div>
+  <form
+    class="grid grid-cols-2 gap-4 xxxl:gap-6"
+    [formGroup]="immunizationForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="col-span-2 md:col-span-1">
+      <label for="first_name" class="mb-4 md:text-lg font-medium block">
+        First Name
+      </label>
+      <input
+        type="text"
+        formControlName="first_name"
+        class="w-full text-sm bg-secondary1/5 dark:bg-bg3 !border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+        placeholder="Enter name"
+        id="first_name"
+        required
+      />
+      @if (immunizationForm.get('first_name')?.errors &&
+      immunizationForm.get('first_name')?.touched) {
+      <span
+        class="text-secondary2"
+        *ngIf="immunizationForm.get('first_name')?.errors?.['required']"
+        >{{
+          "First Name is
+        required"
+        }}</span
+      >
+      }
+    </div>
+
+    <div class="col-span-2 md:col-span-1">
+      <label for="last_name" class="mb-4 md:text-lg font-medium block">
+        Last Name
+      </label>
+      <input
+        type="text"
+        formControlName="last_name"
+        class="w-full text-sm bg-secondary1/5 dark:bg-bg3 !border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+        placeholder="Enter Last Name"
+        id="last_name"
+        required
+      />
+      @if (immunizationForm.get('last_name')?.errors &&
+      immunizationForm.get('last_name')?.touched) {
+      <span
+        class="text-secondary2"
+        *ngIf="immunizationForm.get('last_name')?.errors?.['required']"
+        >{{
+          "Last name is
+        required"
+        }}</span
+      >
+      }
+    </div>
+    <div class="col-span-2 md:col-span-1">
+      <label for="age" class="mb-4 md:text-lg font-medium block">Age</label>
+      <input
+        type="text"
+        formControlName="age"
+        class="w-full text-sm bg-secondary1/5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+        placeholder="Enter Child's age"
+        id="age"
+        required
+      />
+      @if (immunizationForm.get('age')?.errors &&
+      immunizationForm.get('age')?.touched) {
+      <span
+        class="text-secondary2"
+        *ngIf="immunizationForm.get('age')?.errors?.['required']"
+        >{{ "Child's Age is required" }}</span
+      >
+      }
+    </div>
+
+    <div class="col-span-2 md:col-span-1">
+      <label for="weight" class="mb-4 md:text-lg font-medium block">
+        Child's Weight
+      </label>
+      <input
+        type="text"
+        formControlName="weight"
+        class="w-full text-sm bg-secondary1/5 dark:bg-bg3 !border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+        placeholder=""
+        id="weight"
+        required
+      />
+      @if (immunizationForm.get('weight')?.errors &&
+      immunizationForm.get('weight')?.touched) {
+      <span
+        class="text-secondary2"
+        *ngIf="immunizationForm.get('weight')?.errors?.['required']"
+        >{{
+          "Child's Weight is
+        required"
+        }}</span
+      >
+      }
+    </div>
+
+    <div class="col-span-2 md:col-span-1">
+      <label for="name" class="mb-4 md:text-lg font-medium block">
+        Parent's Name</label
+      >
+      <ng-select
+        formControlName="parent_first_name"
+        [items]="mothersList"
+        bindLabel="first_name"
+        bindValue="id"
+        [multiple]="false"
+        [searchable]="true"
+        class="w-full text-sm bg-secondary1/5 dark:bg-bg3 !border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+      ></ng-select>
+      @if (immunizationForm.get('parent_first_name')?.errors &&
+      immunizationForm.get('parent_first_name')?.touched) {
+      <span
+        class="text-secondary2"
+        *ngIf="immunizationForm.get('parent_first_name')?.errors?.['required']"
+        >{{
+          "Parent's Name is
+        required"
+        }}</span
+      >
+      }
+    </div>
+    <div class="col-span-2 md:col-span-1">
+      <label for="email" class="mb-4 md:text-lg font-medium block">
+        Parent's email</label
+      >
+      <ng-select
+        formControlName="parent_email"
+        [items]="mothersList"
+        bindLabel="email"
+        bindValue="id"
+        [multiple]="false"
+        [searchable]="true"
+        class="w-full text-sm bg-secondary1/5 dark:bg-bg3 !border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+      ></ng-select>
+      @if (immunizationForm.get('parent_email')?.errors &&
+      immunizationForm.get('parent_email')?.touched) {
+      <span
+        class="text-secondary2"
+        *ngIf="immunizationForm.get('parent_email')?.errors?.['required']"
+        >{{
+          "Parent email is
+        required"
+        }}</span
+      >
+      }
+    </div>
+
+    <div class="col-span-2 md:col-span-1">
+      <label for="previous_date" class="md:text-lg font-medium block mb-4">
+        Previous Immunization Date
+      </label>
+      <div
+        class="relative bg-secondary1/5 dark:bg-bg3 border py-2.5 border-n30 dark:border-n500 rounded-3xl"
+      >
+        <p-calendar
+          formControlName="previous_date"
+          styleClass="bg-white"
+          name="previous_date"
+          placeholder="Select Date"
+          inputStyleClass="px-5 focus:outline-none !bg-secondary1/5 dark:!bg-bg3 w-full rounded-none focus:shadow-none active:shadow-none"
+          panelStyleClass="bg-n0 dark:bg-bg3 sm:p-3 rounded-lg"
+        ></p-calendar>
+        <i
+          class="las la-calendar absolute ltr:right-4 rtl:left-4 top-1/2 -translate-y-1/2 cursor-pointer"
+        ></i>
+      </div>
+      @if (immunizationForm.get('previous_date')?.errors &&
+      immunizationForm.get('previous_date')?.touched) {
+      <span
+        class="text-secondary2"
+        *ngIf="immunizationForm.get('previous_date')?.errors?.['required']"
+        >{{
+          "Previous Immunization Date is
+        required"
+        }}</span
+      >
+      }
+    </div>
+
+    <div class="col-span-2 md:col-span-1">
+      <label for="next_date" class="md:text-lg font-medium block mb-4">
+        Next Immunization Date
+      </label>
+      <div
+        class="relative bg-secondary1/5 dark:bg-bg3 border py-2.5 border-n30 dark:border-n500 rounded-3xl"
+      >
+        <p-calendar
+          formControlName="next_date"
+          styleClass="bg-white"
+          name="next_date"
+          placeholder="Select Date"
+          inputStyleClass="px-5 focus:outline-none !bg-secondary1/5 dark:!bg-bg3 w-full rounded-none focus:shadow-none active:shadow-none"
+          panelStyleClass="bg-n0 dark:bg-bg3 sm:p-3 rounded-lg"
+        ></p-calendar>
+        <i
+          class="las la-calendar absolute ltr:right-4 rtl:left-4 top-1/2 -translate-y-1/2 cursor-pointer"
+        ></i>
+      </div>
+      @if (immunizationForm.get('next_date')?.errors &&
+      immunizationForm.get('next_date')?.touched) {
+      <span
+        class="text-secondary2"
+        *ngIf="immunizationForm.get('next_date')?.errors?.['required']"
+        >{{
+          "Next Immunization Date is
+        required"
+        }}</span
+      >
+      }
+    </div>
+
+    <div class="col-span-2 md:col-span-1">
+      <label for="injections" class="mb-4 md:text-lg font-medium block">
+        Injections
+      </label>
+      <input
+        type="text"
+        formControlName="injections"
+        class="w-full text-sm bg-secondary1/5 dark:bg-bg3 !border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+        placeholder=""
+        id="injections"
+        required
+      />
+      <!-- @if (immunizationForm.get('injections')?.errors &&
+      immunizationForm.get('injections')?.touched) {
+      <span
+        class="text-secondary2"
+        *ngIf="immunizationForm.get('injections')?.errors?.['required']"
+        >{{
+          "Injections is
+        required"
+        }}</span
+      >
+      } -->
+    </div>
+
+    <!-- <div class="col-span-2 md:col-span-1">
+      <label for="previous_date" class="mb-4 md:text-lg font-medium block">
+        Previous Immunization Date
+      </label>
+      <input
+        type="date"
+        formControlName="previous_date"
+        class="w-full text-sm bg-secondary1/5 dark:bg-bg3 !border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+        placeholder=""
+        id="previous_date"
+        required
+      />
+      @if (immunizationForm.get('previous_date')?.errors &&
+      immunizationForm.get('previous_date')?.touched) {
+      <span
+        class="text-secondary2"
+        *ngIf="immunizationForm.get('previous_date')?.errors?.['required']"
+        >{{
+          "Previous Immunization Date is
+        required"
+        }}</span
+      >
+      }
+    </div>
+    <div class="col-span-2 md:col-span-1">
+      <label for="next_date" class="mb-4 md:text-lg font-medium block">
+        Next Immunization Date
+      </label>
+      <input
+        type="date"
+        formControlName="next_date"
+        class="w-full text-sm bg-secondary1/5 dark:bg-bg3 !border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+        placeholder=""
+        id="next_date"
+        required
+      />
+      @if (immunizationForm.get('next_date')?.errors &&
+      immunizationForm.get('next_date')?.touched) {
+      <span
+        class="text-secondary2"
+        *ngIf="immunizationForm.get('next_date')?.errors?.['required']"
+        >{{
+          "Next Immunization Date is
+        required"
+        }}</span
+      >
+      }
+    </div> -->
+
+    <div class="col-span-2 flex gap-4 md:gap-6 mt-2">
+      <button class="btn" type="submit">Submit Record</button>
+      <button
+        class="btn-outline"
+        (click)="immunizationForm.reset()"
+        type="reset"
+      >
+        Reset Fields
+      </button>
+    </div>
+  </form>
+</div>

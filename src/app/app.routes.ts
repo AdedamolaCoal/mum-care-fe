@@ -25,6 +25,8 @@ import { LandingComponent } from "@pages/landing/landing.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { MothersDataComponent } from "@pages/mother-management/mothers-data/mothers-data.component";
 import { AddMotherComponent } from "@pages/mother-management/add-mother/add-mother.component";
+import { AddImmunizationComponent } from "@pages/immunization-management/add-immunization/add-immunization.component";
+import { ImmunizationOverviewComponent } from "@pages/immunization-management/immunization-overview/immunization-overview.component";
 
 export const routes: Routes = [
   {
@@ -75,6 +77,8 @@ export const routes: Routes = [
         path: "child",
         children: [
           { path: "add-child", component: AddChildComponent },
+          { path: "edit-child/:id", component: AddChildComponent },
+          { path: "view-child/:id", component: AddChildComponent },
           { path: "children-data", component: ChildrenDataComponent },
         ],
       },
@@ -87,6 +91,24 @@ export const routes: Routes = [
           {
             path: "antenatal-records",
             component: AntenatalRecordsOverviewComponent,
+          },
+        ],
+      },
+      {
+        path: "immunization",
+        children: [
+          { path: "add-immunization", component: AddImmunizationComponent },
+          {
+            path: "edit-immunization/:id",
+            component: AddImmunizationComponent,
+          },
+          {
+            path: "view-immunization/:id",
+            component: AddImmunizationComponent,
+          },
+          {
+            path: "immunization-overview",
+            component: ImmunizationOverviewComponent,
           },
         ],
       },

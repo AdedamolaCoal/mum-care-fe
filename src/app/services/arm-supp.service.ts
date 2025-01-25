@@ -18,7 +18,7 @@ export class ArmSuppService {
 
   // get all antenatal records
   getARM() {
-    return this.http.get(`${this.api}/get_antenatal_records`);
+    return this.http.get(`${this.api}/get_all_antenatal_records`);
   }
 
   // get antenatal records by id
@@ -71,7 +71,7 @@ export class ArmSuppService {
 
   // add immunization
   addImmunization(body: IGetImmunization) {
-    return this.http.post(`${this.api}/add`, body);
+    return this.http.post(`${this.api}/add_immunization`, body);
   }
 
   // get all immunization
@@ -86,7 +86,7 @@ export class ArmSuppService {
 
   // update immunization
   updateImmunization(id: string, body: IGetImmunization) {
-    return this.http.put(`${this.api}/update/${id}`, body);
+    return this.http.put(`${this.api}/update_immunization/${id}`, body);
   }
 
   // delete Immunization

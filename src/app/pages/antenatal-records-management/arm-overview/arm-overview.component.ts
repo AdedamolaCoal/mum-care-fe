@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { OptionsVerticalComponent } from "@component/shared/options-vertical/options-vertical.component";
 import { TopBannerComponent } from "@component/shared/top-banner/top-banner.component";
 import { ArmSuppService } from "@service/arm-supp.service";
+import { MotherChildService } from "@service/mother-child.service";
 import { NotifyService } from "@service/notify.service";
 import { SharedService } from "@service/shared.service";
 import { TableService } from "@service/table.service";
@@ -13,12 +14,7 @@ import { ModalService } from "ngx-modal-ease";
 @Component({
   selector: "app-payment-overview",
   standalone: true,
-  imports: [
-    TopBannerComponent,
-    OptionsVerticalComponent,
-    CommonModule,
-    NgApexchartsModule,
-  ],
+  imports: [TopBannerComponent, CommonModule, NgApexchartsModule],
   templateUrl: "./arm-overview.component.html",
 })
 export class AntenatalRecordsOverviewComponent {
@@ -29,7 +25,8 @@ export class AntenatalRecordsOverviewComponent {
     private sharedSrv: SharedService,
     private armSrv: ArmSuppService,
     private notify: NotifyService,
-    private router: Router
+    private router: Router,
+    private motherSrv: MotherChildService
   ) {
     this.arm = new TableService();
     this.arm.initialize(this.armData, 8);
@@ -64,8 +61,8 @@ export class AntenatalRecordsOverviewComponent {
 
   getArmData() {
     this.armSrv.getARM().subscribe({
-      next: (res) => {
-        this.armData = res;
+      next: (res: any) => {
+        this.armData = res.antenatal_records;
         this.arm.initialize(this.armData, 8);
       },
       error: (err) => {

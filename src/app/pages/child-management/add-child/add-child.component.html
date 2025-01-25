@@ -1,5 +1,5 @@
 <app-top-banner
-  title="{{ isView ? 'View Arm' : isEdit ? 'Edit Arm' : 'Add ARM' }}"
+  title="{{ isView ? 'View Child' : isEdit ? 'Edit Child' : 'Add Child' }}"
 />
 
 <div class="box mb-4 xxxl:mb-6">
@@ -147,9 +147,7 @@
       </div>
 
       <div class="col-span-2 md:col-span-1">
-        <label for="age" class="md:text-lg font-medium block mb-4">
-          Child's Age
-        </label>
+        <label for="age" class="md:text-lg font-medium block mb-4"> Age </label>
         <input
           type="text"
           class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
@@ -189,9 +187,32 @@
         >
         }
       </div>
+
+      <div class="col-span-2 md:col-span-1">
+        <label for="immunizations" class="mb-4 md:text-lg font-medium block">
+          Immunizations
+        </label>
+        <ng-select
+          formControlName="immunizations"
+          [items]="parentData"
+          bindLabel="first_name"
+          bindValue="id"
+          [multiple]="false"
+          [searchable]="true"
+          class="w-full text-sm bg-n0 dark:bg-bg4 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+        ></ng-select>
+        @if (childForm.get('immunizations')?.errors &&
+        childForm.get('immunizations')?.touched) {
+        <span
+          class="text-secondary2"
+          *ngIf="childForm.get('immunizations')?.errors?.['required']"
+          >{{ "Parent Name is required" }}</span
+        >
+        }
+      </div>
     </div>
 
-    <div class="col-span-2 flex gap-4 md:gap-6 mt-2" *ngIf="!isView">
+    <div class="col-span-2 flex gap-4 md:gap-6 mt-2">
       <button class="btn" type="submit">Save</button>
       <button class="btn-outline" (click)="childForm.reset()" type="reset">
         Reset Fields

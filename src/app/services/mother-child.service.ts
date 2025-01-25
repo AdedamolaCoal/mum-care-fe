@@ -23,7 +23,7 @@ export class MotherChildService {
 
   // get mother by id
   getMotherById(id: string) {
-    return this.http.get(`${this.api}/get_mother/${id}`);
+    return this.http.get(`${this.api}/mother/${id}`);
   }
 
   // update mother
@@ -36,6 +36,7 @@ export class MotherChildService {
     return this.http.delete(`${this.api}/delete_mother/${id}`);
   }
 
+  // ********************************** CHILDREN **********************************
   // get children route
   getChildren() {
     return this.http.get(`${this.api}/get_children`);
@@ -61,4 +62,3 @@ export class MotherChildService {
     return this.http.delete(`${this.api}/delete_child/${id}`);
   }
 }
-export { IGetMother };

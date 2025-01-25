@@ -1,0 +1,180 @@
+<app-top-banner title="Immunization Management" />
+<div class="grid grid-cols-12 gap-4 xxl:gap-6">
+  <div class="col-span-12">
+    <div class="box col-span-12 lg:col-span-6">
+      <div class="overflow-x-auto mb-4 lg:mb-6">
+        <table class="w-full whitespace-nowrap">
+          <thead>
+            <tr class="bg-[#334CAE]/5 dark:bg-bg3">
+              <th
+                (click)="immunization.sortData('first_name')"
+                class="text-start py-5 px-6 cursor-pointer min-w-[200px]"
+              >
+                <div class="flex items-center gap-1">
+                  First Name
+                  <i class="las la-exchange-alt rotate-90 text-base"></i>
+                </div>
+              </th>
+              <th
+                (click)="immunization.sortData('last_name')"
+                class="text-start py-5 min-w-[200px]"
+              >
+                Last Name
+                <i class="las la-exchange-alt rotate-90 text-base"></i>
+              </th>
+              <th
+                (click)="immunization.sortData('parent_email')"
+                class="text-start py-5 min-w-[200px] cursor-pointer"
+              >
+                <div class="flex items-center gap-1">
+                  Parent Email
+                  <i class="las la-exchange-alt rotate-90 text-base"></i>
+                </div>
+              </th>
+              <th
+                (click)="immunization.sortData('parent_first_name')"
+                class="text-start py-5 min-w-[200px]"
+              >
+                Parent's Name
+                <i class="las la-exchange-alt rotate-90 text-base"></i>
+              </th>
+              <th
+                (click)="immunization.sortData('age')"
+                class="text-start py-5 min-w-[130px] cursor-pointer"
+              >
+                <div class="flex items-center gap-1">
+                  Child's Age
+                  <i class="las la-exchange-alt rotate-90 text-base"></i>
+                </div>
+              </th>
+              <th
+                (click)="immunization.sortData('previous_date')"
+                class="text-start py-5 min-w-[200px] cursor-pointer"
+              >
+                <div class="flex items-center gap-1">
+                  Previous Date
+                  <i class="las la-exchange-alt rotate-90 text-base"></i>
+                </div>
+              </th>
+              <th
+                (click)="immunization.sortData('next_date')"
+                class="text-start py-5 min-w-[200px] cursor-pointer"
+              >
+                <div class="flex items-center gap-1">
+                  Next Date
+                  <i class="las la-exchange-alt rotate-90 text-base"></i>
+                </div>
+              </th>
+              <th
+                (click)="immunization.sortData('weight')"
+                class="text-start py-5 min-w-[200px] cursor-pointer"
+              >
+                <div class="flex items-center gap-1">
+                  Weight <i class="las la-exchange-alt rotate-90 text-base"></i>
+                </div>
+              </th>
+              <th
+                (click)="immunization.sortData('injections')"
+                class="text-start py-5 min-w-[200px] cursor-pointer"
+              >
+                <div class="flex items-center gap-1">
+                  Injections
+                  <i class="las la-exchange-alt rotate-90 text-base"></i>
+                </div>
+              </th>
+              <th class="text-center p-5">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of immunization.paginatedData; track item.id;let i =
+            $index) {
+            <tr
+              class="hover:bg-[#334CAE]/5 dark:hover:bg-bg3 duration-500 border-b border-n30 dark:border-n500 first:border-t"
+            >
+              <td class="py-5 px-6">
+                <div class="flex items-center gap-3">
+                  <i class="las la-file text-[#334CAE]"></i>
+                  <span class="font-medium"> {{ item.first_name }} </span>
+                </div>
+              </td>
+              <td class="py-5">
+                <p class="font-medium">{{ item.last_name }}</p>
+              </td>
+              <td class="py-5">
+                <span> {{ item.parent_email }} </span>
+              </td>
+              <td class="py-5">{{ item.parent_first_name }}</td>
+              <td class="py-5">$ {{ item.age }}</td>
+              <td class="py-5">$ {{ item.previous_date }}</td>
+              <td class="py-5">$ {{ item.next_date }}</td>
+              <td class="py-5">$ {{ item.weight }}</td>
+              <td class="py-5">$ {{ item.injections }}</td>
+              <td class="py-5">
+                <div class="flex justify-center space-x-4">
+                  <!-- Edit Icon -->
+                  <i
+                    class="la la-edit text-blue-500 cursor-pointer"
+                    (click)="onEdit(item.id)"
+                  ></i>
+
+                  <!-- View Icon -->
+                  <i
+                    class="la la-eye text-green-500 cursor-pointer"
+                    (click)="onView(item.id)"
+                  ></i>
+
+                  <!-- Delete Icon -->
+                  <i
+                    class="la la-trash text-red-500 cursor-pointer"
+                    (click)="onDelete(item.id)"
+                  ></i>
+                </div>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="flex col-span-12 gap-4 sm:justify-between justify-center items-center flex-wrap"
+      >
+        <p>
+          Showing {{ immunization.startIndex + 1 }} to
+          {{ immunization.endIndex + 1 }} of
+          {{ immunization.totalData }} entries
+        </p>
+        <ul class="flex gap-2 md:gap-3 flex-wrap md:font-semibold items-center">
+          <li>
+            <button
+              [disabled]="immunization.currentPage == 1"
+              (click)="immunization.prevPage()"
+              class="hover:bg-[#334CAE] text-[#334CAE] rtl:rotate-180 hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+            >
+              <i class="las la-angle-left text-lg"></i>
+            </button>
+          </li>
+          <li *ngFor="let page of pages">
+            <button
+              (click)="immunization.paginate(page)"
+              [ngClass]="{
+                'bg-[#334CAE] !text-n0': immunization.currentPage == page
+              }"
+              class="hover:bg-[#334CAE] bg-[#334CAE] hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex text-[#334CAE] items-center rounded-full justify-center border-[#334CAE]"
+            >
+              {{ page }}
+            </button>
+          </li>
+          <li>
+            <button
+              [disabled]="immunization.currentPage == immunization.totalPages"
+              (click)="immunization.nextPage()"
+              class="hover:bg-[#334CAE] text-[#334CAE] hover:text-n0 rtl:rotate-180 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-[#334CAE]"
+            >
+              <i class="las la-angle-right text-lg"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

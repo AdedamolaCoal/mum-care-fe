@@ -51,6 +51,18 @@ export const sidebarData: SidebarItem[] = [
   },
   {
     id: 5,
+    name: "Immunization Management",
+    icon: "las la-clinic-medical",
+    submenus: [
+      { title: "Add Immunization", url: "/immunization/add-immunization" },
+      {
+        title: "Immunization Overview",
+        url: "/immunization/immunization-overview",
+      },
+    ],
+  },
+  {
+    id: 6,
     name: "Supplements Tracking",
     icon: "las la-hourglass-half",
     submenus: [
@@ -59,7 +71,7 @@ export const sidebarData: SidebarItem[] = [
     ],
   },
   {
-    id: 6,
+    id: 7,
     name: "Settings and Support",
     icon: "las la-cog",
     submenus: [

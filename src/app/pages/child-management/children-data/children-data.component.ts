@@ -6,56 +6,78 @@ import { TopBannerComponent } from "@component/shared/top-banner/top-banner.comp
 import { TableService } from "@service/table.service";
 import { OptionsVerticalComponent } from "../../../components/shared/options-vertical/options-vertical.component";
 import { Child } from "@pages/models/child.model";
+import { MotherChildService } from "@service/mother-child.service";
+import { SharedService } from "@service/shared.service";
+import { Router } from "@angular/router";
+import { NotifyService } from "@service/notify.service";
 interface Invoice {
-	id: number;
-	title: string;
-	invoice: string;
-	amount: number;
-	dueDate: string;
-	status: string;
-	time: string;
-	rate: number;
+  id: number;
+  title: string;
+  invoice: string;
+  amount: number;
+  dueDate: string;
+  status: string;
+  time: string;
+  rate: number;
 }
 @Component({
-	selector: "iv-app-style-01",
-	standalone: true,
-	imports: [
-		CommonModule,
-		TopBannerComponent,
-		DropdownComponent,
-		OptionsVerticalComponent,
-	],
-	templateUrl: "./children-data.component.html",
+  selector: "iv-app-style-01",
+  standalone: true,
+  imports: [CommonModule, TopBannerComponent, OptionsVerticalComponent],
+  templateUrl: "./children-data.component.html",
 })
 export class ChildrenDataComponent {
-	childrenData;
-	children: any; // save the data from the endpoint to this variable
-	pages: number[] = [1];
-	filters = ["all", "paid", "unpaid", "rejected"];
-	currentFilter = this.filters[0];
-	constructor() {
-		this.childrenData = new TableService();
-		this.childrenData.initialize(this.children, 12);
-	}
-	// setFilter(filter: string) {
-	// 	this.currentFilter = filter;
-	// 	if (filter == "all") {
-	// 		this.childrenData.initialize(this.children, 12);
-	// 		this.pages = Array.from(
-	// 			{ length: this.childrenData.totalPages },
-	// 			(_, i) => i + 1
-	// 		);
-	// 	} else {
-	// 		const result = this.children.filter((item: any) => item.status == filter);
-	// 		this.childrenData.initialize(result);
-	// 		this.childrenData.paginate(1);
-	// 		this.pages = [1];
-	// 	}
-	// }
-	ngOnInit() {
-		this.pages = Array.from(
-			{ length: this.childrenData.totalPages },
-			(_, i) => i + 1
-		);
-	}
+  childrenData;
+  children: any; // save the data from the endpoint to this variable
+  pages: number[] = [1];
+  //   currentFilter = this.filters[0];
+  constructor(
+    private childSrv: MotherChildService,
+    private sharedSrv: SharedService,
+    private router: Router,
+    private notify: NotifyService
+  ) {
+    this.childrenData = new TableService();
+    this.childrenData.initialize(this.children, 12);
+  }
+  ngOnInit() {
+    this.getChildren();
+    this.pages = Array.from(
+      { length: this.childrenData.totalPages },
+      (_, i) => i + 1
+    );
+  }
+
+  getChildren() {
+    this.childSrv.getChildren().subscribe({
+      next: (res) => {
+        this.children = res;
+        this.childrenData.initialize(this.children, 12);
+      },
+      error: (err) => {
+        this.notify.notifyError(err.message);
+      },
+    });
+  }
+
+  onEdit(id: string) {
+    this.sharedSrv.setViewMode(false);
+    this.router.navigateByUrl("/child/edit-child/" + id);
+  }
+
+  onView(id: string) {
+    this.sharedSrv.setViewMode(true);
+    this.router.navigateByUrl("/child/view-child/" + id);
+  }
+
+  onDelete(id: string) {
+    this.childSrv.deleteChild(id).subscribe({
+      next: (res) => {
+        this.notify.notifySuccess("Child data deleted successfully");
+      },
+      error: (err) => {
+        this.notify.notifyError(err.message);
+      },
+    });
+  }
 }

@@ -10,9 +10,10 @@ import {
 } from "@angular/forms";
 import { ModalService } from "ngx-modal-ease";
 import { NgSelectComponent, NgSelectModule } from "@ng-select/ng-select";
-import { IGetMother, MotherChildService } from "@service/mother-child.service";
+import { MotherChildService } from "@service/mother-child.service";
 import { NotifyService } from "@service/notify.service";
 import { StorageService } from "@service/storage.service";
+import { IGetMother } from "@pages/models/child.model";
 
 @Component({
   selector: "app-open-account-modal",
