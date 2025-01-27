@@ -6,7 +6,7 @@
       <thead>
         <tr class="bg-secondary1/5 dark:bg-bg3">
           <th
-            (click)="childrenData.sortData('first_name')"
+            (click)="childrenData.sortData('full_name')"
             class="text-start py-5 px-6 min-w-[250px] cursor-pointer"
           >
             <div class="flex items-center gap-1">
@@ -19,37 +19,6 @@
             class="text-start py-5 min-w-[200px] cursor-pointer"
           >
             Parent's Name
-            <i class="las la-exchange-alt rotate-90 text-base"></i>
-          </th>
-          <th
-            (click)="childrenData.sortData('blood_group')"
-            class="text-start py-5 min-w-[200px] cursor-pointer"
-          >
-            <div class="flex items-center gap-1">
-              Blood Group
-              <i class="las la-exchange-alt rotate-90 text-base"></i>
-            </div>
-          </th>
-          <th
-            (click)="childrenData.sortData('genotype')"
-            class="text-start py-5 min-w-[200px] cursor-pointer"
-          >
-            <div class="flex items-center gap-1">
-              Genotype <i class="las la-exchange-alt rotate-90 text-base"></i>
-            </div>
-          </th>
-          <th
-            (click)="childrenData.sortData('parent_email')"
-            class="text-start py-5 min-w-[200px]"
-          >
-            Parent's Email
-            <i class="las la-exchange-alt rotate-90 text-base"></i>
-          </th>
-          <th
-            (click)="childrenData.sortData('parent_email')"
-            class="text-start py-5 min-w-[200px]"
-          >
-            Parent's Phone
             <i class="las la-exchange-alt rotate-90 text-base"></i>
           </th>
           <th
@@ -88,23 +57,17 @@
             <div class="flex items-center gap-3">
               <!-- <i class="las la-file text-[#334CAE]"></i> -->
               <span class="font-medium">
-                {{ item.first_name + " " + item.last_name }}
+                {{ item.full_name }}
               </span>
             </div>
           </td>
           <td class="py-5">
             <p class="font-medium">{{ item.parent_name }}</p>
           </td>
-          <td class="py-5">
-            <span>{{ item.blood_group }} </span>
-          </td>
-          <td class="py-5">{{ item.genotype }}</td>
-          <td class="py-5">{{ item.parent_email }}</td>
-          <td class="py-5">{{ item.phone }}</td>
           <td class="py-5">{{ item.nationality }}</td>
           <td class="py-5">{{ item.age }}</td>
           <td class="py-5">{{ item.weight }}</td>
-          <td class="py-5">{{ item.date_added }}</td>
+          <td class="py-5">{{ item.date_added | date }}</td>
           <td class="py-5">
             <div class="flex justify-center">
               <div class="flex justify-center space-x-4">

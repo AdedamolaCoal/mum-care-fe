@@ -22,19 +22,22 @@ export class ArmSuppService {
   }
 
   // get antenatal records by id
-  getArmByMotherID(mother_id: string) {
-    return this.http.get(`${this.api}/get_antenatal_records/${mother_id}`);
+  getArmByID(id: string) {
+    return this.http.get(`${this.api}/get_antenatal_record/${id}`);
   }
 
   // update antenatal records
-  updateARM(body: {
-    mother_id: string;
-    weight?: string;
-    blood_pressure?: string;
-    remark?: string;
-    tests?: string;
-  }) {
-    return this.http.put(`${this.api}/update_antenatal_record`, body);
+  updateARM(
+    id: string,
+    body: {
+      mother_id: string;
+      weight?: string;
+      blood_pressure?: string;
+      remark?: string;
+      tests?: string;
+    }
+  ) {
+    return this.http.put(`${this.api}/update_antenatal_record/${id}`, body);
   }
 
   // delete antenatal records

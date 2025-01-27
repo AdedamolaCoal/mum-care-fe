@@ -10,16 +10,16 @@
             class="text-start py-5 px-6 min-w-[250px] cursor-pointer"
           >
             <div class="flex items-center gap-1">
-              First Name
+              Mother's Name
               <i class="las la-exchange-alt rotate-90 text-base"></i>
             </div>
           </th>
-          <th
+          <!-- <th
             (click)="mothers.sortData('last_name')"
             class="text-start py-5 min-w-[200px] cursor-pointer"
           >
             Last Name <i class="las la-exchange-alt rotate-90 text-base"></i>
-          </th>
+          </th> -->
           <th
             (click)="mothers.sortData('blood_group')"
             class="text-start py-5 min-w-[200px] cursor-pointer"
@@ -66,12 +66,12 @@
           <td class="py-5 px-6">
             <div class="flex items-center gap-3">
               <!-- <i class="las la-file text-[#334CAE]"></i> -->
-              <span class="font-medium"> {{ item.first_name }} </span>
+              <span class="font-medium"> {{ item.full_name }} </span>
             </div>
           </td>
-          <td class="py-5">
+          <!-- <td class="py-5">
             <p class="font-medium">{{ item.last_name }}</p>
-          </td>
+          </td> -->
           <td class="py-5">
             <span>{{ item.blood_group }} </span>
           </td>

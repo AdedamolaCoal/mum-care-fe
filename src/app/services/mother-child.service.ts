@@ -59,6 +59,6 @@ export class MotherChildService {
 
   // delete child
   deleteChild(id: string) {
-    return this.http.delete(`${this.api}/delete_child/${id}`);
+    return this.http.delete(`${this.api}/delete_children/${id}`);
   }
 }

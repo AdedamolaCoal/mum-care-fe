@@ -212,7 +212,7 @@
         }
       </div>
 
-      <div class="col-span-2 md:col-span-1">
+      <div class="col-span-2 md:col-span-1" *ngIf="!isView || !isEdit">
         <label for="parent_email" class="mb-4 md:text-lg font-medium block">
           Password
         </label>
@@ -246,7 +246,7 @@
       </div>
     </div>
 
-    <div class="col-span-2 flex gap-4 md:gap-6 mt-2">
+    <div class="col-span-2 flex gap-4 md:gap-6 mt-2" *ngIf="!isView || !isEdit">
       <button class="btn" type="submit">Save</button>
       <button class="btn-outline" (click)="motherForm.reset()" type="reset">
         Reset Fields

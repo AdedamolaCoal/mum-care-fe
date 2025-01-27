@@ -1,15 +1,10 @@
 export interface Child {
   first_name: string;
   last_name: string;
-  immunizations: string;
-  blood_group: string;
-  genotype: string;
   weight: number;
-  parent_email: string;
+  parent_id: string;
   nationality: string;
   age: number;
-  // dateAdded: Date;
-  // dateUpdated: Date;
 }
 
 export interface IGetMother {
@@ -25,7 +20,7 @@ export interface IGetMother {
 }
 
 export interface IGetMotherEdit {
-  id: string;
+  // id: string;
   first_name?: string;
   last_name?: string;
   age?: number;

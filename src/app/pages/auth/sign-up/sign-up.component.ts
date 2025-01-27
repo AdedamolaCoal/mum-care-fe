@@ -78,8 +78,6 @@ export class SignUpComponent implements OnInit {
         hospital_address: this.registerForm.value.hospital_address,
         email: this.registerForm.value.email,
         password: this.registerForm.value.password,
-        // role: 'user',
-        // category: 'org',
         phone_number: this.registerForm.value.phone_number,
       };
       this.authSrv.register(payload).subscribe({
@@ -92,7 +90,7 @@ export class SignUpComponent implements OnInit {
         },
         error: (error) => {
           // error handling notification
-          this.notifySrv.notifyInfo(error.message);
+          this.notifySrv.notifyError(error.message);
         },
       });
     } else {

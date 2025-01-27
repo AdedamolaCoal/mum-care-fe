@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { OptionsVerticalComponent } from "@component/shared/options-vertical/options-vertical.component";
 import { TopBannerComponent } from "@component/shared/top-banner/top-banner.component";
 import { ArmSuppService } from "@service/arm-supp.service";
 import { MotherChildService } from "@service/mother-child.service";
@@ -9,7 +8,6 @@ import { NotifyService } from "@service/notify.service";
 import { SharedService } from "@service/shared.service";
 import { TableService } from "@service/table.service";
 import { NgApexchartsModule } from "ng-apexcharts";
-import { ModalService } from "ngx-modal-ease";
 
 @Component({
   selector: "app-payment-overview",

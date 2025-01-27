@@ -9,8 +9,7 @@ export interface IGetArm {
 export interface IGetImmunization {
   first_name: string;
   last_name: string;
-  parent_email: string;
-  parent_first_name: string;
+  parent_id: string;
   age: number;
   previous_date: Date;
   next_date: Date;

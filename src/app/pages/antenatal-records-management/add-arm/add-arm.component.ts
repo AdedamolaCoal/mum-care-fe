@@ -38,6 +38,8 @@ export class AddArmComponent implements OnInit {
   isView: boolean = false;
   isEdit: boolean = false;
 
+  id: any;
+
   armData: any;
 
   constructor(
@@ -67,17 +69,17 @@ export class AddArmComponent implements OnInit {
     this.isView = this.sharedSrv.getViewMode();
     this.isEdit = this.sharedSrv.getViewMode();
 
-    const id = this.activatedRoute.snapshot.paramMap.get("id");
+    this.id = this.activatedRoute.snapshot.paramMap.get("id");
 
-    if (id) {
-      this.getArmById(id);
+    if (this.id) {
+      this.getArmById(this.id);
     }
   }
 
   getArmById(id: string) {
-    this.armSrv.getArmByMotherID(id).subscribe({
-      next: (res) => {
-        this.armData = res;
+    this.armSrv.getArmByID(id).subscribe({
+      next: (res: any) => {
+        this.armData = res.record;
         this.armForm.patchValue({
           mother_id: this.armData.mother_id,
           weight: this.armData.weight,
@@ -90,6 +92,7 @@ export class AddArmComponent implements OnInit {
           this.armForm.disable();
         }
       },
+      error: (err) => {},
     });
   }
 
@@ -106,6 +109,35 @@ export class AddArmComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.id) {
+      this.onEdit();
+    } else {
+      this.onAdd();
+    }
+  }
+
+  onEdit() {
+    const payload: IGetArm = {
+      mother_id: this.armForm.get("mother_id")?.value,
+      weight: this.armForm.get("weight")?.value,
+      blood_pressure: this.armForm.get("blood_pressure")?.value,
+      remark: this.armForm.get("remark")?.value,
+      tests: this.armForm.get("tests")?.value,
+    };
+    this.armSrv.updateARM(this.id, payload).subscribe({
+      next: (res) => {
+        this.notify.notifySuccess("Antenatal Record Updated Successfully");
+        this.armForm.reset();
+        this.router.navigateByUrl("/arm/antenatal-records");
+      },
+      error: (err) => {
+        this.notify.notifyError(err.message);
+      },
+    });
+    console.log(this.armForm.value);
+  }
+
+  onAdd() {
     this.armForm.markAllAsTouched();
     if (this.armForm.invalid) {
       this.notify.notifyInfo("Please fill all fields");

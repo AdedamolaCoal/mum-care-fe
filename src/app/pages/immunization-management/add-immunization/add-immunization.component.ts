@@ -59,9 +59,9 @@ export class AddImmunizationComponent implements OnInit {
 
   formInit() {
     this.immunizationForm = this.fb.group({
+      parent_id: ["", Validators.required],
       first_name: ["", Validators.required],
       last_name: ["", Validators.required],
-      parent_email: ["", Validators.required],
       parent_first_name: ["", Validators.required],
       age: ["", Validators.required],
       previous_date: ["", Validators.required],
@@ -117,18 +117,17 @@ export class AddImmunizationComponent implements OnInit {
 
   onSubmit() {
     if (this.id) {
-      this.onSubmitEdit();
+      this.onEdit();
     } else {
-      this.onSubmitNew();
+      this.onAdd();
     }
   }
 
-  onSubmitEdit() {
+  onEdit() {
     const payload = {
       first_name: this.immunizationForm.get("first_name")?.value,
       last_name: this.immunizationForm.get("last_name")?.value,
-      parent_email: this.immunizationForm.get("parent_email")?.value,
-      parent_first_name: this.immunizationForm.get("parent_first_name")?.value,
+      parent_id: this.immunizationForm.get("parent_id")?.value,
       age: this.immunizationForm.get("age")?.value,
       previous_date: this.immunizationForm.get("previous_date")?.value,
       next_date: this.immunizationForm.get("next_date")?.value,
@@ -146,7 +145,7 @@ export class AddImmunizationComponent implements OnInit {
     });
   }
 
-  onSubmitNew() {
+  onAdd() {
     this.immunizationForm.markAllAsTouched();
     // if (this.immunizationForm.invalid) {
     //   this.notify.notifyInfo("Please fill all fields");
@@ -155,8 +154,7 @@ export class AddImmunizationComponent implements OnInit {
     const payload: IGetImmunization = {
       first_name: this.immunizationForm.get("first_name")?.value,
       last_name: this.immunizationForm.get("last_name")?.value,
-      parent_email: this.immunizationForm.get("parent_email")?.value,
-      parent_first_name: this.immunizationForm.get("parent_first_name")?.value,
+      parent_id: this.immunizationForm.get("parent_id")?.value,
       age: this.immunizationForm.get("age")?.value,
       previous_date: this.immunizationForm.get("previous_date")?.value,
       next_date: this.immunizationForm.get("next_date")?.value,

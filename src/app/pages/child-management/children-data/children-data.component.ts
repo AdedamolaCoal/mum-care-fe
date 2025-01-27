@@ -1,29 +1,16 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { DropdownComponent } from "@component/shared/dropdown/dropdown.component";
 import { TopBannerComponent } from "@component/shared/top-banner/top-banner.component";
 // import { this.children } from "@data/invoice/this.children";
 import { TableService } from "@service/table.service";
-import { OptionsVerticalComponent } from "../../../components/shared/options-vertical/options-vertical.component";
-import { Child } from "@pages/models/child.model";
 import { MotherChildService } from "@service/mother-child.service";
 import { SharedService } from "@service/shared.service";
 import { Router } from "@angular/router";
 import { NotifyService } from "@service/notify.service";
-interface Invoice {
-  id: number;
-  title: string;
-  invoice: string;
-  amount: number;
-  dueDate: string;
-  status: string;
-  time: string;
-  rate: number;
-}
 @Component({
   selector: "iv-app-style-01",
   standalone: true,
-  imports: [CommonModule, TopBannerComponent, OptionsVerticalComponent],
+  imports: [CommonModule, TopBannerComponent],
   templateUrl: "./children-data.component.html",
 })
 export class ChildrenDataComponent {
@@ -74,6 +61,7 @@ export class ChildrenDataComponent {
     this.childSrv.deleteChild(id).subscribe({
       next: (res) => {
         this.notify.notifySuccess("Child data deleted successfully");
+        this.getChildren();
       },
       error: (err) => {
         this.notify.notifyError(err.message);

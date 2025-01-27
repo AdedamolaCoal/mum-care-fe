@@ -8,10 +8,9 @@ import {
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { OptionsHorizComponent } from "@component/shared/options-horiz/options-horiz.component";
 import { TopBannerComponent } from "@component/shared/top-banner/top-banner.component";
 import { NgSelectModule } from "@ng-select/ng-select";
-import { IGetMother } from "@pages/models/child.model";
+import { IGetMother, IGetMotherEdit } from "@pages/models/child.model";
 import { MotherChildService } from "@service/mother-child.service";
 import { NotifyService } from "@service/notify.service";
 import { SharedService } from "@service/shared.service";
@@ -55,6 +54,8 @@ export class AddMotherComponent implements OnInit {
   isView: boolean = false;
   isEdit: boolean = false;
 
+  id: any;
+
   motherForm!: FormGroup;
   motherData: any;
 
@@ -62,7 +63,6 @@ export class AddMotherComponent implements OnInit {
     private fb: FormBuilder,
     private motherSrv: MotherChildService,
     private notify: NotifyService,
-    private storage: StorageService,
     private router: Router,
     private sharedSrv: SharedService,
     private activatedRoute: ActivatedRoute
@@ -84,10 +84,10 @@ export class AddMotherComponent implements OnInit {
     this.isView = this.sharedSrv.getViewMode();
     this.isEdit = this.sharedSrv.getViewMode();
 
-    const id = this.activatedRoute.snapshot.paramMap.get("id");
+    this.id = this.activatedRoute.snapshot.paramMap.get("id");
 
-    if (id) {
-      this.getMotherByID(id);
+    if (this.id) {
+      this.getMotherByID(this.id);
     }
   }
 
@@ -102,12 +102,12 @@ export class AddMotherComponent implements OnInit {
         this.motherForm.patchValue({
           first_name: this.motherData.first_name,
           last_name: this.motherData.last_name,
-          password: this.motherData.password,
           age: this.motherData.age,
           genotype: this.motherData.genotype,
           blood_group: this.motherData.blood_group,
           nationality: this.motherData.nationality,
           email: this.motherData.email,
+          hospital_id: this.motherData.hospital_id,
         });
 
         if (this.isView) {
@@ -119,6 +119,46 @@ export class AddMotherComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.id) {
+      this.onEdit();
+    } else {
+      this.onAdd();
+    }
+  }
+
+  onEdit() {
+    // this.motherForm.markAllAsTouched();
+    // if (this.motherForm.invalid) {
+    //   this.notify.notifyInfo("Please fill all fields");
+    //   return;
+    // }
+    const payload: IGetMotherEdit = {
+      first_name: this.motherForm.get("first_name")?.value,
+      last_name: this.motherForm.get("last_name")?.value,
+      age: this.motherForm.get("age")?.value,
+      genotype: this.motherForm.get("genotype")?.value,
+      blood_group: this.motherForm.get("blood_group")?.value,
+      nationality: this.motherForm.get("nationality")?.value,
+      email: this.motherForm.get("email")?.value,
+      // hospital_id: this.motherForm.get("hospital_id")?.value,
+      // password: this.motherForm.get("password")?.value,
+    };
+
+    this.motherSrv.updateMother(this.id, payload).subscribe({
+      next: (res) => {
+        // console.log(res);
+        this.notify.notifySuccess("Mother updated successfully");
+        this.motherForm.reset();
+        this.router.navigateByUrl("/mothers/mothers-data");
+      },
+      error: (error) => {
+        // console.log(error.message);
+        this.notify.notifyError(error.message);
+      },
+    });
+  }
+
+  onAdd() {
     this.motherForm.markAllAsTouched();
     if (this.motherForm.invalid) {
       this.notify.notifyInfo("Please fill all fields");

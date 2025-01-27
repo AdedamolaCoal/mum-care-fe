@@ -34,29 +34,14 @@ export class AddChildComponent implements OnInit {
   parentData: Array<IGetMother> = [];
   immunizationData: any;
 
-  bloodGroups: Array<any> = [
-    { id: "A+", name: "A+" },
-    { id: "B+", name: "B+" },
-    { id: "O+", name: "O+" },
-    { id: "AB+", name: "AB+" },
-    { id: "A-", name: "A-" },
-    { id: "B-", name: "B-" },
-    { id: "O-", name: "O-" },
-    { id: "AB-", name: "AB-" },
-  ];
-
-  genotypes: Array<any> = [
-    { id: "AA", name: "AA" },
-    { id: "AS", name: "AS" },
-    { id: "SS", name: "SS" },
-    { id: "AC", name: "AC" },
-  ];
   date: Date | undefined = new Date();
 
   childForm!: FormGroup;
 
   isView: boolean = false;
   isEdit: boolean = false;
+
+  id: any;
 
   childData: any;
 
@@ -72,31 +57,26 @@ export class AddChildComponent implements OnInit {
 
   formInit() {
     this.childForm = this.fb.group({
+      parent_id: ["", Validators.required],
       first_name: ["", Validators.required],
       last_name: ["", Validators.required],
-      blood_group: ["", Validators.required],
-      genotype: ["", Validators.required],
-      parent_email: ["", Validators.required],
+      weight: ["", Validators.required],
       nationality: ["", Validators.required],
       age: ["", Validators.required],
-      weight: ["", Validators.required],
-      parent_id: ["", Validators.required],
-      immunizations: ["", Validators.required],
     });
 
     this.isView = this.sharedSrv.getViewMode();
     this.isEdit = this.sharedSrv.getViewMode();
 
-    const id = this.activatedRoute.snapshot.paramMap.get("id");
+    this.id = this.activatedRoute.snapshot.paramMap.get("id");
 
-    if (id) {
-      this.getChildById(id);
+    if (this.id) {
+      this.getChildById(this.id);
     }
   }
 
   ngOnInit(): void {
     this.getMothers();
-    this.getImmunizations();
     this.formInit();
   }
 
@@ -105,21 +85,19 @@ export class AddChildComponent implements OnInit {
       next: (res) => {
         this.childData = res;
         this.childForm.patchValue({
+          parent_id: this.childData.parent__name,
           first_name: this.childData.first_name,
           last_name: this.childData.last_name,
-          blood_group: this.childData.blood_group,
-          genotype: this.childData.genotype,
-          parent_email: this.childData.parent_email,
           nationality: this.childData.nationality,
           age: this.childData.age,
           weight: this.childData.weight,
-          immunizations: this.childData.immunizations,
         });
 
         if (this.isView) {
           this.childForm.disable();
         }
       },
+      error: (err) => {},
     });
   }
 
@@ -133,6 +111,36 @@ export class AddChildComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.id) {
+      this.onEdit();
+    } else {
+      this.onAdd();
+    }
+  }
+
+  onEdit() {
+    const payload: Child = {
+      first_name: this.childForm.get("first_name")?.value,
+      last_name: this.childForm.get("last_name")?.value,
+      parent_id: this.childForm.get("parent_id")?.value,
+      nationality: this.childForm.get("nationality")?.value,
+      age: this.childForm.get("age")?.value,
+      weight: this.childForm.get("weight")?.value,
+    };
+    console.log(payload);
+
+    this.childSrv.updateChild(this.id, payload).subscribe({
+      next: (res) => {
+        this.notify.notifySuccess("Child Updated Successfully");
+        this.childForm.reset();
+        console.log(this.childForm.value);
+        this.router.navigateByUrl("/child/children-data");
+      },
+      error: (err) => {},
+    });
+  }
+
+  onAdd() {
     this.childForm.markAllAsTouched();
     if (this.childForm.invalid) {
       this.notify.notifyInfo("Please fill all fields");
@@ -141,13 +149,10 @@ export class AddChildComponent implements OnInit {
     const payload: Child = {
       first_name: this.childForm.get("first_name")?.value,
       last_name: this.childForm.get("last_name")?.value,
-      blood_group: this.childForm.get("blood_group")?.value,
-      genotype: this.childForm.get("genotype")?.value,
-      parent_email: this.childForm.get("parent_email")?.value,
+      parent_id: this.childForm.get("parent_id")?.value,
       nationality: this.childForm.get("nationality")?.value,
       age: this.childForm.get("age")?.value,
       weight: this.childForm.get("weight")?.value,
-      immunizations: this.childForm.get("immunizations")?.value,
     };
     console.log(payload);
 

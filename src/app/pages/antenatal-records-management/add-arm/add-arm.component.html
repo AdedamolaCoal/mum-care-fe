@@ -27,7 +27,7 @@
       <ng-select
         formControlName="mother_id"
         [items]="mothersList"
-        bindLabel="first_name"
+        bindLabel="full_name"
         bindValue="id"
         [multiple]="false"
         [searchable]="true"
@@ -155,27 +155,9 @@
         id="remarks"
         required
       ></textarea>
-      <!-- @if (armForm.get('remark')?.errors && armForm.get('remark')?.touched) {
-      <span
-        class="text-secondary2"
-        *ngIf="armForm.get('remark')?.errors?.['required']"
-        >{{ "Doctors remark is required" }}</span
-      >
-      } -->
     </div>
-    <!-- <div class="col-span-2 md:col-span-1">
-      <label for="medium" class="mb-4 md:text-lg font-medium block"> Created Date </label>
-      <app-dropdown [options]="medium" btnClassProps="w-full lg:!py-3 bg-secondary1/5 rounded-3xl" dropdownClassProps="w-full" />
-    </div> -->
-    <!-- <div class="col-span-2 md:col-span-1">
-      <label for="date" class="md:text-lg font-medium block mb-4"> Date </label>
-      <div class="relative bg-secondary1/5 dark:bg-bg3 border py-2.5 border-n30 dark:border-n500 rounded-3xl">
-        <p-calendar [(ngModel)]="date" styleClass="bg-white" name="date"  placeholder="Select Date" inputStyleClass="px-5 focus:outline-none !bg-secondary1/5 dark:!bg-bg3 w-full rounded-none focus:shadow-none active:shadow-none" panelStyleClass="bg-n0 dark:bg-bg3 sm:p-3 rounded-lg"></p-calendar>
-        <i class="las la-calendar absolute ltr:right-4 rtl:left-4 top-1/2 -translate-y-1/2 cursor-pointer"></i>
-      </div>
-    </div> -->
 
-    <div class="col-span-2 flex gap-4 md:gap-6 mt-2">
+    <div class="col-span-2 flex gap-4 md:gap-6 mt-2" *ngIf="!isView || !isEdit">
       <button class="btn" type="submit">Submit Record</button>
       <button class="btn-outline" (click)="armForm.reset()" type="reset">
         Reset Fields

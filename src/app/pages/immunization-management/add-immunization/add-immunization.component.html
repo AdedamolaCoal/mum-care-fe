@@ -27,6 +27,32 @@
     (ngSubmit)="onSubmit()"
   >
     <div class="col-span-2 md:col-span-1">
+      <label for="name" class="mb-4 md:text-lg font-medium block">
+        Parent's Name</label
+      >
+      <ng-select
+        formControlName="parent_id"
+        [items]="mothersList"
+        bindLabel="full_name"
+        bindValue="id"
+        [multiple]="false"
+        [searchable]="true"
+        class="w-full text-sm bg-secondary1/5 dark:bg-bg3 !border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
+      ></ng-select>
+      @if (immunizationForm.get('parent_first_name')?.errors &&
+      immunizationForm.get('parent_first_name')?.touched) {
+      <span
+        class="text-secondary2"
+        *ngIf="immunizationForm.get('parent_first_name')?.errors?.['required']"
+        >{{
+          "Parent's Name is
+      required"
+        }}</span
+      >
+      }
+    </div>
+
+    <div class="col-span-2 md:col-span-1">
       <label for="first_name" class="mb-4 md:text-lg font-medium block">
         First Name
       </label>
@@ -75,6 +101,7 @@
       >
       }
     </div>
+
     <div class="col-span-2 md:col-span-1">
       <label for="age" class="mb-4 md:text-lg font-medium block">Age</label>
       <input
@@ -114,57 +141,6 @@
         *ngIf="immunizationForm.get('weight')?.errors?.['required']"
         >{{
           "Child's Weight is
-        required"
-        }}</span
-      >
-      }
-    </div>
-
-    <div class="col-span-2 md:col-span-1">
-      <label for="name" class="mb-4 md:text-lg font-medium block">
-        Parent's Name</label
-      >
-      <ng-select
-        formControlName="parent_first_name"
-        [items]="mothersList"
-        bindLabel="first_name"
-        bindValue="id"
-        [multiple]="false"
-        [searchable]="true"
-        class="w-full text-sm bg-secondary1/5 dark:bg-bg3 !border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
-      ></ng-select>
-      @if (immunizationForm.get('parent_first_name')?.errors &&
-      immunizationForm.get('parent_first_name')?.touched) {
-      <span
-        class="text-secondary2"
-        *ngIf="immunizationForm.get('parent_first_name')?.errors?.['required']"
-        >{{
-          "Parent's Name is
-        required"
-        }}</span
-      >
-      }
-    </div>
-    <div class="col-span-2 md:col-span-1">
-      <label for="email" class="mb-4 md:text-lg font-medium block">
-        Parent's email</label
-      >
-      <ng-select
-        formControlName="parent_email"
-        [items]="mothersList"
-        bindLabel="email"
-        bindValue="id"
-        [multiple]="false"
-        [searchable]="true"
-        class="w-full text-sm bg-secondary1/5 dark:bg-bg3 !border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"
-      ></ng-select>
-      @if (immunizationForm.get('parent_email')?.errors &&
-      immunizationForm.get('parent_email')?.touched) {
-      <span
-        class="text-secondary2"
-        *ngIf="immunizationForm.get('parent_email')?.errors?.['required']"
-        >{{
-          "Parent email is
         required"
         }}</span
       >
